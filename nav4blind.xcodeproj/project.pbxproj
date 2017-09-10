@@ -12,9 +12,17 @@
 		8A36B6DD1F5EE702003FF43B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A36B6DB1F5EE702003FF43B /* Main.storyboard */; };
 		8A36B6DF1F5EE702003FF43B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A36B6DE1F5EE702003FF43B /* Assets.xcassets */; };
 		8A36B6E21F5EE702003FF43B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A36B6E01F5EE702003FF43B /* LaunchScreen.storyboard */; };
+		8A36B6EE1F5F0923003FF43B /* SelectModeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A36B6ED1F5F0923003FF43B /* SelectModeVC.swift */; };
+		8A36B6F01F5F0A05003FF43B /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A36B6EF1F5F0A05003FF43B /* WelcomeVC.swift */; };
+		8A36B6F21F5F0A86003FF43B /* IndoorMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A36B6F11F5F0A86003FF43B /* IndoorMapVC.swift */; };
+		8A36B6F41F5F0AA1003FF43B /* IndoorNavVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A36B6F31F5F0AA1003FF43B /* IndoorNavVC.swift */; };
+		ABA213D4B1FB0830EC80CAD6 /* Pods_nav4blind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371FA05C80A8C6CDAB659D03 /* Pods_nav4blind.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10C0ACDE78496E3FFC52076A /* Pods-nav4blind.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nav4blind.release.xcconfig"; path = "Pods/Target Support Files/Pods-nav4blind/Pods-nav4blind.release.xcconfig"; sourceTree = "<group>"; };
+		371FA05C80A8C6CDAB659D03 /* Pods_nav4blind.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nav4blind.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E64D72225DF4899CF714079 /* Pods-nav4blind.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nav4blind.debug.xcconfig"; path = "Pods/Target Support Files/Pods-nav4blind/Pods-nav4blind.debug.xcconfig"; sourceTree = "<group>"; };
 		8A36B6D41F5EE702003FF43B /* nav4blind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nav4blind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A36B6D71F5EE702003FF43B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A36B6D91F5EE702003FF43B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +30,10 @@
 		8A36B6DE1F5EE702003FF43B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A36B6E11F5EE702003FF43B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A36B6E31F5EE702003FF43B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A36B6ED1F5F0923003FF43B /* SelectModeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectModeVC.swift; sourceTree = "<group>"; };
+		8A36B6EF1F5F0A05003FF43B /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
+		8A36B6F11F5F0A86003FF43B /* IndoorMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndoorMapVC.swift; sourceTree = "<group>"; };
+		8A36B6F31F5F0AA1003FF43B /* IndoorNavVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndoorNavVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +41,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABA213D4B1FB0830EC80CAD6 /* Pods_nav4blind.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		366D87C7A91FE11E18B0C78F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5E64D72225DF4899CF714079 /* Pods-nav4blind.debug.xcconfig */,
+				10C0ACDE78496E3FFC52076A /* Pods-nav4blind.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		58A84F25EA318EDFA0336759 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				371FA05C80A8C6CDAB659D03 /* Pods_nav4blind.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8A36B6CB1F5EE702003FF43B = {
 			isa = PBXGroup;
 			children = (
 				8A36B6D61F5EE702003FF43B /* nav4blind */,
 				8A36B6D51F5EE702003FF43B /* Products */,
+				366D87C7A91FE11E18B0C78F /* Pods */,
+				58A84F25EA318EDFA0336759 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +86,7 @@
 		8A36B6D61F5EE702003FF43B /* nav4blind */ = {
 			isa = PBXGroup;
 			children = (
+				8A36B6EC1F5F08ED003FF43B /* Controller */,
 				8A36B6D71F5EE702003FF43B /* AppDelegate.swift */,
 				8A36B6D91F5EE702003FF43B /* ViewController.swift */,
 				8A36B6DB1F5EE702003FF43B /* Main.storyboard */,
@@ -64,6 +97,17 @@
 			path = nav4blind;
 			sourceTree = "<group>";
 		};
+		8A36B6EC1F5F08ED003FF43B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8A36B6ED1F5F0923003FF43B /* SelectModeVC.swift */,
+				8A36B6EF1F5F0A05003FF43B /* WelcomeVC.swift */,
+				8A36B6F11F5F0A86003FF43B /* IndoorMapVC.swift */,
+				8A36B6F31F5F0AA1003FF43B /* IndoorNavVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +115,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8A36B6E61F5EE702003FF43B /* Build configuration list for PBXNativeTarget "nav4blind" */;
 			buildPhases = (
+				AF3ECD7CAAA750FC0FBBFA95 /* [CP] Check Pods Manifest.lock */,
 				8A36B6D01F5EE702003FF43B /* Sources */,
 				8A36B6D11F5EE702003FF43B /* Frameworks */,
 				8A36B6D21F5EE702003FF43B /* Resources */,
+				2A79288DC88B003941DC75CB /* [CP] Embed Pods Frameworks */,
+				01D33D8550061C2EAAEB5DFC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,13 +178,71 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		01D33D8550061C2EAAEB5DFC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-nav4blind/Pods-nav4blind-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2A79288DC88B003941DC75CB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-nav4blind/Pods-nav4blind-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-nav4blind/Pods-nav4blind-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF3ECD7CAAA750FC0FBBFA95 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-nav4blind-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8A36B6D01F5EE702003FF43B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8A36B6DA1F5EE702003FF43B /* ViewController.swift in Sources */,
+				8A36B6F21F5F0A86003FF43B /* IndoorMapVC.swift in Sources */,
+				8A36B6EE1F5F0923003FF43B /* SelectModeVC.swift in Sources */,
+				8A36B6F41F5F0AA1003FF43B /* IndoorNavVC.swift in Sources */,
 				8A36B6D81F5EE702003FF43B /* AppDelegate.swift in Sources */,
+				8A36B6F01F5F0A05003FF43B /* WelcomeVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +377,7 @@
 		};
 		8A36B6E71F5EE702003FF43B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E64D72225DF4899CF714079 /* Pods-nav4blind.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -287,6 +393,7 @@
 		};
 		8A36B6E81F5EE702003FF43B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 10C0ACDE78496E3FFC52076A /* Pods-nav4blind.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

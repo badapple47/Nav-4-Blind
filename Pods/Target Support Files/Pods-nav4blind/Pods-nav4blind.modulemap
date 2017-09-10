@@ -1,0 +1,6 @@
+framework module Pods_nav4blind {
+  umbrella header "Pods-nav4blind-umbrella.h"
+
+  export *
+  module * { export * }
+}
