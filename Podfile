@@ -4,4 +4,5 @@ use_frameworks!
 
 target 'nav4blind' do
     pod 'Alamofire', '~> 4.4'
+    pod 'AlamofireImage'
 end
