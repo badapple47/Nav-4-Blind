@@ -158,8 +158,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stock-photo-83927719" translatesAutoresizingMaskIntoConstraints="NO" id="ykX-wq-Ulg">
+                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="stock-photo-83927719" translatesAutoresizingMaskIntoConstraints="NO" id="IWa-Ib-Zqp">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Indoor Navigator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IVb-Fo-Ri4">
                                 <rect key="frame" x="94.5" y="30" width="186" height="31.5"/>
@@ -173,21 +174,36 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5ai-4K-kGj">
                                 <rect key="frame" x="41" y="183" width="292" height="276"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mac: 4c:57:ca:44:9e:4c" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Otu-6P-e7o">
+                                <rect key="frame" x="56" y="104" width="263" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufA-Bt-is7">
+                                <rect key="frame" x="56" y="132" width="263" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Otu-6P-e7o" secondAttribute="trailing" constant="40" id="0mh-Oq-DKH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5ai-4K-kGj" secondAttribute="trailing" constant="26" id="0tK-UV-lfn"/>
                             <constraint firstItem="IVb-Fo-Ri4" firstAttribute="top" secondItem="d5x-TY-yr9" secondAttribute="top" constant="30" id="1DE-aH-lcf"/>
-                            <constraint firstItem="qtW-Ir-oTx" firstAttribute="top" secondItem="ykX-wq-Ulg" secondAttribute="bottom" id="3NV-uZ-DbZ"/>
-                            <constraint firstAttribute="trailing" secondItem="ykX-wq-Ulg" secondAttribute="trailing" id="7Vw-eY-WT9"/>
+                            <constraint firstItem="ufA-Bt-is7" firstAttribute="top" secondItem="Otu-6P-e7o" secondAttribute="bottom" constant="7.5" id="GS3-jz-ute"/>
+                            <constraint firstItem="ufA-Bt-is7" firstAttribute="leading" secondItem="d5x-TY-yr9" secondAttribute="leadingMargin" constant="40" id="IG5-sd-dHr"/>
                             <constraint firstItem="5ai-4K-kGj" firstAttribute="top" secondItem="IVb-Fo-Ri4" secondAttribute="bottom" constant="121.5" id="L7h-A6-esG"/>
+                            <constraint firstItem="Otu-6P-e7o" firstAttribute="leading" secondItem="d5x-TY-yr9" secondAttribute="leadingMargin" constant="40" id="QSe-5G-4Gu"/>
                             <constraint firstItem="5ai-4K-kGj" firstAttribute="leading" secondItem="d5x-TY-yr9" secondAttribute="leadingMargin" constant="25" id="bx6-1g-caq"/>
-                            <constraint firstItem="ykX-wq-Ulg" firstAttribute="leading" secondItem="d5x-TY-yr9" secondAttribute="leading" id="cjh-Ze-Edf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ufA-Bt-is7" secondAttribute="trailing" constant="40" id="ls6-oM-ugW"/>
                             <constraint firstItem="IVb-Fo-Ri4" firstAttribute="centerX" secondItem="d5x-TY-yr9" secondAttribute="centerX" id="mjT-bi-Fcr"/>
-                            <constraint firstItem="ykX-wq-Ulg" firstAttribute="top" secondItem="d5x-TY-yr9" secondAttribute="top" id="rBd-9X-Ttt"/>
+                            <constraint firstItem="Otu-6P-e7o" firstAttribute="top" secondItem="IVb-Fo-Ri4" secondAttribute="bottom" constant="42.5" id="tpV-IM-ipD"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="coordinateLabel" destination="ufA-Bt-is7" id="gq2-1h-z6Q"/>
                         <outlet property="imageView" destination="5ai-4K-kGj" id="tvq-cB-uWT"/>
                     </connections>
                 </viewController>
