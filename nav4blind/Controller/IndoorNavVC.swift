@@ -81,6 +81,13 @@ class IndoorNavVC: UIViewController {
         }
         
         
+        let overlay: UIView = UIView(frame: CGRect(x: 205.15 , y: 107.87  , width: 5, height: 5))
+        
+        overlay.backgroundColor = UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 1)
+        
+        imageView.addSubview(overlay)
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
