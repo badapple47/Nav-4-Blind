@@ -81,7 +81,8 @@ class IndoorNavVC: UIViewController {
         }
         
         
-        let overlay: UIView = UIView(frame: CGRect(x: 205.15 , y: 107.87  , width: 5, height: 5))
+        
+        let overlay: UIView = UIView(frame: CGRect(x: 234 * 0.980 , y:  83 * 1.46 , width: 5, height: 5))
         
         overlay.backgroundColor = UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 1)
         
