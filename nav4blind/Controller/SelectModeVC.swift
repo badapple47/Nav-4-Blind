@@ -21,6 +21,13 @@ class SelectModeVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func unwindFromIndoorMapVC(unwindSegue: UIStoryboardSegue){
+        
+    }
+    
+    @IBAction func unwindFromIndoorNavVC(unwindSegue: UIStoryboardSegue){
+        
+    }
 
     /*
     // MARK: - Navigation
