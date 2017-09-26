@@ -9,6 +9,7 @@ import UIKit
 import Alamofire
 import AlamofireImage
 import SwiftyJSON
+import Foundation
 
 
 class IndoorNavVC: UIViewController {
@@ -72,28 +73,94 @@ class IndoorNavVC: UIViewController {
                     
                    print("map: \(json[0]["mapCoordinate"]["x"].stringValue + "," + json[0]["mapCoordinate"]["y"].stringValue)")
                     
+                
+                    
                     
                     self.coordinateLabel.text = "x , y : " + json[0]["mapCoordinate"]["x"].stringValue + " , " + json[0]["mapCoordinate"]["y"].stringValue
                     
                 case .failure(let error):
                     print(error)
+                    
+                    
                 }
+                
         }
         
         
-    // for
+
 //        let overlay: UIView = UIView(frame: CGRect(x: 234 * 0.980 , y:  83 * 1.46 , width: 5, height: 5))
         
         // for imageview  288 * 281
-        let overlay: UIView = UIView(frame: CGRect(x: 281.81 * 0.822, y:  54.68 * 1.03, width: 5, height: 5))
-
         
-        overlay.backgroundColor = UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 1)
         
-        imageView.addSubview(overlay)
+        var xcorOut : Double! = 281.81
+        
+        var ycorOut : Double! = 54.68
+   
+       
+        
+        
+        var helloWorldTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(IndoorNavVC.marksMan), userInfo: [
+            "X": xcorOut, "Y": ycorOut], repeats: true)
+        
+     
+        
         
         
     }
+
+    
+
+    
+    @objc func marksMan (val :Timer){
+        
+        //รับค่าจาก userinfo
+         let userInfo = val.userInfo as! Dictionary<String, AnyObject>
+        
+        var loopcounter : Int! = 0
+
+      
+      //แปลงให้เป็น double
+        let xcorIn : Double! =  (userInfo["X"] as? NSNumber)?.doubleValue
+        let ycorIn : Double! =  (userInfo["Y"] as? NSNumber)?.doubleValue
+        
+
+            
+            let overlay: UIView = UIView(frame: CGRect(x: xcorIn * 0.822, y:  ycorIn * 1.03, width: 5, height: 5))
+            
+            
+            overlay.backgroundColor = UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 1)
+        
+        
+            
+            imageView.addSubview(overlay)
+
+//        imageView.delete(overlay)
+
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+            overlay.removeFromSuperview()
+       
+
+//            let viewToRemove = self.imageView.viewWithTag(0)
+//            viewToRemove?.removeFromSuperview()
+
+//            print("delay")
+//            self.coordinateLabel.text = "delay"
+
+        })
+
+            
+            
+            loopcounter = loopcounter + 1
+        
+        
+    }
+    
+   
+    
+    
+   
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
