@@ -4,582 +4,324 @@ import Alamofire
 import AlamofireImage
 import SwiftyJSON
 import Foundation
+import Toast_Swift
 
 
 
 var sumWeight : Double! = 0
 
-class IndoorNavVC: UIViewController {
+var destination:String!
+
+var startLocation: String! = ""
+
+
+var selectedRow = 0
+
+
+
+
+class IndoorNavVC: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource  {
     
 
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var coordinateLabel: UILabel!
+    
+    
+    
+    
+    
+    var getfromrouting = [MyNode]()
+    
+    let destinationNode = ["Entrance1","Ladder1","Toilet1Man","Toilet1Woman","Library","DSSRoom","ATRoom","Entrance2","PublicRelation","Room102","Ladder2","Lift","Room104","Room105","KKRoom","Room107","Room108","Room110","Toilet2Man","Toilet2Woman","Ladder3","CopyStore","Room115","Room116","Room118"]
     
 
     
-    let defaultManager: Alamofire.SessionManager = {
-        let serverTrustPolicies: [String: ServerTrustPolicy] = [
-            "10.34.250.12": .disableEvaluation
-        ]
+    @IBOutlet weak var pickerView: UIPickerView!
+    
+    @IBOutlet weak var labelLocation: UILabel!
+    
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+            return destinationNode.count
+      
+     
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+            return destinationNode[row]
+            
+        
+      
+    }
+    
+    @IBAction func pick(_ sender: Any) {
+        let vdestination = destinationNode[pickerView.selectedRow(inComponent: 0)]
         
         
-        return SessionManager(
-            serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrustPolicies)
-        )
-    }()
+        
+        
+        
+        
+        destination = vdestination
+        
+        
+        
+        
+        selectedRow = pickerView.selectedRow(inComponent: 0)
+        
+        
+        performSegue(withIdentifier: "routingVC", sender: self)
+       
+        
+      
+
+        
+    }
+    
+    @IBAction func unwindFromRouting(unwindSegue: UIStoryboardSegue){
+        
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
-        let user = "dev"
-        let password = "dev12345"
-        
-        
-        
-        var headers: HTTPHeaders = [:]
-        
-        if let authorizationHeader = Request.authorizationHeader(user: user, password: password) {
-            headers[authorizationHeader.key] = authorizationHeader.value
-        }
-        
-        
-        
-        self.defaultManager.request("https://10.34.250.12/api/config/v1/maps/imagesource/domain_0_1500368087062.jpg", headers: headers).authenticate(user: user, password: password)
-
-            .responseImage { response in
-
-
-                if let image = response.result.value {
-                    self.imageView.image = image
-            
-           
-
-                }
-        }
-        
-        
-//        self.defaultManager.request("https://10.34.250.12/api/location/v1/history/clients/78%3A4f%3A43%3A8a%3Adb%3Aab?date=2017%2F09%2F19", headers: headers).authenticate(user: user, password: password)
-//
-//            .responseJSON { response in
-//                switch response.result {
-//                case .success(let value):
-//                    let json = JSON(value)
-////                    print("JSON: \(json)")
-////                    print("JSONDict: \(json["mapCoordinate"].stringValue)")
-//
-//                   print("map: \(json[0]["mapCoordinate"]["x"].stringValue + "," + json[0]["mapCoordinate"]["y"].stringValue)")
-//
-//
-//
-//
-//                    self.coordinateLabel.text = "x , y : " + json[0]["mapCoordinate"]["x"].stringValue + " , " + json[0]["mapCoordinate"]["y"].stringValue
-//
-//                case .failure(let error):
-//                    print(error)
-//
-//
-//                }
-//
-//        }
-        
-        var xcorOut : Double! = 231
-        
-        var ycorOut : Double! = 90
-   
        
         
-        //red dot blink
-        var helloWorldTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(IndoorNavVC.marksMan), userInfo: [
-            "X": xcorOut, "Y": ycorOut], repeats: true)
-        
-        
-        
-        
-        
-        
-        
-        
-     
-        
-        
-        
-        
-    }
     
-    
-    @IBAction func goEntrance1(_ sender: Any) {
         
-        let Entrance1 = MyNode(name: "Entrance1")
-        let Node2 = MyNode(name: "Node2")
-        let Ladder1 = MyNode(name: "Ladder1")
-        let Node3 = MyNode(name: "Node3")
-        let Node4 = MyNode(name: "Node4")
-        let Toilet1Man = MyNode(name: "Toilet1Man")
-        let Toilet1Woman = MyNode(name: "Toilet1Woman")
-        let Node5 = MyNode(name: "Node5")
-        let Library = MyNode(name: "Library")
-        let Node6 = MyNode(name: "Node6")
-        let DSSRoom = MyNode(name: "DSSRoom")
-        let Node8 = MyNode(name: "Node8")
-        let Node9 = MyNode(name: "Node9")
-        let Node10 = MyNode(name: "Node10")
-        let Node14 = MyNode(name: "Node14")
-        let Ladder2 = MyNode(name: "Ladder2")
-        let Lift = MyNode(name: "Lift")
-        let Node11 = MyNode(name: "Node11")
-        let Room102 = MyNode(name: "Room102")
-        let Node12 = MyNode(name: "Node12")
-        let ATRoom = MyNode(name: "ATRoom")
-        let Node13 = MyNode(name: "Node13")
-        let PublicRelation = MyNode(name: "PublicRelation")
-        let Entrance2 = MyNode(name: "Entrance2")
-        let Node155 = MyNode(name: "Node155")
-        let Room104 = MyNode(name: "Room104")
-        let Node15 = MyNode(name: "Node15")
-        let Room105 = MyNode(name: "Room105")
-        let Node16 = MyNode(name: "Node16")
-        let KKRoom = MyNode(name: "KKRoom")
-        let Node18 = MyNode(name: "Node18")
-        let Room107 = MyNode(name: "Room107")
-        let Node19 = MyNode(name: "Node19")
-        let Room108 = MyNode(name: "Room108")
-        let Node20 = MyNode(name: "Node20")
-        let Room110 = MyNode(name: "Room110")
-        let Node205 = MyNode(name: "Node205")
-        let Node21 = MyNode(name: "Node21")
-        let Room115 = MyNode(name: "Room115")
-        let Node22 = MyNode(name: "Node22")
-        let Room116 = MyNode(name: "Room116")
-        let Room118 = MyNode(name: "Room118")
-        let Node23 = MyNode(name: "Node23")
-        let Node25 = MyNode(name: "Node25")
-        let Toilet2Man = MyNode(name: "Toilet2Man")
-        let Toilet2Woman = MyNode(name: "Toilet2Woman")
-        let Node24 = MyNode(name: "Node24")
-        let Ladder3 = MyNode(name: "Ladder3")
-        let CopyStore = MyNode(name: "CopyStore")
+        self.pickerView.delegate = self
+        
+        self.pickerView.dataSource = self
+        
+        pickerView.selectRow(2, inComponent: 0, animated: true)
+        
+        //start find current location
         
         
+        var Current = [51,51];
+        let Entrance1 = [1,2];
+        let Ladder1 = [1,2];
+        let Toilet1Man = [1,2];
+        let Toilet1Woman = [1,2];
+        let Library = [51,51];
+        let DSSRoom = [1,2];
+        let ATRoom = [1,2];
+        let Entrance2 = [1,2];
+        let PublicRelation = [1,2];
+        let Room102 = [1,2];
+        let Ladder2 = [1,2];
+        let Lift = [1,2];
+        let Room104 = [1,2];
+        let Room105 = [1,2];
+        let KKRoom = [50,100];
+        let Room107 = [1,2];
+        let Room108 = [1,2];
+        let Room110 = [1,2];
+        let Toilet2Man = [1,2];
+        let Toilet2Woman = [1,2];
+        let Ladder3 = [1,2];
+        let CopyStore = [1,2];
+        let Room115 = [1,2];
+        let Room116 = [1,2];
+        let Room118 = [1,2];
+        let Node2 = [1,2];
+        let Node3 = [1,2];
+        let Node4 = [1,2];
+        let Node5 = [1,2];
+        let Node6 = [1,2];
+        let Node8 = [1,2];
+        let Node9 = [1,2];
+        let Node10 = [1,2];
+        let Node11 = [1,2];
+        let Node12 = [1,2];
+        let Node13 = [1,2];
+        let Node14 = [1,2];
+        let Node15 = [1,2];
+        let Node155 = [1,2];
+        let Node16 = [1,2];
+        let Node17 = [1,2];
+        let Node18 = [1,2];
+        let Node19 = [100,100];
+        let Node20 = [1,2];
+        let Node205 = [1,2];
+        let Node21 = [1,2];
+        let Node22 = [1,2];
+        let Node23 = [1,2];
+        let Node24 = [1,2];
+        let Node25 = [1,2];
         
-        Entrance1.connections.append(Connection(to: Node2, weight: 5))
-        Node2.connections.append(Connection(to: Ladder1, weight: 1.4))
-        Node2.connections.append(Connection(to: Node3, weight: 1.625))
-        Node2.connections.append(Connection(to: Entrance1, weight: 5))
-        Ladder1.connections.append(Connection(to: Node2, weight: 1))
-        Node3.connections.append(Connection(to: Node2, weight: 1))
-        Node3.connections.append(Connection(to: Node4, weight: 10.7))
-        Node3.connections.append(Connection(to: Node5, weight: 2.25))
-        Node4.connections.append(Connection(to: Node3, weight: 10.7))
-        Node4.connections.append(Connection(to: Toilet1Man, weight: 1.1))
-        Node4.connections.append(Connection(to: Toilet1Woman, weight: 1))
-        Toilet1Man.connections.append(Connection(to: Node4, weight: 1.1))
-        Toilet1Woman.connections.append(Connection(to: Node4, weight: 1))
-        Node5.connections.append(Connection(to: Library, weight: 1.4))
-        Node5.connections.append(Connection(to: Node4, weight: 10.7))
-        Node5.connections.append(Connection(to: Node6, weight: 7))
-        Library.connections.append(Connection(to: Node5, weight: 1.4))
-        Node6.connections.append(Connection(to: Node5, weight: 7))
-        Node6.connections.append(Connection(to: DSSRoom, weight: 1.4))
-        Node6.connections.append(Connection(to: Node8, weight: 18))
-        DSSRoom.connections.append(Connection(to: Node6, weight: 1.4))
-        Node8.connections.append(Connection(to: Node6, weight: 18))
-        Node8.connections.append(Connection(to: Node9, weight: 2.75))
-        Node8.connections.append(Connection(to: Node155, weight: 9.1))
-        Node9.connections.append(Connection(to: Node8, weight: 2.75))
-        Node9.connections.append(Connection(to: Node10, weight: 1.25))
-        Node9.connections.append(Connection(to: Node11, weight: 5.5))
-        Node10.connections.append(Connection(to: Node9, weight: 1.25))
-        Node10.connections.append(Connection(to: Node14, weight: 2.4))
-        Node14.connections.append(Connection(to: Node10, weight: 2.4))
-        Node14.connections.append(Connection(to: Node2, weight: 2.4))
-        Node14.connections.append(Connection(to: Lift, weight: 4))
-        Ladder2.connections.append(Connection(to: Node14, weight: 2.4))
-        Lift.connections.append(Connection(to: Node14, weight: 4))
-        Node11.connections.append(Connection(to: Node9, weight: 5.5))
-        Node11.connections.append(Connection(to: Room102, weight: 3.75))
-        Node11.connections.append(Connection(to: Node12, weight: 3.2))
-        Room102.connections.append(Connection(to: Node11, weight: 3.75))
-        Node12.connections.append(Connection(to: Node11, weight: 3.2))
-        Node12.connections.append(Connection(to: ATRoom, weight: 3.75))
-        Node12.connections.append(Connection(to: Node13, weight: 3.5))
-        ATRoom.connections.append(Connection(to: Node12, weight: 3.75))
-        Node13.connections.append(Connection(to: Node12, weight: 3.5))
-        Node13.connections.append(Connection(to: PublicRelation, weight: 3.75))
-        Node13.connections.append(Connection(to: Entrance2, weight: 2.6))
-        PublicRelation.connections.append(Connection(to: Node13, weight: 3.75))
-        Entrance2.connections.append(Connection(to: Node13, weight: 2.6))
-        Node155.connections.append(Connection(to: Node8, weight: 9.1))
-        Node155.connections.append(Connection(to: Room104, weight: 6))
-        Node155.connections.append(Connection(to: Node15, weight: 5.4))
-        Room104.connections.append(Connection(to: Node155, weight: 6))
-        Node15.connections.append(Connection(to: Node155, weight: 5.4))
-        Node15.connections.append(Connection(to: Room105, weight: 2.7))
-        Node15.connections.append(Connection(to: Node16, weight: 2))
-        Room105.connections.append(Connection(to: Node15, weight: 2.7))
-        Node16.connections.append(Connection(to: Node15, weight: 2))
-        Node16.connections.append(Connection(to: KKRoom, weight: 4.15))
-        Node16.connections.append(Connection(to: Node18, weight: 5.8))
-        KKRoom.connections.append(Connection(to: Node16, weight: 8.3))
-        Node18.connections.append(Connection(to: Node16, weight: 5.8))
-        Node18.connections.append(Connection(to: Room107, weight: 2.7))
-        Node18.connections.append(Connection(to: Node19, weight: 7.8))
-        Room107.connections.append(Connection(to: Node18, weight: 2.7))
-        Node19.connections.append(Connection(to: Node18, weight: 7.8))
-        Node19.connections.append(Connection(to: Room108, weight: 2.7))
-        Node19.connections.append(Connection(to: Node20, weight: 1.7))
-        Room108.connections.append(Connection(to: Node19, weight: 2.7))
-        Node20.connections.append(Connection(to: Node19, weight: 1.7))
-        Node20.connections.append(Connection(to: Room110, weight: 2.7))
-        Node20.connections.append(Connection(to: Node205, weight: 0.8))
-        Room110.connections.append(Connection(to: Node20, weight: 2.7))
-        Node205.connections.append(Connection(to: Node20, weight: 0.8))
-        Node205.connections.append(Connection(to: Node21, weight: 8.2))
-        Node205.connections.append(Connection(to: Node23, weight: 7.5))
-        Node21.connections.append(Connection(to: Node205, weight: 8.2))
-        Node21.connections.append(Connection(to: Room115, weight: 1.4))
-        Node21.connections.append(Connection(to: Node22, weight: 2))
-        Room115.connections.append(Connection(to: Node21, weight: 1.4))
-        Node22.connections.append(Connection(to: Node21, weight: 2))
-        Node22.connections.append(Connection(to: Room116, weight: 1.4))
-        Node22.connections.append(Connection(to: Room118, weight: 6.7))
-        Room116.connections.append(Connection(to: Node22, weight: 1.4))
-        Room118.connections.append(Connection(to: Node22, weight: 6.7))
-        Node23.connections.append(Connection(to: Node205, weight: 7.5))
-        Node23.connections.append(Connection(to: Node25, weight: 7))
-        Node23.connections.append(Connection(to: Node24, weight: 1.75))
-        Node25.connections.append(Connection(to: Node23, weight: 7))
-        Node25.connections.append(Connection(to: Toilet2Man, weight: 3))
-        Node25.connections.append(Connection(to: Toilet2Woman, weight: 1))
-        Toilet2Man.connections.append(Connection(to: Node25, weight: 3))
-        Toilet2Woman.connections.append(Connection(to: Node25, weight: 1))
-        Node24.connections.append(Connection(to: Node23, weight: 1.75))
-        Node24.connections.append(Connection(to: Ladder3, weight: 1.7))
-        Node24.connections.append(Connection(to: CopyStore, weight: 0.5))
-        Ladder3.connections.append(Connection(to: Node24, weight: 1.7))
-        CopyStore.connections.append(Connection(to: Node24, weight: 0.5))
         
-        let sourceNode = Library
-        let destinationNode = Entrance1
+        var arraylist = [[Int]]()
         
-        var path = shortestPath(source: sourceNode, destination: destinationNode)
+        arraylist.append( Entrance1 )
+        arraylist.append( Ladder1 )
+        arraylist.append( Toilet1Man )
+        arraylist.append( Toilet1Woman )
+        arraylist.append( Library )
+        arraylist.append( DSSRoom )
+        arraylist.append( ATRoom )
+        arraylist.append( Entrance2 )
+        arraylist.append( PublicRelation )
+        arraylist.append( Room102 )
+        arraylist.append( Ladder2 )
+        arraylist.append( Lift )
+        arraylist.append( Room104 )
+        arraylist.append( Room105 )
+        arraylist.append( KKRoom )
+        arraylist.append( Room107 )
+        arraylist.append( Room108 )
+        arraylist.append( Room110 )
+        arraylist.append( Toilet2Man )
+        arraylist.append( Toilet2Woman )
+        arraylist.append( Ladder3 )
+        arraylist.append( CopyStore )
+        arraylist.append( Room115 )
+        arraylist.append( Room116 )
+        arraylist.append( Room118 )
+        arraylist.append( Node2 )
+        arraylist.append( Node3 )
+        arraylist.append( Node4 )
+        arraylist.append( Node5 )
+        arraylist.append( Node6 )
+        arraylist.append( Node8 )
+        arraylist.append( Node9 )
+        arraylist.append( Node10 )
+        arraylist.append( Node11 )
+        arraylist.append( Node12 )
+        arraylist.append( Node13 )
+        arraylist.append( Node14 )
+        arraylist.append( Node15 )
+        arraylist.append( Node155 )
+        arraylist.append( Node16 )
+        arraylist.append( Node17 )
+        arraylist.append( Node18 )
+        arraylist.append( Node19 )
+        arraylist.append( Node20 )
+        arraylist.append( Node205 )
+        arraylist.append( Node21 )
+        arraylist.append( Node22 )
+        arraylist.append( Node23 )
+        arraylist.append( Node24 )
+        arraylist.append( Node25 )
         
-        if let succession: [String] = path?.array.reversed().flatMap({ $0 as? MyNode}).map({$0.name}) {
-            print("Destination From \(sourceNode.name) to \(destinationNode.name)")
-            print("🏁 Quickest path: \(succession)")
-            print("🏁 Quickest Weight: \(sumWeight)")
+        //print(arraylist)
+        
+        var checkInEachXandY:Int = 0;
+        var checkLastPithagorus:Double = 10000;
+        var x:Double = 0
+        var y:Double = 0
+        var Pithagorus:Double = 0
+        
+        for  i in (0..<arraylist.count)
+        {
             
-            let alert = UIAlertController(title: "\(sourceNode.name) to \(destinationNode.name)", message: "🏁 Quickest path: \(succession) = \(sumWeight!) meter", preferredStyle: UIAlertControllerStyle.alert)
-            
-            // add the actions (buttons)
-            alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.default, handler: nil))
-            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-            
-            // show the alert
-            self.present(alert, animated: true, completion: nil)
-        } else {
-            print("💥 No path between \(sourceNode.name) & \(destinationNode.name)")
-        }
-        
-    }
-    
-    @IBAction func goEntrance2(_ sender: Any) {
-        
-        let Entrance1 = MyNode(name: "Entrance1")
-        let Node2 = MyNode(name: "Node2")
-        let Ladder1 = MyNode(name: "Ladder1")
-        let Node3 = MyNode(name: "Node3")
-        let Node4 = MyNode(name: "Node4")
-        let Toilet1Man = MyNode(name: "Toilet1Man")
-        let Toilet1Woman = MyNode(name: "Toilet1Woman")
-        let Node5 = MyNode(name: "Node5")
-        let Library = MyNode(name: "Library")
-        let Node6 = MyNode(name: "Node6")
-        let DSSRoom = MyNode(name: "DSSRoom")
-        let Node8 = MyNode(name: "Node8")
-        let Node9 = MyNode(name: "Node9")
-        let Node10 = MyNode(name: "Node10")
-        let Node14 = MyNode(name: "Node14")
-        let Ladder2 = MyNode(name: "Ladder2")
-        let Lift = MyNode(name: "Lift")
-        let Node11 = MyNode(name: "Node11")
-        let Room102 = MyNode(name: "Room102")
-        let Node12 = MyNode(name: "Node12")
-        let ATRoom = MyNode(name: "ATRoom")
-        let Node13 = MyNode(name: "Node13")
-        let PublicRelation = MyNode(name: "PublicRelation")
-        let Entrance2 = MyNode(name: "Entrance2")
-        let Node155 = MyNode(name: "Node155")
-        let Room104 = MyNode(name: "Room104")
-        let Node15 = MyNode(name: "Node15")
-        let Room105 = MyNode(name: "Room105")
-        let Node16 = MyNode(name: "Node16")
-        let KKRoom = MyNode(name: "KKRoom")
-        let Node18 = MyNode(name: "Node18")
-        let Room107 = MyNode(name: "Room107")
-        let Node19 = MyNode(name: "Node19")
-        let Room108 = MyNode(name: "Room108")
-        let Node20 = MyNode(name: "Node20")
-        let Room110 = MyNode(name: "Room110")
-        let Node205 = MyNode(name: "Node205")
-        let Node21 = MyNode(name: "Node21")
-        let Room115 = MyNode(name: "Room115")
-        let Node22 = MyNode(name: "Node22")
-        let Room116 = MyNode(name: "Room116")
-        let Room118 = MyNode(name: "Room118")
-        let Node23 = MyNode(name: "Node23")
-        let Node25 = MyNode(name: "Node25")
-        let Toilet2Man = MyNode(name: "Toilet2Man")
-        let Toilet2Woman = MyNode(name: "Toilet2Woman")
-        let Node24 = MyNode(name: "Node24")
-        let Ladder3 = MyNode(name: "Ladder3")
-        let CopyStore = MyNode(name: "CopyStore")
-        
-        
-        
-        Entrance1.connections.append(Connection(to: Node2, weight: 5))
-        Node2.connections.append(Connection(to: Ladder1, weight: 1.4))
-        Node2.connections.append(Connection(to: Node3, weight: 1.625))
-        Node2.connections.append(Connection(to: Entrance1, weight: 5))
-        Ladder1.connections.append(Connection(to: Node2, weight: 1))
-        Node3.connections.append(Connection(to: Node2, weight: 1))
-        Node3.connections.append(Connection(to: Node4, weight: 10.7))
-        Node3.connections.append(Connection(to: Node5, weight: 2.25))
-        Node4.connections.append(Connection(to: Node3, weight: 10.7))
-        Node4.connections.append(Connection(to: Toilet1Man, weight: 1.1))
-        Node4.connections.append(Connection(to: Toilet1Woman, weight: 1))
-        Toilet1Man.connections.append(Connection(to: Node4, weight: 1.1))
-        Toilet1Woman.connections.append(Connection(to: Node4, weight: 1))
-        Node5.connections.append(Connection(to: Library, weight: 1.4))
-        Node5.connections.append(Connection(to: Node4, weight: 10.7))
-        Node5.connections.append(Connection(to: Node6, weight: 7))
-        Library.connections.append(Connection(to: Node5, weight: 1.4))
-        Node6.connections.append(Connection(to: Node5, weight: 7))
-        Node6.connections.append(Connection(to: DSSRoom, weight: 1.4))
-        Node6.connections.append(Connection(to: Node8, weight: 18))
-        DSSRoom.connections.append(Connection(to: Node6, weight: 1.4))
-        Node8.connections.append(Connection(to: Node6, weight: 18))
-        Node8.connections.append(Connection(to: Node9, weight: 2.75))
-        Node8.connections.append(Connection(to: Node155, weight: 9.1))
-        Node9.connections.append(Connection(to: Node8, weight: 2.75))
-        Node9.connections.append(Connection(to: Node10, weight: 1.25))
-        Node9.connections.append(Connection(to: Node11, weight: 5.5))
-        Node10.connections.append(Connection(to: Node9, weight: 1.25))
-        Node10.connections.append(Connection(to: Node14, weight: 2.4))
-        Node14.connections.append(Connection(to: Node10, weight: 2.4))
-        Node14.connections.append(Connection(to: Node2, weight: 2.4))
-        Node14.connections.append(Connection(to: Lift, weight: 4))
-        Ladder2.connections.append(Connection(to: Node14, weight: 2.4))
-        Lift.connections.append(Connection(to: Node14, weight: 4))
-        Node11.connections.append(Connection(to: Node9, weight: 5.5))
-        Node11.connections.append(Connection(to: Room102, weight: 3.75))
-        Node11.connections.append(Connection(to: Node12, weight: 3.2))
-        Room102.connections.append(Connection(to: Node11, weight: 3.75))
-        Node12.connections.append(Connection(to: Node11, weight: 3.2))
-        Node12.connections.append(Connection(to: ATRoom, weight: 3.75))
-        Node12.connections.append(Connection(to: Node13, weight: 3.5))
-        ATRoom.connections.append(Connection(to: Node12, weight: 3.75))
-        Node13.connections.append(Connection(to: Node12, weight: 3.5))
-        Node13.connections.append(Connection(to: PublicRelation, weight: 3.75))
-        Node13.connections.append(Connection(to: Entrance2, weight: 2.6))
-        PublicRelation.connections.append(Connection(to: Node13, weight: 3.75))
-        Entrance2.connections.append(Connection(to: Node13, weight: 2.6))
-        Node155.connections.append(Connection(to: Node8, weight: 9.1))
-        Node155.connections.append(Connection(to: Room104, weight: 6))
-        Node155.connections.append(Connection(to: Node15, weight: 5.4))
-        Room104.connections.append(Connection(to: Node155, weight: 6))
-        Node15.connections.append(Connection(to: Node155, weight: 5.4))
-        Node15.connections.append(Connection(to: Room105, weight: 2.7))
-        Node15.connections.append(Connection(to: Node16, weight: 2))
-        Room105.connections.append(Connection(to: Node15, weight: 2.7))
-        Node16.connections.append(Connection(to: Node15, weight: 2))
-        Node16.connections.append(Connection(to: KKRoom, weight: 4.15))
-        Node16.connections.append(Connection(to: Node18, weight: 5.8))
-        KKRoom.connections.append(Connection(to: Node16, weight: 8.3))
-        Node18.connections.append(Connection(to: Node16, weight: 5.8))
-        Node18.connections.append(Connection(to: Room107, weight: 2.7))
-        Node18.connections.append(Connection(to: Node19, weight: 7.8))
-        Room107.connections.append(Connection(to: Node18, weight: 2.7))
-        Node19.connections.append(Connection(to: Node18, weight: 7.8))
-        Node19.connections.append(Connection(to: Room108, weight: 2.7))
-        Node19.connections.append(Connection(to: Node20, weight: 1.7))
-        Room108.connections.append(Connection(to: Node19, weight: 2.7))
-        Node20.connections.append(Connection(to: Node19, weight: 1.7))
-        Node20.connections.append(Connection(to: Room110, weight: 2.7))
-        Node20.connections.append(Connection(to: Node205, weight: 0.8))
-        Room110.connections.append(Connection(to: Node20, weight: 2.7))
-        Node205.connections.append(Connection(to: Node20, weight: 0.8))
-        Node205.connections.append(Connection(to: Node21, weight: 8.2))
-        Node205.connections.append(Connection(to: Node23, weight: 7.5))
-        Node21.connections.append(Connection(to: Node205, weight: 8.2))
-        Node21.connections.append(Connection(to: Room115, weight: 1.4))
-        Node21.connections.append(Connection(to: Node22, weight: 2))
-        Room115.connections.append(Connection(to: Node21, weight: 1.4))
-        Node22.connections.append(Connection(to: Node21, weight: 2))
-        Node22.connections.append(Connection(to: Room116, weight: 1.4))
-        Node22.connections.append(Connection(to: Room118, weight: 6.7))
-        Room116.connections.append(Connection(to: Node22, weight: 1.4))
-        Room118.connections.append(Connection(to: Node22, weight: 6.7))
-        Node23.connections.append(Connection(to: Node205, weight: 7.5))
-        Node23.connections.append(Connection(to: Node25, weight: 7))
-        Node23.connections.append(Connection(to: Node24, weight: 1.75))
-        Node25.connections.append(Connection(to: Node23, weight: 7))
-        Node25.connections.append(Connection(to: Toilet2Man, weight: 3))
-        Node25.connections.append(Connection(to: Toilet2Woman, weight: 1))
-        Toilet2Man.connections.append(Connection(to: Node25, weight: 3))
-        Toilet2Woman.connections.append(Connection(to: Node25, weight: 1))
-        Node24.connections.append(Connection(to: Node23, weight: 1.75))
-        Node24.connections.append(Connection(to: Ladder3, weight: 1.7))
-        Node24.connections.append(Connection(to: CopyStore, weight: 0.5))
-        Ladder3.connections.append(Connection(to: Node24, weight: 1.7))
-        CopyStore.connections.append(Connection(to: Node24, weight: 0.5))
-        
-        let sourceNode = Library
-        let destinationNode = Entrance2
-        
-        var path = shortestPath(source: sourceNode, destination: destinationNode)
-        
-        if let succession: [String] = path?.array.reversed().flatMap({ $0 as? MyNode}).map({$0.name}) {
-            print("Destination From \(sourceNode.name) to \(destinationNode.name)")
-            print("🏁 Quickest path: \(succession)")
-            print("🏁 Quickest Weight: \(sumWeight)")
-            
-            let alert = UIAlertController(title: "\(sourceNode.name) to \(destinationNode.name)", message: "🏁 Quickest path: \(succession) = \(sumWeight!) meter", preferredStyle: UIAlertControllerStyle.alert)
-            
-            // add the actions (buttons)
-            alert.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.default, handler: nil))
-            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-            
-            // show the alert
-            self.present(alert, animated: true, completion: nil)
-            
-        } else {
-            print("💥 No path between \(sourceNode.name) & \(destinationNode.name)")
+            x = Double(Current[0] -  arraylist[i][0])
+            y = Double(Current[1] - arraylist[i][1])
+            Pithagorus = sqrt(x*y+y*y)
+            if(Pithagorus<checkLastPithagorus){
+                checkLastPithagorus = Pithagorus
+                checkInEachXandY = i+1;
+            }
             
             
         }
-    }
-    
-
-    
-    @objc func marksMan (val :Timer){
         
-        //รับค่าจาก userinfo
-         let userInfo = val.userInfo as! Dictionary<String, AnyObject>
+//        print(checkInEachXandY)
         
-        var loopcounter : Int! = 0
-
+        
+        
+        
+        var NumWithPlace = [Int: String]()
+        
+        
+        NumWithPlace[1] = "Entrance1 "
+        NumWithPlace[2] = "Ladder1 "
+        NumWithPlace[3] = "Toilet1Man "
+        NumWithPlace[4] = "Toilet1Woman "
+        NumWithPlace[5] = "Library "
+        NumWithPlace[6] = "DSSRoom "
+        NumWithPlace[7] = "ATRoom "
+        NumWithPlace[8] = "Entrance2 "
+        NumWithPlace[9] = "PublicRelation "
+        NumWithPlace[10] = "Room102 "
+        NumWithPlace[11] = "Ladder2 "
+        NumWithPlace[12] = "Lift "
+        NumWithPlace[13] = "Room104 "
+        NumWithPlace[14] = "Room105 "
+        NumWithPlace[15] = "KKRoom "
+        NumWithPlace[16] = "Room107 "
+        NumWithPlace[17] = "Room108 "
+        NumWithPlace[18] = "Room110 "
+        NumWithPlace[19] = "Toilet2Man "
+        NumWithPlace[20] = "Toilet2Woman "
+        NumWithPlace[21] = "Ladder3 "
+        NumWithPlace[22] = "CopyStore "
+        NumWithPlace[23] = "Room115 "
+        NumWithPlace[24] = "Room116 "
+        NumWithPlace[25] = "Room118 "
+        NumWithPlace[26] = "Node2 "
+        NumWithPlace[27] = "Node3 "
+        NumWithPlace[28] = "Node4 "
+        NumWithPlace[29] = "Node5 "
+        NumWithPlace[30] = "Node6 "
+        NumWithPlace[31] = "Node8 "
+        NumWithPlace[32] = "Node9 "
+        NumWithPlace[33] = "Node10 "
+        NumWithPlace[34] = "Node11 "
+        NumWithPlace[35] = "Node12 "
+        NumWithPlace[36] = "Node13 "
+        NumWithPlace[37] = "Node14 "
+        NumWithPlace[38] = "Node15 "
+        NumWithPlace[39] = "Node155 "
+        NumWithPlace[40] = "Node16 "
+        NumWithPlace[41] = "Node17 "
+        NumWithPlace[42] = "Node18 "
+        NumWithPlace[43] = "Node19 "
+        NumWithPlace[44] = "Node20 "
+        NumWithPlace[45] = "Node205 "
+        NumWithPlace[46] = "Node21 "
+        NumWithPlace[47] = "Node22 "
+        NumWithPlace[48] = "Node23 "
+        NumWithPlace[49] = "Node24 "
+        NumWithPlace[50] = "Node25 "
+        
+        print("Your Current Location is : \(NumWithPlace[checkInEachXandY]!)")
+        
+        
+        //end current location process
+        
+        labelLocation.text = ("you're at : \(NumWithPlace[checkInEachXandY]!)")
+        startLocation =  NumWithPlace[checkInEachXandY]!
+        
       
-      //แปลงให้เป็น double
-        let xcorIn : Double! =  (userInfo["X"] as? NSNumber)?.doubleValue
-        let ycorIn : Double! =  (userInfo["Y"] as? NSNumber)?.doubleValue
-        
-
-            
-            let overlay: UIView = UIView(frame: CGRect(x: xcorIn * 0.822, y:  ycorIn * 1.03, width: 5, height: 5))
-            
-            
-            overlay.backgroundColor = UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 1)
-        
-        
-            
-            imageView.addSubview(overlay)
-
-
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-            overlay.removeFromSuperview()
        
-        })
-            loopcounter = loopcounter + 1
-    }
-}
-
-
-class Node {
-    var visited = false
-    var connections: [Connection] = []
-}
-
-class Connection {
-    public let to: Node
-    public let weight: Double
-    
-    public init(to node: Node, weight: Double) {
-        assert(weight >= 0, "weight has to be equal or greater than zero")
-        self.to = node
-        self.weight = weight
-    }
-}
-
-class Path {
-    public let cumulativeWeight: Double
-    public let node: Node
-    public let previousPath: Path?
-    
-    init(to node: Node, via connection: Connection? = nil, previousPath path: Path? = nil) {
-        if
-            let previousPath = path,
-            let viaConnection = connection {
-            self.cumulativeWeight = viaConnection.weight + previousPath.cumulativeWeight
-            sumWeight = self.cumulativeWeight
-        } else {
-            self.cumulativeWeight = 0
-        }
         
-        self.node = node
-        self.previousPath = path
-    }
-}
-
-extension Path {
-    var array: [Node] {
-        var array: [Node] = [self.node]
-        
-        var iterativePath = self
-        while let path = iterativePath.previousPath {
-            array.append(path.node)
-            
-            iterativePath = path
-        }
-        
-        return array
-    }
-}
-
-func shortestPath(source: Node, destination: Node) -> Path? {
-    var frontier: [Path] = [] {
-        didSet { frontier.sort { return $0.cumulativeWeight < $1.cumulativeWeight } } // the frontier has to be always ordered
     }
     
-    frontier.append(Path(to: source)) // the frontier is made by a path that starts nowhere and ends in the source
     
-    while !frontier.isEmpty {
-        let cheapestPathInFrontier = frontier.removeFirst() // getting the cheapest path available
-        guard !cheapestPathInFrontier.node.visited else { continue } // making sure we haven't visited the node already
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if cheapestPathInFrontier.node === destination {
-            return cheapestPathInFrontier // found the cheapest path 😎
-        }
-        
-        cheapestPathInFrontier.node.visited = true
-        
-        for connection in cheapestPathInFrontier.node.connections where !connection.to.visited { // adding new paths to our frontier
-            frontier.append(Path(to: connection.to, via: connection, previousPath: cheapestPathInFrontier))
-        }
-    } // end while
-    return nil // we didn't find a path 😣
-}
+       
+        let playerViewController = segue.destination as? IndoorRouting
+        playerViewController?.destination = destination
+        playerViewController?.startLocation = startLocation
 
-// **** EXAMPLE BELOW ****
-class MyNode: Node {
-    let name: String
-    
-    init(name: String) {
-        self.name = name
-        super.init()
+        
+  
     }
+
+    
+    
+    //end IndoorNavVC Class
 }
-
-
-
 

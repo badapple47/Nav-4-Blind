@@ -16,6 +16,9 @@
 		8A36B6F01F5F0A05003FF43B /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A36B6EF1F5F0A05003FF43B /* WelcomeVC.swift */; };
 		8A36B6F21F5F0A86003FF43B /* IndoorMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A36B6F11F5F0A86003FF43B /* IndoorMapVC.swift */; };
 		8A36B6F41F5F0AA1003FF43B /* IndoorNavVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A36B6F31F5F0AA1003FF43B /* IndoorNavVC.swift */; };
+		8A47D1FB1FC03E4A00E0DB44 /* IndoorRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A47D1FA1FC03E4A00E0DB44 /* IndoorRouting.swift */; };
+		8A60728F1FE1301900050B46 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A60728E1FE1301900050B46 /* test.swift */; };
+		8A716A4E1FC6B2020047AC17 /* getlocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A716A4D1FC6B2020047AC17 /* getlocationViewController.swift */; };
 		ABA213D4B1FB0830EC80CAD6 /* Pods_nav4blind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371FA05C80A8C6CDAB659D03 /* Pods_nav4blind.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +37,9 @@
 		8A36B6EF1F5F0A05003FF43B /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		8A36B6F11F5F0A86003FF43B /* IndoorMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndoorMapVC.swift; sourceTree = "<group>"; };
 		8A36B6F31F5F0AA1003FF43B /* IndoorNavVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndoorNavVC.swift; sourceTree = "<group>"; };
+		8A47D1FA1FC03E4A00E0DB44 /* IndoorRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndoorRouting.swift; sourceTree = "<group>"; };
+		8A60728E1FE1301900050B46 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		8A716A4D1FC6B2020047AC17 /* getlocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getlocationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,9 @@
 				8A36B6EF1F5F0A05003FF43B /* WelcomeVC.swift */,
 				8A36B6F11F5F0A86003FF43B /* IndoorMapVC.swift */,
 				8A36B6F31F5F0AA1003FF43B /* IndoorNavVC.swift */,
+				8A47D1FA1FC03E4A00E0DB44 /* IndoorRouting.swift */,
+				8A60728E1FE1301900050B46 /* test.swift */,
+				8A716A4D1FC6B2020047AC17 /* getlocationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -204,12 +213,14 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -243,9 +254,12 @@
 			files = (
 				8A36B6DA1F5EE702003FF43B /* ViewController.swift in Sources */,
 				8A36B6F21F5F0A86003FF43B /* IndoorMapVC.swift in Sources */,
+				8A716A4E1FC6B2020047AC17 /* getlocationViewController.swift in Sources */,
 				8A36B6EE1F5F0923003FF43B /* SelectModeVC.swift in Sources */,
+				8A60728F1FE1301900050B46 /* test.swift in Sources */,
 				8A36B6F41F5F0AA1003FF43B /* IndoorNavVC.swift in Sources */,
 				8A36B6D81F5EE702003FF43B /* AppDelegate.swift in Sources */,
+				8A47D1FB1FC03E4A00E0DB44 /* IndoorRouting.swift in Sources */,
 				8A36B6F01F5F0A05003FF43B /* WelcomeVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,6 +289,7 @@
 		8A36B6E41F5EE702003FF43B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -332,6 +347,7 @@
 		8A36B6E51F5EE702003FF43B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
