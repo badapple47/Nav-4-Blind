@@ -21,13 +21,13 @@ struct pathStruct {
     var y : Double
 }
 
-//library to entrance1
-var VirtualCurrentLocationOnX : [Double]  = [230,232,234,234,234,234,234,234,234,234,234,234]
-var VirtualCurrentLocationOnY : [Double] = [83,82,82,78,75,72,70,67,63,59,57,53]
+////library to entrance1
+//var VirtualCurrentLocationOnX : [Double]  = [230,232,234,234,234,234,234,234,234,234,234,234]
+//var VirtualCurrentLocationOnY : [Double] = [83,82,82,78,75,72,70,67,63,59,57,53]
 
 //library to toilet1man
-//var VirtualCurrentLocationOnX : [Double]  = [230,232,234,234,234,250,262,270,278]
-//var VirtualCurrentLocationOnY : [Double] = [83,82,82,78,75,75,75,75,77]
+var VirtualCurrentLocationOnX : [Double]  = [230,232,234,234,234,250,262,270,278]
+var VirtualCurrentLocationOnY : [Double] = [83,82,82,78,75,75,75,75,77]
 
 
 
@@ -831,7 +831,7 @@ class IndoorRouting: UIViewController {
                 distanceToThisNode = (sqrt(x*x+y*y))*0.18;
                 distance = distanceToThisNode
                 //                print(distance)
-                var wordDistance = "เหลืออีก  \(distance!) เมตร ก่อนจะถึงจุดต่อไป";
+                var wordDistance = "เดินตรงไปอีก  \(distance!) เมตร ก่อนจะถึงจุดต่อไป";
                 if( i == VirtualCurrentLocationOnX.count-1){
                     wordDistance = "ถึงจุดหมายเรียบร้อยแล้ว";
                 }
