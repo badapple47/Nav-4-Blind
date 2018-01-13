@@ -763,7 +763,7 @@ class IndoorRouting: UIViewController {
             
 
             
-            let durationBetweenToasts: Double = 10
+            let durationBetweenToasts: Double = 3
             for i in 0...VirtualCurrentLocationOnX.count-1 {
                 let deadline: DispatchTime = .now() + (Double(i) * durationBetweenToasts)
                 DispatchQueue.main.asyncAfter(deadline: deadline) {
@@ -830,12 +830,25 @@ class IndoorRouting: UIViewController {
                 var y = currentRecall[1] - allPathRealTime[checkArriveThisNodeYet].y
                 distanceToThisNode = (sqrt(x*x+y*y))*0.18;
                 distance = distanceToThisNode
-                //                print(distance)
-                var wordDistance = "เดินตรงไปอีก  \(distance!) เมตร ก่อนจะถึงจุดต่อไป";
+                
+                //แก้ distance float -> Int
+                var distanceInt = 0
+                if (distance! <= 1){
+                     distanceInt = 1
+                    
+                  
+                }else{
+                     distanceInt = Int(round(distance!))
+       
+                }
+     
+                var wordDistance = "เดินตรงไปอีก  \(distanceInt) เมตร ก่อนจะถึงจุดต่อไป";
                 if( i == VirtualCurrentLocationOnX.count-1){
                     wordDistance = "ถึงจุดหมายเรียบร้อยแล้ว";
                 }
                 print(wordDistance)
+                
+   
                 
                 self.view.makeToast(wordDistance, duration: 5.0, position: .top)
                 //                    add more style for toast
@@ -867,51 +880,51 @@ class IndoorRouting: UIViewController {
                 if(allPath[i] == "Entrance1"){
                     routingmessage.append("เดินตรงไป 5 เมตร") }
                 else if(allPath[i] == "Ladder1"){
-                    routingmessage.append("เดินตรงไป 1.4 เมตร")}
+                    routingmessage.append("เดินตรงไป 1 เมตร")}
                 else if(allPath[i] == "Toilet1Man"){
                     routingmessage.append("เดินตรงไป 1 เมตร")}
                 else if(allPath[i] == "Toilet1Woman"){
-                    routingmessage.append("เดินตรงไป 1.625 เมตร")}
+                    routingmessage.append("เดินตรงไป 2 เมตร")}
                 else if(allPath[i] == "Library"){
-                    routingmessage.append("เดินตรงไป 1.4 เมตร")}
+                    routingmessage.append("เดินตรงไป 1 เมตร")}
                 else if(allPath[i] == "DSSRoom"){
-                    routingmessage.append("เดินตรงไป 1.4 เมตร")}
+                    routingmessage.append("เดินตรงไป 1 เมตร")}
                 else if(allPath[i] == "ATRoom"){
-                    routingmessage.append("เดินตรงไป 3.75 เมตร")}
+                    routingmessage.append("เดินตรงไป 4 เมตร")}
                 else if(allPath[i] == "Entrance2"){
-                    routingmessage.append("เดินตรงไป 2.6 เมตร")}
+                    routingmessage.append("เดินตรงไป 3 เมตร")}
                 else if(allPath[i] == "PublicRelation"){
-                    routingmessage.append("เดินตรงไป 3.75 เมตร")}
+                    routingmessage.append("เดินตรงไป 4 เมตร")}
                 else if(allPath[i] == "Ladder2"){
-                    routingmessage.append("เดินตรงไป 2.4 เมตร")}
+                    routingmessage.append("เดินตรงไป 2 เมตร")}
                 else if(allPath[i] == "Lift"){
-                    routingmessage.append("เดินตรงไป 4.5 เมตร")}
+                    routingmessage.append("เดินตรงไป 5 เมตร")}
                 else if(allPath[i] == "Room104"){
                     routingmessage.append("เดินตรงไป 4 เมตร")}
                 else if(allPath[i] == "Room105"){
-                    routingmessage.append("เดินตรงไป 2.7 เมตร")}
+                    routingmessage.append("เดินตรงไป 3 เมตร")}
                 else if(allPath[i] == "KKRoom"){
-                    routingmessage.append("เดินตรงไป 8.3 เมตร")}
+                    routingmessage.append("เดินตรงไป 8 เมตร")}
                 else if(allPath[i] == "Room107"){
-                    routingmessage.append("เดินตรงไป 2.7 เมตร")}
+                    routingmessage.append("เดินตรงไป 3 เมตร")}
                 else if(allPath[i] == "Room108"){
-                    routingmessage.append("เดินตรงไป 2.7 เมตร")}
+                    routingmessage.append("เดินตรงไป 3 เมตร")}
                 else if(allPath[i] == "Room110"){
-                    routingmessage.append("เดินตรงไป 2.7 เมตร")}
+                    routingmessage.append("เดินตรงไป 3 เมตร")}
                 else if(allPath[i] == "CopyStore"){
-                    routingmessage.append("เดินตรงไป 0.5 เมตร")}
+                    routingmessage.append("เดินตรงไป 1 เมตร")}
                 else if(allPath[i] == "Ladder3"){
-                    routingmessage.append("เดินตรงไป 2.7 เมตร")}
+                    routingmessage.append("เดินตรงไป 3 เมตร")}
                 else if(allPath[i] == "Toilet2Man"){
                     routingmessage.append("เดินตรงไป 2 เมตร")}
                 else if(allPath[i] == "Toilet2Woman"){
                     routingmessage.append("เดินตรงไป 2 เมตร")}
                 else if(allPath[i] == "Room115"){
-                    routingmessage.append("เดินตรงไป 1.4 เมตร")}
+                    routingmessage.append("เดินตรงไป 1 เมตร")}
                 else if(allPath[i] == "Room116"){
-                    routingmessage.append("เดินตรงไป 1.4 เมตร")}
+                    routingmessage.append("เดินตรงไป 1 เมตร")}
                 else if(allPath[i] == "Room118"){
-                    routingmessage.append("เดินตรงไป 6.7 เมตร")}
+                    routingmessage.append("เดินตรงไป 7 เมตร")}
             }else{
                 
                 if( i != allPath.count-1){
@@ -921,10 +934,10 @@ class IndoorRouting: UIViewController {
                     if(allPath[i+1] == "Ladder1"){//ตัวมันเองเป็น node 2 ไปหา Ladder1
                         print(i)
                         if(allPath[i-1] == "Entrance1"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 1.4 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 1 เมตร")
                         }
                         if(allPath[i-1] == "Node3"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 1.4 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 1 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Entrance1"){//ตัวมันเองเป็น node2 ไปหา Entrance1
@@ -937,18 +950,18 @@ class IndoorRouting: UIViewController {
                     }
                     if(allPath[i+1] == "Node3"){//ตัวมันเองเป็น node2 ไปหา node3
                         if(allPath[i-1] == "Ladder1"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 1.625 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 2 เมตร")
                         }
                         if(allPath[i-1] == "Entrance1"){
-                            routingmessage.append("เดินตรงไป 1.625 เมตร")
+                            routingmessage.append("เดินตรงไป 2 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node2"){//node3 to node2
                         if(allPath[i-1] == "Node4"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 1.625 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 2 เมตร")
                         }
                         if(allPath[i-1] == "Node5"){
-                            routingmessage.append("เดินตรงไป 1.625 เมตร")
+                            routingmessage.append("เดินตรงไป 2 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node4"){//node3 to node4
@@ -961,32 +974,32 @@ class IndoorRouting: UIViewController {
                     }
                     if(allPath[i+1] == "Node5"){//node3 to node 5
                         if(allPath[i-1] == "Node4"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 2.25 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 2 เมตร")
                         }
                         if(allPath[i-1] == "Node2"){
-                            routingmessage.append("เดินตรงไป 2.25 เมตร")
+                            routingmessage.append("เดินตรงไป 2 เมตร")
                             print(i)
                         }
                     }
                     if(allPath[i+1] == "Node3"){//node5 to node 3
                         if(allPath[i-1] == "Library"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 2.25 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 2 เมตร")
                         }
                         if(allPath[i-1] == "Node6"){
-                            routingmessage.append("เดินตรงไป 2.25 เมตร")
+                            routingmessage.append("เดินตรงไป 2 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Library"){//node5 to library
                         if(allPath[i-1] == "Node6"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 1.4 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 1 เมตร")
                         }
                         if(allPath[i-1] == "Node3"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 1.4 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 1 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node6"){//node5 to node6
                         if(allPath[i-1] == "Library"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 77 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 7 เมตร")
                         }
                         if(allPath[i-1] == "Node3"){
                             routingmessage.append("เดินตรงไป 7 เมตร")
@@ -1002,10 +1015,10 @@ class IndoorRouting: UIViewController {
                     }
                     if(allPath[i+1] == "Node3"){//node6 to DSSRoom
                         if(allPath[i-1] == "Node5"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป  เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป x เมตร")
                         }
                         if(allPath[i-1] == "Node8"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 1.4 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 1 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node8"){//node6 to node 8
@@ -1018,10 +1031,10 @@ class IndoorRouting: UIViewController {
                     }
                     if(allPath[i+1] == "Toilet1Man"){//node4 to toilet1man
                         if(allPath[i-1] == "Toilet1Woman"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 1.5 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 2 เมตร")
                         }
                         if(allPath[i-1] == "Node3"){
-                            routingmessage.append("เดินตรงไป 1.5 เมตร")
+                            routingmessage.append("เดินตรงไป 2 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Toilet1Woman"){//node4 to toilet1woman
@@ -1050,164 +1063,164 @@ class IndoorRouting: UIViewController {
                     }
                     if(allPath[i+1] == "Node155"){//node8 to node155
                         if(allPath[i-1] == "Node9"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 9.1 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 9 เมตร")
                         }
                         if(allPath[i-1] == "Node6"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 9.1 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 9 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node9"){//node8 to node9
                         if(allPath[i-1] == "Node155"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 2.75 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 3 เมตร")
                         }
                         if(allPath[i-1] == "Node6"){
-                            routingmessage.append("เดินตรงไป 2.75 เมตร")
+                            routingmessage.append("เดินตรงไป 3 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node8"){//node9 to node8
                         if(allPath[i-1] == "Node11"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 2.75 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 3 เมตร")
                         }
                         if(allPath[i-1] == "Node10"){
-                            routingmessage.append("เดินตรงไป 2.75 เมตร")
+                            routingmessage.append("เดินตรงไป 3 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node10"){//node9 to node10
                         if(allPath[i-1] == "Node11"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 1.35 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 1 เมตร")
                         }
                         if(allPath[i-1] == "Node8"){
-                            routingmessage.append("เดินตรงไป 1.35 เมตร")
+                            routingmessage.append("เดินตรงไป 1 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node11"){//node9 to node 11
                         if(allPath[i-1] == "Node8"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 5.5 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 6 เมตร")
                         }
                         if(allPath[i-1] == "Node10"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 5.5 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 6 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node9"){//node10 to node9
                         if(allPath[i-1] == "Node14"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 1.35 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 1 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node14"){//node10 to node14
                         if(allPath[i-1] == "Node9"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 2.4 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 2 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node10"){//node14 to node10
                         if(allPath[i-1] == "Ladder2"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 2.4 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 2 เมตร")
                         }
                         if(allPath[i-1] == "Lift"){
-                            routingmessage.append("เดินตรงไป 2.4 เมตร")
+                            routingmessage.append("เดินตรงไป 2 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Lift"){//node14 to lift
                         if(allPath[i-1] == "Ladder2"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 4.5 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 5 เมตร")
                         }
                         if(allPath[i-1] == "Node10"){
-                            routingmessage.append("เดินตรงไป 4.5 เมตร")
+                            routingmessage.append("เดินตรงไป 5 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Ladder2"){//node14 to ladder2
                         if(allPath[i-1] == "Node10"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 2.4 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 2 เมตร")
                         }
                         if(allPath[i-1] == "Lift"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 2.4 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 2 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node9"){//node11 to node9
                         if(allPath[i-1] == "Room102"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 5.5 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 6 เมตร")
                         }
                         if(allPath[i-1] == "Node12"){
-                            routingmessage.append("เดินตรงไป 5.5 เมตร")
+                            routingmessage.append("เดินตรงไป 6 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Room102"){//node11 to room102
                         if(allPath[i-1] == "Node12"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 3.75 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 3 เมตร")
                         }
                         if(allPath[i-1] == "Node9"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 3.75 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 3 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node12"){//node11 to node12
                         if(allPath[i-1] == "Room102"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 3.2 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 3 เมตร")
                         }
                         if(allPath[i-1] == "Node9"){
-                            routingmessage.append("เดินตรงไป 3.2 เมตร")
+                            routingmessage.append("เดินตรงไป 3 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node11"){//node12 to node11
                         if(allPath[i-1] == "ATRoom"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 3.2 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 3 เมตร")
                         }
                         if(allPath[i-1] == "Node13"){
-                            routingmessage.append("เดินตรงไป 3.2 เมตร")
+                            routingmessage.append("เดินตรงไป 3 เมตร")
                         }
                     }
                     if(allPath[i+1] == "ATRoom"){//node12 to ATRoom
                         if(allPath[i-1] == "Node11"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 3.75 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 3 เมตร")
                         }
                         if(allPath[i-1] == "Node13"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 3.75 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 3 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node13"){//node12 to node13
                         if(allPath[i-1] == "ATRoom"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 3.5 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 4 เมตร")
                         }
                         if(allPath[i-1] == "Node11"){
-                            routingmessage.append("เดินตรงไป 3.5 เมตร")
+                            routingmessage.append("เดินตรงไป 4 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node12"){//node13 to node12
                         if(allPath[i-1] == "PublicRelation"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 3.5 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 4 เมตร")
                         }
                         if(allPath[i-1] == "Entrance2"){
-                            routingmessage.append("เดินตรงไป 3.5 เมตร")
+                            routingmessage.append("เดินตรงไป 4 เมตร")
                         }
                     }
                     if(allPath[i+1] == "PublicRelation"){//node13 to publicrelation
                         if(allPath[i-1] == "Entrance2"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 3.75 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 4 เมตร")
                         }
                         if(allPath[i-1] == "Node12"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 3.75 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 4 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Entrance2"){//node13 to Entrance2
                         if(allPath[i-1] == "PublicRelation"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 2.6 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 3 เมตร")
                         }
                         if(allPath[i-1] == "Node12"){
-                            routingmessage.append("เดินตรงไป 2.6 เมตร")
+                            routingmessage.append("เดินตรงไป 3 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node8"){//node155 to node8
                         if(allPath[i-1] == "Room104"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 9.1 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 9 เมตร")
                         }
                         if(allPath[i-1] == "Node15"){
-                            routingmessage.append("เดินตรงไป 9.1 เมตร")
+                            routingmessage.append("เดินตรงไป 9 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node15"){//node155 to node15
                         if(allPath[i-1] == "Room104"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 5.4 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 5 เมตร")
                         }
                         if(allPath[i-1] == "Node8"){
-                            routingmessage.append("เดินตรงไป 5.4 เมตร")
+                            routingmessage.append("เดินตรงไป 5 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Room104"){//node155 to room104
@@ -1220,18 +1233,18 @@ class IndoorRouting: UIViewController {
                     }
                     if(allPath[i+1] == "Node155"){//node15 to node155
                         if(allPath[i-1] == "Room105"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 5.4 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 5 เมตร")
                         }
                         if(allPath[i-1] == "Node16"){
-                            routingmessage.append("เดินตรงไป 5.4 เมตร")
+                            routingmessage.append("เดินตรงไป 5 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Room105"){//node15 to room105
                         if(allPath[i-1] == "Node155"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 2.7 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 3 เมตร")
                         }
                         if(allPath[i-1] == "Node16"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 2.7 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 3 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node16"){//node15 to node16
@@ -1253,18 +1266,18 @@ class IndoorRouting: UIViewController {
                     }
                     if(allPath[i+1] == "KKRoom"){//node16 to KKRoom
                         if(allPath[i-1] == "Node15"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 8.3 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 8 เมตร")
                         }
                         if(allPath[i-1] == "Node18"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 8.3 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 8 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node18"){//node16 to node18
                         if(allPath[i-1] == "KKRoom"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 5.8 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 6 เมตร")
                         }
                         if(allPath[i-1] == "Node15"){
-                            routingmessage.append("เดินตรงไป 5.8 เมตร")
+                            routingmessage.append("เดินตรงไป 6 เมตร")
                         }
                     }
                     //                        if(allPath[i+1] == "Node16"){//node17 to node16
@@ -1274,119 +1287,119 @@ class IndoorRouting: UIViewController {
                     //                        }
                     if(allPath[i+1] == "Node3"){//node17 to KKRoom
                         if(allPath[i-1] == "Node16"){
-                            routingmessage.append("เดินตรงไป 4.15 เมตร")
+                            routingmessage.append("เดินตรงไป 4 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node16"){//node18 to node16
                         if(allPath[i-1] == "Room107"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 5.8 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 6 เมตร")
                         }
                         if(allPath[i-1] == "Node19"){
-                            routingmessage.append("เดินตรงไป 5.8 เมตร")
+                            routingmessage.append("เดินตรงไป 6 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Room107"){//node18 to room107
                         if(allPath[i-1] == "Node16"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 2.7 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 3 เมตร")
                         }
                         if(allPath[i-1] == "Node19"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 2.7 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 3 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node19"){//node18 to node19
                         if(allPath[i-1] == "Room107"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 7.8 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 8 เมตร")
                         }
                         if(allPath[i-1] == "Node16"){
-                            routingmessage.append("เดินตรงไป 7.8 เมตร")
+                            routingmessage.append("เดินตรงไป 8 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node18"){//node19 to node18
                         if(allPath[i-1] == "Room108"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 7.8 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 8 เมตร")
                         }
                         if(allPath[i-1] == "Node20"){
-                            routingmessage.append("เดินตรงไป 7.8 เมตร")
+                            routingmessage.append("เดินตรงไป 8 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Room108"){//node19 to Room108
                         if(allPath[i-1] == "Node18"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 2.7 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 3 เมตร")
                         }
                         if(allPath[i-1] == "Node20"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 2.7 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 3 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node20"){//node19 to node20
                         if(allPath[i-1] == "Room108"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 1.7 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 2 เมตร")
                         }
                         if(allPath[i-1] == "Node18"){
-                            routingmessage.append("เดินตรงไป 1.7 เมตร")
+                            routingmessage.append("เดินตรงไป 2 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node20"){//node20 to node19
                         if(allPath[i-1] == "Room110"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 1.7 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 2 เมตร")
                         }
                         if(allPath[i-1] == "Node205"){
-                            routingmessage.append("เดินตรงไป 1.7 เมตร")
+                            routingmessage.append("เดินตรงไป 2 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Room110"){//node20 to Room110
                         if(allPath[i-1] == "Node19"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 2.7 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 3 เมตร")
                         }
                         if(allPath[i-1] == "Node205"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 2.7 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 3 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node205"){//node20 to node205
                         if(allPath[i-1] == "Room110"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 0.8 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 1 เมตร")
                         }
                         if(allPath[i-1] == "Node23"){
-                            routingmessage.append("เดินตรงไป 0.8 เมตร")
+                            routingmessage.append("เดินตรงไป 1 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node20"){//node205 to node20
                         if(allPath[i-1] == "Node21"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 0.8 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 1 เมตร")
                         }
                         if(allPath[i-1] == "Node23"){
-                            routingmessage.append("เดินตรงไป 0.8 เมตร")
+                            routingmessage.append("เดินตรงไป 1 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node21"){//node205 to node21
                         if(allPath[i-1] == "Node23"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 8.2 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 8 เมตร")
                         }
                         if(allPath[i-1] == "Node20"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 8.2 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 8 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node23"){//node205 to node23
                         if(allPath[i-1] == "Node21"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 7.5 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 8 เมตร")
                         }
                         if(allPath[i-1] == "Node20"){
-                            routingmessage.append("เดินตรงไป 7.5 เมตร")
+                            routingmessage.append("เดินตรงไป 8 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node205"){//node21 to node205
                         if(allPath[i-1] == "Room115"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 8.2 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 8 เมตร")
                         }
                         if(allPath[i-1] == "Node22"){
-                            routingmessage.append("เดินตรงไป 8.2 เมตร")
+                            routingmessage.append("เดินตรงไป 8 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Room115"){//node21 to Room115
                         if(allPath[i-1] == "Node205"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 1.4 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 1 เมตร")
                         }
                         if(allPath[i-1] == "Node22"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 1.4 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 1 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node22"){//node21 to node22
@@ -1407,26 +1420,26 @@ class IndoorRouting: UIViewController {
                     }
                     if(allPath[i+1] == "Room116"){//node22 to Room116
                         if(allPath[i-1] == "Node21"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 1.4 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 1 เมตร")
                         }
                         if(allPath[i-1] == "Room118"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 1.4 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 1 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Room118"){//node22 to Room118
                         if(allPath[i-1] == "Room116"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 6.7 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 7 เมตร")
                         }
                         if(allPath[i-1] == "Node21"){
-                            routingmessage.append("เดินตรงไป 6.7 เมตร")
+                            routingmessage.append("เดินตรงไป 7 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node205"){//node23 to node205
                         if(allPath[i-1] == "Node25"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 7.5 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 8 เมตร")
                         }
                         if(allPath[i-1] == "Node24"){
-                            routingmessage.append("เดินตรงไป 7.5 เมตร")
+                            routingmessage.append("เดินตรงไป 8 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node25"){//node23 to node25
@@ -1439,34 +1452,34 @@ class IndoorRouting: UIViewController {
                     }
                     if(allPath[i+1] == "Node24"){//node23 to node24
                         if(allPath[i-1] == "Node25"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 1.75 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 2 เมตร")
                         }
                         if(allPath[i-1] == "Node205"){
-                            routingmessage.append("เดินตรงไป 1.75 เมตร")
+                            routingmessage.append("เดินตรงไป 2 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node23"){//node24 to node23
                         if(allPath[i-1] == "Ladder3"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 1.75 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 2 เมตร")
                         }
                         if(allPath[i-1] == "CopyStore"){
-                            routingmessage.append("เดินตรงไป 1.75 เมตร")
+                            routingmessage.append("เดินตรงไป 2 เมตร")
                         }
                     }
                     if(allPath[i+1] == "CopyStore"){//node24 to copystore
                         if(allPath[i-1] == "Ladder3"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 0.5 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 1 เมตร")
                         }
                         if(allPath[i-1] == "Node23"){
-                            routingmessage.append("เดินตรงไป 0.5 เมตร")
+                            routingmessage.append("เดินตรงไป 1 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Ladder3"){//node24 to ladder3
                         if(allPath[i-1] == "Node23"){
-                            routingmessage.append("หมุนซ้ายและเดินตรงไป 2.7 เมตร")
+                            routingmessage.append("หมุนซ้ายและเดินตรงไป 3 เมตร")
                         }
                         if(allPath[i-1] == "CopyStore"){
-                            routingmessage.append("หมุนขวาและเดินตรงไป 2.7 เมตร")
+                            routingmessage.append("หมุนขวาและเดินตรงไป 3 เมตร")
                         }
                     }
                     if(allPath[i+1] == "Node23"){//node25 to node23
