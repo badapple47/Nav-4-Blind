@@ -27,8 +27,7 @@ class IndoorNavVC: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource
     
     
     
-    
-    var getfromrouting = [MyNode]()
+
     
     let destinationNode = ["Entrance1","Ladder1","Toilet1Man","Toilet1Woman","Library","DSSRoom","ATRoom","Entrance2","PublicRelation","Room102","Ladder2","Lift","Room104","Room105","KKRoom","Room107","Room108","Room110","Toilet2Man","Toilet2Woman","Ladder3","CopyStore","Room115","Room116","Room118"]
     

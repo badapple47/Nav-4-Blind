@@ -21,13 +21,13 @@ struct pathStruct {
     var y : Double
 }
 
-//library to entrance1
-var VirtualCurrentLocationOnX : [Double]  = [230,232,234,234,234,234,234,234,234,234,234,234]
-var VirtualCurrentLocationOnY : [Double] = [83,82,82,78,75,72,70,67,63,59,57,53]
+////library to entrance1
+//var VirtualCurrentLocationOnX : [Double]  = [230,232,234,234,234,234,234,234,234,234,234,234]
+//var VirtualCurrentLocationOnY : [Double] = [83,82,82,78,75,72,70,67,63,59,57,53]
 
 //library to toilet1man
-//var VirtualCurrentLocationOnX : [Double]  = [230,232,234,234,234,250,262,270,278]
-//var VirtualCurrentLocationOnY : [Double] = [83,82,82,78,75,75,75,75,77]
+var VirtualCurrentLocationOnX : [Double]  = [230,232,234,234,234,250,262,270,278]
+var VirtualCurrentLocationOnY : [Double] = [83,82,82,78,75,75,75,75,77]
 
 
 
@@ -103,58 +103,7 @@ var CNode24 = [1,2];
 var CNode25 = [1,2];
 
 
-//For Shortest path
-let Entrance1 = MyNode(name: "Entrance1")
-let Node2 = MyNode(name: "Node2")
-let Ladder1 = MyNode(name: "Ladder1")
-let Node3 = MyNode(name: "Node3")
-let Node4 = MyNode(name: "Node4")
-let Toilet1Man = MyNode(name: "Toilet1Man")
-let Toilet1Woman = MyNode(name: "Toilet1Woman")
-let Node5 = MyNode(name: "Node5")
-let Library = MyNode(name: "Library")
-let Node6 = MyNode(name: "Node6")
-let DSSRoom = MyNode(name: "DSSRoom")
-let Node8 = MyNode(name: "Node8")
-let Node9 = MyNode(name: "Node9")
-let Node10 = MyNode(name: "Node10")
-let Node14 = MyNode(name: "Node14")
-let Ladder2 = MyNode(name: "Ladder2")
-let Lift = MyNode(name: "Lift")
-let Node11 = MyNode(name: "Node11")
-let Room102 = MyNode(name: "Room102")
-let Node12 = MyNode(name: "Node12")
-let ATRoom = MyNode(name: "ATRoom")
-let Node13 = MyNode(name: "Node13")
-let PublicRelation = MyNode(name: "PublicRelation")
-let Entrance2 = MyNode(name: "Entrance2")
-let Node155 = MyNode(name: "Node155")
-let Room104 = MyNode(name: "Room104")
-let Node15 = MyNode(name: "Node15")
-let Room105 = MyNode(name: "Room105")
-let Node16 = MyNode(name: "Node16")
-let KKRoom = MyNode(name: "KKRoom")
-let Node18 = MyNode(name: "Node18")
-let Room107 = MyNode(name: "Room107")
-let Node19 = MyNode(name: "Node19")
-let Room108 = MyNode(name: "Room108")
-let Node20 = MyNode(name: "Node20")
-let Room110 = MyNode(name: "Room110")
-let Node205 = MyNode(name: "Node205")
-let Node21 = MyNode(name: "Node21")
-let Room115 = MyNode(name: "Room115")
-let Node22 = MyNode(name: "Node22")
-let Room116 = MyNode(name: "Room116")
-let Room118 = MyNode(name: "Room118")
-let Node23 = MyNode(name: "Node23")
-let Node25 = MyNode(name: "Node25")
-let Toilet2Man = MyNode(name: "Toilet2Man")
-let Toilet2Woman = MyNode(name: "Toilet2Woman")
-let Node24 = MyNode(name: "Node24")
-let Ladder3 = MyNode(name: "Ladder3")
-let CopyStore = MyNode(name: "CopyStore")
 
-var allMynode = [MyNode]()
 
 
 class IndoorRouting: UIViewController {
@@ -194,13 +143,9 @@ class IndoorRouting: UIViewController {
 
 
         
-          allMynode = [Entrance1,Ladder1,Toilet1Man,Toilet1Woman,Library,DSSRoom,ATRoom,Entrance2,PublicRelation,Room102,Ladder2,Lift,Room104,Room105,KKRoom,Room107,Room108,Room110,Toilet2Man,Toilet2Woman,Ladder3,CopyStore,Room115,Room116,Room118]
+
         
        
-        
-        finaldestination = allMynode[selectedRow]
-        
-        print("\(finaldestination.name) is final destination ")
         
         let user = "dev"
         let password = "dev12345"
@@ -426,6 +371,65 @@ class IndoorRouting: UIViewController {
     
     
     @IBAction func triggerShortest(_ sender: Any) {
+        
+        //For Shortest path
+        let Entrance1 = MyNode(name: "Entrance1")
+        let Node2 = MyNode(name: "Node2")
+        let Ladder1 = MyNode(name: "Ladder1")
+        let Node3 = MyNode(name: "Node3")
+        let Node4 = MyNode(name: "Node4")
+        let Toilet1Man = MyNode(name: "Toilet1Man")
+        let Toilet1Woman = MyNode(name: "Toilet1Woman")
+        let Node5 = MyNode(name: "Node5")
+        let Library = MyNode(name: "Library")
+        let Node6 = MyNode(name: "Node6")
+        let DSSRoom = MyNode(name: "DSSRoom")
+        let Node8 = MyNode(name: "Node8")
+        let Node9 = MyNode(name: "Node9")
+        let Node10 = MyNode(name: "Node10")
+        let Node14 = MyNode(name: "Node14")
+        let Ladder2 = MyNode(name: "Ladder2")
+        let Lift = MyNode(name: "Lift")
+        let Node11 = MyNode(name: "Node11")
+        let Room102 = MyNode(name: "Room102")
+        let Node12 = MyNode(name: "Node12")
+        let ATRoom = MyNode(name: "ATRoom")
+        let Node13 = MyNode(name: "Node13")
+        let PublicRelation = MyNode(name: "PublicRelation")
+        let Entrance2 = MyNode(name: "Entrance2")
+        let Node155 = MyNode(name: "Node155")
+        let Room104 = MyNode(name: "Room104")
+        let Node15 = MyNode(name: "Node15")
+        let Room105 = MyNode(name: "Room105")
+        let Node16 = MyNode(name: "Node16")
+        let KKRoom = MyNode(name: "KKRoom")
+        let Node18 = MyNode(name: "Node18")
+        let Room107 = MyNode(name: "Room107")
+        let Node19 = MyNode(name: "Node19")
+        let Room108 = MyNode(name: "Room108")
+        let Node20 = MyNode(name: "Node20")
+        let Room110 = MyNode(name: "Room110")
+        let Node205 = MyNode(name: "Node205")
+        let Node21 = MyNode(name: "Node21")
+        let Room115 = MyNode(name: "Room115")
+        let Node22 = MyNode(name: "Node22")
+        let Room116 = MyNode(name: "Room116")
+        let Room118 = MyNode(name: "Room118")
+        let Node23 = MyNode(name: "Node23")
+        let Node25 = MyNode(name: "Node25")
+        let Toilet2Man = MyNode(name: "Toilet2Man")
+        let Toilet2Woman = MyNode(name: "Toilet2Woman")
+        let Node24 = MyNode(name: "Node24")
+        let Ladder3 = MyNode(name: "Ladder3")
+        let CopyStore = MyNode(name: "CopyStore")
+        
+        var allMynode = [MyNode]()
+        
+        allMynode = [Entrance1,Ladder1,Toilet1Man,Toilet1Woman,Library,DSSRoom,ATRoom,Entrance2,PublicRelation,Room102,Ladder2,Lift,Room104,Room105,KKRoom,Room107,Room108,Room110,Toilet2Man,Toilet2Woman,Ladder3,CopyStore,Room115,Room116,Room118]
+        
+        
+        
+        finaldestination = allMynode[selectedRow]
 
         Entrance1.connections.append(Connection(to: Node2, weight: 5))
         Node2.connections.append(Connection(to: Ladder1, weight: 1.4))
@@ -851,14 +855,7 @@ class IndoorRouting: UIViewController {
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        
-        let playerViewController = segue.destination as? IndoorNavVC
-        playerViewController?.getfromrouting = [Entrance1,Node2]
-        
-    }
-    
+
     //ทำ routing message
     func genroutingMessage()
     {
