@@ -790,11 +790,14 @@ class IndoorRouting: UIViewController {
                 distanceToThisNode = (sqrt(x*x+y*y))*0.18;
                 distance = distanceToThisNode
                 //                print(distance)
-                var wordDistance = "เหลืออีก  \(distance!) เมตร ก่อนจะถึงจุดต่อไป";
+                
+                
+                var wordDistance = "เดินตรงไปอีก  \(distanceInt) เมตร ก่อนจะถึงจุดต่อไป";
                 if( i == VirtualCurrentLocationOnX.count-1){
                     wordDistance = "ถึงจุดหมายเรียบร้อยแล้ว";
                 }
                 print(wordDistance)
+
                 
                 self.view.makeToast(wordDistance, duration: 5.0, position: .top)
                 //                    add more style for toast
