@@ -10,12 +10,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nav4blind/Controller/IndoorRouting.swift"
-            timestampString = "539848507.772145"
+            timestampString = "540037542.63441"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "741"
-            endingLineNumber = "741"
+            startingLineNumber = "740"
+            endingLineNumber = "740"
             landmarkName = "triggerShortest(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "nav4blind/Controller/IndoorRouting.swift"
+            timestampString = "540037542.635096"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1499"
+            endingLineNumber = "1499"
+            landmarkName = "getUserLocation(i:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

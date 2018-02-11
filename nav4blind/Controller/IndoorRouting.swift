@@ -38,8 +38,7 @@ var VirtualCurrentLocationOnY : [Int] = [83,82,82,78,75,75,75,75,76]
 var realCurrentLocationOnX : [Int]  = []
 var realCurrentLocationOnY : [Int] = []
 
-
-
+var decoy = 0
 
 var checkArriveThisNodeYet = 0
 var distanceToThisNode :Double = 0.0
@@ -744,9 +743,9 @@ class IndoorRouting: UIViewController {
                 DispatchQueue.main.asyncAfter(deadline: deadline) {
                     
                     
+                    print("ตัวนับรอบ \(i+1)")
+                    self.getUserLocation(i : i)
                     
-                    self.realtimeRouting(i : i)
-
 
         
 
@@ -768,11 +767,12 @@ class IndoorRouting: UIViewController {
     
     func realtimeRouting (i : Int) {
         
-       getUserLocation()
+       
         
 
             
-            var currentRecall = [VirtualCurrentLocationOnX[i],VirtualCurrentLocationOnY[i]]
+//            var currentRecall = [VirtualCurrentLocationOnX[i],VirtualCurrentLocationOnY[i]]
+         var currentRecall = [realCurrentLocationOnX[i],realCurrentLocationOnY[i]]
             
 //            if (currentRecall[0] == allPathRealTime[checkArriveThisNodeYet].x
 //                && currentRecall[1] == allPathRealTime[checkArriveThisNodeYet].y){
@@ -1494,20 +1494,12 @@ class IndoorRouting: UIViewController {
 
     }
     
-//    let defaultManager: Alamofire.SessionManager = {
-//        let serverTrustPolicies: [String: ServerTrustPolicy] = [
-//            "10.34.250.12": .disableEvaluation
-//        ]
-//
-//
-//        return SessionManager(
-//            serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrustPolicies)
-//        )
-//    }()
+
     
-    func getUserLocation(){
+    func getUserLocation(i : Int){
         
-    print("user location มาแล้วจ้า")
+        
+        
     
     let user = "dev"
     let password = "dev12345"
@@ -1520,9 +1512,9 @@ class IndoorRouting: UIViewController {
     headers[authorizationHeader.key] = authorizationHeader.value
     }
     
-    
-    
-        self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?macAddress=4C:57:CA:44:9E:4C", headers: headers).authenticate(user: user, password: password)
+//    4C:57:CA:44:9E:4C
+
+        self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?macAddress=12:00:0f:85:61:ad", headers: headers).authenticate(user: user, password: password)
     
     .responseJSON { response in
     switch response.result {
@@ -1539,6 +1531,8 @@ class IndoorRouting: UIViewController {
         
         print(realCurrentLocationOnX)
         print(realCurrentLocationOnY)
+        
+        self.realtimeRouting(i:i)
         
 
     
