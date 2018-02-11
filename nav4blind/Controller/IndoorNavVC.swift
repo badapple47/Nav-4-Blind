@@ -60,16 +60,9 @@ class IndoorNavVC: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource
     @IBAction func pick(_ sender: Any) {
         let vdestination = destinationNode[pickerView.selectedRow(inComponent: 0)]
         
-        
-        
-        
-        
-        
         destination = vdestination
         
-        
-        
-        
+    
         selectedRow = pickerView.selectedRow(inComponent: 0)
         
         

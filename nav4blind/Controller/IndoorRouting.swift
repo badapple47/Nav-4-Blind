@@ -17,8 +17,13 @@ import Toast_Swift
 //for realtimeRouting
 struct pathStruct {
     var nodeName : String
-    var x : Double
-    var y : Double
+    var x : Int
+    var y : Int
+    var xMin : Int
+    var yMin : Int
+    var xMax : Int
+    var yMax : Int
+    
 }
 
 ////library to entrance1
@@ -26,8 +31,12 @@ struct pathStruct {
 //var VirtualCurrentLocationOnY : [Double] = [83,82,82,78,75,72,70,67,63,59,57,53]
 
 //library to toilet1man
-var VirtualCurrentLocationOnX : [Double]  = [230,232,234,234,234,250,262,270,278]
-var VirtualCurrentLocationOnY : [Double] = [83,82,82,78,75,75,75,75,77]
+var VirtualCurrentLocationOnX : [Int]  = [230,232,234,234,234,250,262,270,270]
+var VirtualCurrentLocationOnY : [Int] = [83,82,82,78,75,75,75,75,76]
+
+
+var realCurrentLocationOnX : [Int]  = []
+var realCurrentLocationOnY : [Int] = []
 
 
 
@@ -548,155 +557,155 @@ class IndoorRouting: UIViewController {
                 
                 switch allPath[index] {
                 case "Entrance1":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 53)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 53 ,xMin: 229 ,yMin: 52, xMax : 238 ,yMax:66)
                     allPathRealTime.append(temp)
                 case "Ladder1":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 239, y: 70)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 239, y: 70,xMin: 234 ,yMin: 67 ,xMax: 238  ,yMax: 70 )
                     allPathRealTime.append(temp)
                 case "Toilet1Man":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 278, y: 77)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 278, y: 77,xMin: 268 ,yMin: 75 ,xMax: 273 ,yMax: 78 )
                     allPathRealTime.append(temp)
                 case "Toilet1Woman":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 273, y: 71)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 273, y: 71,xMin: 260 ,yMin: 70 ,xMax: 263 ,yMax: 74)
                     allPathRealTime.append(temp)
                 case "Library":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 230, y: 83)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 230, y: 83, xMin: 229 ,yMin: 80 ,xMax: 234 ,yMax: 85)
                     allPathRealTime.append(temp)
                 case "DSSRoom":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 240, y: 103)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 240, y: 103,xMin: 234 ,yMin: 100 ,xMax: 239 ,yMax: 105)
                     allPathRealTime.append(temp)
                 case "ATRoom":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 262, y: 158)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 262, y: 158,xMin: 259 ,yMin: 158,xMax: 264 ,yMax: 165)
                     allPathRealTime.append(temp)
                 case "Entrance2":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 281, y: 171)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 281, y: 171,xMin: 275 ,yMin: 165 ,xMax: 282 ,yMax: 176)
                     allPathRealTime.append(temp)
                 case "PublicRelation":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 273, y: 183)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 273, y: 183,xMin: 271,yMin: 176 ,xMax: 275 ,yMax: 183 )
                     allPathRealTime.append(temp)
                 case "Room102":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 251, y: 184)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 251, y: 184,xMin: 249 ,yMin: 176,xMax: 255 ,yMax: 183 )
                     allPathRealTime.append(temp)
                 case "Ladder2":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 227, y: 184)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 227, y: 184,xMin: 225 ,yMin: 180,xMax: 229 ,yMax: 183)
                     allPathRealTime.append(temp)
                 case "Lift":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 220, y: 175)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 220, y: 175,xMin: 219 ,yMin: 174 ,xMax: 223  ,yMax: 177 )
                     allPathRealTime.append(temp)
                 case "Room104":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 203, y: 175)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 203, y: 175,xMin: 202 ,yMin: 167 ,xMax: 205 ,yMax: 174 )
                     allPathRealTime.append(temp)
                 case "Room105":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 188, y: 168)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 188, y: 168,xMin: 184,yMin: 162,xMax: 190 ,yMax: 167 )
                     allPathRealTime.append(temp)
                 case "KKRoom":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 180, y: 194)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 180, y: 194,xMin: 177 ,yMin: 180 ,xMax: 182 ,yMax: 194)
                     allPathRealTime.append(temp)
                 case "Room107":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 153, y: 168)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 153, y: 168,xMin: 150 ,yMin: 162,xMax: 156 ,yMax: 167)
                     allPathRealTime.append(temp)
                 case "Room108":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 127, y: 168)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 127, y: 168,xMin: 124,yMin: 162,xMax: 129 ,yMax: 167)
                     allPathRealTime.append(temp)
                 case "Room110":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 122, y: 168)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 122, y: 168,xMin: 118,yMin: 162,xMax: 124 ,yMax: 167)
                     allPathRealTime.append(temp)
                 case "Toilet2Man":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 95, y: 202)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 95, y: 202,xMin: 89 ,yMin: 197,xMax: 97 ,yMax: 201)
                     allPathRealTime.append(temp)
                 case "Toilet2Woman":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 89, y: 200)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 89, y: 200,xMin: 89,yMin: 189 ,xMax: 93 ,yMax: 192 )
                     allPathRealTime.append(temp)
                 case "Ladder3":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 88, y: 168)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 88, y: 168,xMin: 82,yMin: 162,xMax: 89 ,yMax: 167)
                     allPathRealTime.append(temp)
                 case "CopyStore":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 78, y: 163)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 78, y: 163,xMin: 71 ,yMin: 157,xMax: 86 ,yMax: 167)
                     allPathRealTime.append(temp)
                 case "Room115":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 114, y: 134)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 114, y: 134,xMin: 114,yMin: 132,xMax: 119 ,yMax: 137)
                     allPathRealTime.append(temp)
                 case "Room116":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 114, y: 129)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 114, y: 129,xMin: 114 ,yMin: 126 ,xMax: 119 ,yMax: 131)
                     allPathRealTime.append(temp)
                 case "Room118":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 120, y: 106)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 120, y: 106,xMin: 114 ,yMin: 106 ,xMax: 124 ,yMax: 111)
                     allPathRealTime.append(temp)
                     
                 case "Node2":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 70)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 70,xMin: 229 ,yMin: 67 ,xMax: 238 ,yMax: 70 )
                     allPathRealTime.append(temp)
                 case "Node3":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 75)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 75,xMin: 229 ,yMin: 70,xMax: 260 ,yMax: 78)
                     allPathRealTime.append(temp)
                 case "Node4":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 262, y: 75)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 262, y: 75,xMin: 260,yMin: 70 ,xMax: 273 ,yMax: 78)
                     allPathRealTime.append(temp)
                 case "Node5":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 82)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 82,xMin: 229,yMin: 80,xMax: 238 ,yMax: 85)
                     allPathRealTime.append(temp)
                 case "Node6":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 103)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 103,xMin: 229 ,yMin: 85 ,xMax: 238 ,yMax: 158)
                     allPathRealTime.append(temp)
                 case "Node8":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 163)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 163,xMin: 229,yMin: 158 ,xMax: 238 ,yMax: 165 )
                     allPathRealTime.append(temp)
                 case "Node9":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 170)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 170,xMin: 229,yMin: 165,xMax: 249 ,yMax: 176)
                     allPathRealTime.append(temp)
                 case "Node10":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 176)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 176,xMin: 226 ,yMin: 176 ,xMax: 238 ,yMax: 183)
                     allPathRealTime.append(temp)
                 case "Node11":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 252, y: 170)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 252, y: 170,xMin: 249,yMin: 165,xMax: 259 ,yMax: 176)
                     allPathRealTime.append(temp)
                 case "Node12":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 262, y: 170)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 262, y: 170,xMin: 259,yMin: 165,xMax: 271 ,yMax: 176)
                     allPathRealTime.append(temp)
                 case "Node13":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 273, y: 170)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 273, y: 170,xMin: 271 ,yMin: 165,xMax: 275 ,yMax: 176)
                     allPathRealTime.append(temp)
                 case "Node14":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 219, y: 176)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 219, y: 176,xMin: 219,yMin: 176,xMax: 229 ,yMax: 183)
                     allPathRealTime.append(temp)
                 case "Node15":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 188, y: 163)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 188, y: 163,xMin: 184,yMin: 157 ,xMax: 202 ,yMax: 167)
                     allPathRealTime.append(temp)
                 case "Node155":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 205, y: 163)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 205, y: 163,xMin: 202 ,yMin: 157,xMax: 229 ,yMax: 165)
                     allPathRealTime.append(temp)
                 case "Node16":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 180, y: 163)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 180, y: 163,xMin: 177 ,yMin: 157 ,xMax: 182 ,yMax: 180)
                     allPathRealTime.append(temp)
-                case "Node17":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 180, y: 181)
-                    allPathRealTime.append(temp)
+//                case "Node17":
+//                    let temp = pathStruct(nodeName: allPath[index] , x: 180, y: 181,xMin: ,yMin: ,xMax:  ,yMax: )
+//                    allPathRealTime.append(temp)
                 case "Node18":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 153, y: 163)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 153, y: 163,xMin: 150,yMin: 157,xMax: 177 ,yMax: 167)
                     allPathRealTime.append(temp)
                 case "Node19":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 127, y: 163)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 127, y: 163,xMin: 124,yMin: 157,xMax: 150 ,yMax: 167)
                     allPathRealTime.append(temp)
                 case "Node20":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 121, y: 163)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 121, y: 163,xMin: 118 ,yMin: 157 ,xMax: 123 ,yMax: 167)
                     allPathRealTime.append(temp)
                 case "Node205":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 118, y: 163)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 118, y: 163,xMin: 114,yMin: 137,xMax: 123 ,yMax: 167)
                     allPathRealTime.append(temp)
                 case "Node21":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 118, y: 134)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 118, y: 134,xMin: 114 ,yMin: 132 ,xMax: 124 ,yMax: 137)
                     allPathRealTime.append(temp)
                 case "Node22":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 118, y: 128)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 118, y: 128,xMin: 114 ,yMin: 111,xMax: 124 ,yMax: 132 )
                     allPathRealTime.append(temp)
                 case "Node23":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 93, y: 163)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 93, y: 163,xMin: 89,yMin: 157,xMax: 114 ,yMax: 167)
                     allPathRealTime.append(temp)
                 case "Node24":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 88, y: 163)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 88, y: 163,xMin: 86,yMin: 157 ,xMax: 89 ,yMax: 167)
                     allPathRealTime.append(temp)
                 case "Node25":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 93, y: 190)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 93, y: 190,xMin: 89 ,yMin: 167 ,xMax: 98 ,yMax: 198)
                     allPathRealTime.append(temp)
                 
                 default:
@@ -729,11 +738,13 @@ class IndoorRouting: UIViewController {
             
 
             
-            let durationBetweenToasts: Double = 10
-            for i in 0...VirtualCurrentLocationOnX.count-1 {
+            let durationBetweenToasts: Double =  3
+            for i in 0...1000 {
                 let deadline: DispatchTime = .now() + (Double(i) * durationBetweenToasts)
                 DispatchQueue.main.asyncAfter(deadline: deadline) {
-
+                    
+                    
+                    
                     self.realtimeRouting(i : i)
 
 
@@ -757,16 +768,24 @@ class IndoorRouting: UIViewController {
     
     func realtimeRouting (i : Int) {
         
+       getUserLocation()
+        
 
             
             var currentRecall = [VirtualCurrentLocationOnX[i],VirtualCurrentLocationOnY[i]]
             
-            if (currentRecall[0] == allPathRealTime[checkArriveThisNodeYet].x
-                && currentRecall[1] == allPathRealTime[checkArriveThisNodeYet].y){
+//            if (currentRecall[0] == allPathRealTime[checkArriveThisNodeYet].x
+//                && currentRecall[1] == allPathRealTime[checkArriveThisNodeYet].y){
+        
+        if (currentRecall[0] > allPathRealTime[checkArriveThisNodeYet].xMin && currentRecall[0] < allPathRealTime[checkArriveThisNodeYet].xMax
+            && currentRecall[1] > allPathRealTime[checkArriveThisNodeYet].yMin && currentRecall[1] > allPathRealTime[checkArriveThisNodeYet].yMax){
+
+        
+                
                 
      
                 print(routingmessage[checkArriveThisNodeYet])
-//                print("current location = \(allPathRealTime[checkArriveThisNodeYet].nodeName)")
+
                 
                 self.view.makeToast(routingmessage[checkArriveThisNodeYet], duration: 5.0, position: .top)
                 //                    add more style for toast
@@ -779,7 +798,11 @@ class IndoorRouting: UIViewController {
                 
                 if (checkArriveThisNodeYet < routingmessage.count-1){
                     checkArriveThisNodeYet+=1;
+                    
+                    
                 }else{
+                    
+                    
                     
                 }
                 
@@ -787,9 +810,20 @@ class IndoorRouting: UIViewController {
             }else {
                 var x = currentRecall[0] - allPathRealTime[checkArriveThisNodeYet].x
                 var y = currentRecall[1] - allPathRealTime[checkArriveThisNodeYet].y
-                distanceToThisNode = (sqrt(x*x+y*y))*0.18;
+            distanceToThisNode = (sqrt(Double(x*x+y*y)))*0.18;
                 distance = distanceToThisNode
                 //                print(distance)
+                
+                var distanceInt = 0
+                if (distance! <= 1){
+                    distanceInt = 1
+                    
+                    
+                }else{
+                    distanceInt = Int(round(distance!))
+                    
+                }
+                
                 
                 
                 var wordDistance = "เดินตรงไปอีก  \(distanceInt) เมตร ก่อนจะถึงจุดต่อไป";
@@ -1459,6 +1493,63 @@ class IndoorRouting: UIViewController {
     
 
     }
+    
+//    let defaultManager: Alamofire.SessionManager = {
+//        let serverTrustPolicies: [String: ServerTrustPolicy] = [
+//            "10.34.250.12": .disableEvaluation
+//        ]
+//
+//
+//        return SessionManager(
+//            serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrustPolicies)
+//        )
+//    }()
+    
+    func getUserLocation(){
+        
+    print("user location มาแล้วจ้า")
+    
+    let user = "dev"
+    let password = "dev12345"
+    
+    
+    
+    var headers: HTTPHeaders = [:]
+    
+    if let authorizationHeader = Request.authorizationHeader(user: user, password: password) {
+    headers[authorizationHeader.key] = authorizationHeader.value
+    }
+    
+    
+    
+        self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?macAddress=4C:57:CA:44:9E:4C", headers: headers).authenticate(user: user, password: password)
+    
+    .responseJSON { response in
+    switch response.result {
+    case .success(let value):
+    let json = JSON(value)
+    
+    
+    
+    var number1 : Int = json[0]["mapCoordinate"]["x"].int!
+        var number2 : Int = json[0]["mapCoordinate"]["y"].int!
+        
+    realCurrentLocationOnX.append(number1)
+    realCurrentLocationOnY.append(number2)
+        
+        print(realCurrentLocationOnX)
+        print(realCurrentLocationOnY)
+        
+
+    
+    case .failure(let error):
+    print(error)
+    
+    
+    }
+    }
+    
+    }
 
     
 
@@ -1542,9 +1633,10 @@ func shortestPath(source: Node, destination: Node) -> Path? {
 // **** EXAMPLE BELOW ****
 class MyNode: Node {
     let name: String
-    
-    init(name: String) {
+
+    init(name: String  ) {
         self.name = name
+
         super.init()
     }
 }
