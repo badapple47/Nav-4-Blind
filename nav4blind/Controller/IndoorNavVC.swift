@@ -17,6 +17,8 @@ var startLocation: String! = ""
 
 var selectedRow = 0
 
+var realCurrentLocationOnXIndoor : [Int]  = []
+var realCurrentLocationOnYIndoor : [Int] = []
 
 
 
@@ -143,16 +145,16 @@ class IndoorNavVC: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource
                     var number1 : Int = json[0]["mapCoordinate"]["x"].int!
                     var number2 : Int = json[0]["mapCoordinate"]["y"].int!
                     
-                    realCurrentLocationOnX.append(number1)
-                    realCurrentLocationOnY.append(number2)
+                    realCurrentLocationOnXIndoor.append(number1)
+                    realCurrentLocationOnYIndoor.append(number2)
                     
                     //    self.label1.text = "\(number1),\(number2)"
                     
                     
                     self.checkUserCurrentLocation(number1 : number1 , number2 : number2)
                     
-                    print(realCurrentLocationOnX)
-                    print(realCurrentLocationOnY)
+                    print(realCurrentLocationOnXIndoor)
+                    print(realCurrentLocationOnYIndoor)
                     
                 
                     
