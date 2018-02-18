@@ -26,9 +26,7 @@ struct pathStruct {
     
 }
 
-////library to entrance1
-//var VirtualCurrentLocationOnX : [Double]  = [230,232,234,234,234,234,234,234,234,234,234,234]
-//var VirtualCurrentLocationOnY : [Double] = [83,82,82,78,75,72,70,67,63,59,57,53]
+
 
 //library to toilet1man
 var VirtualCurrentLocationOnX : [Int]  = [230,232,234,234,234,250,262,270,270]
@@ -44,7 +42,7 @@ var checkArriveThisNodeYet = 0
 var distanceToThisNode :Double = 0.0
 var distance : Double?
 
-var allPathRealTime = [pathStruct]()
+var routingMessage1 = [pathStruct]()
 
 //end declare for realtime routing
 
@@ -54,61 +52,9 @@ var allPath = [String]()
 var routingmessage = [String]()
 
 
- var finaldestination:MyNode!
+var finaldestination:MyNode!
 
 
-//For current location
-var CCurrent = [51,51];
-var CEntrance1 = [1,2];
-var CLadder1 = [1,2];
-var CToilet1Man = [1,2];
-var CToilet1Woman = [1,2];
-var CLibrary = [1,2];
-var CDSSRoom = [1,2];
-var CATRoom = [1,2];
-var CEntrance2 = [1,2];
-var CPublicRelation = [1,2];
-var CRoom102 = [1,2];
-var CLadder2 = [1,2];
-var CLift = [1,2];
-var CRoom104 = [1,2];
-var CRoom105 = [1,2];
-var CKKRoom = [50,49];
-var CRoom107 = [1,2];
-var CRoom108 = [1,2];
-var CRoom110 = [1,2];
-var CToilet2Man = [1,2];
-var CToilet2Woman = [1,2];
-var CLadder3 = [1,2];
-var CCopyStore = [1,2];
-var CRoom115 = [1,2];
-var CRoom116 = [1,2];
-var CRoom118 = [1,2];
-var CNode2 = [1,2];
-var CNode3 = [1,2];
-var CNode4 = [1,2];
-var CNode5 = [1,2];
-var CNode6 = [1,2];
-var CNode8 = [1,2];
-var CNode9 = [1,2];
-var CNode10 = [1,2];
-var CNode11 = [1,2];
-var CNode12 = [1,2];
-var CNode13 = [1,2];
-var CNode14 = [1,2];
-var CNode15 = [1,2];
-var CNode155 = [1,2];
-var CNode16 = [1,2];
-var CNode17 = [1,2];
-var CNode18 = [1,2];
-var CNode19 = [100,100];
-var CNode20 = [1,2];
-var CNode205 = [1,2];
-var CNode21 = [1,2];
-var CNode22 = [1,2];
-var CNode23 = [1,2];
-var CNode24 = [1,2];
-var CNode25 = [1,2];
 
 
 
@@ -118,14 +64,9 @@ class IndoorRouting: UIViewController {
     
     var destination: String! = ""
     var startLocation: String! = ""
-
-
     @IBOutlet weak var imageView: UIImageView!
-    
     @IBOutlet weak var label1: UILabel!
-    
     @IBOutlet weak var label2: UILabel!
-    
     let defaultManager: Alamofire.SessionManager = {
         let serverTrustPolicies: [String: ServerTrustPolicy] = [
             "10.34.250.12": .disableEvaluation
@@ -137,213 +78,40 @@ class IndoorRouting: UIViewController {
         )
     }()
     
-    
+       //Viewdidload ทำแค่ดึงรูปมาแล้วทำ Reddot blink
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+     
         
         label1.text = "from \(startLocation!) to \(destination!)"
-        
         print(selectedRow)
-
-        
-
-
-        
-
-        
-       
-        
         let user = "dev"
         let password = "dev12345"
-        
-        
-        
         var headers: HTTPHeaders = [:]
         
         if let authorizationHeader = Request.authorizationHeader(user: user, password: password) {
             headers[authorizationHeader.key] = authorizationHeader.value
         }
-        
-        
-        
         self.defaultManager.request("https://10.34.250.12/api/config/v1/maps/imagesource/domain_0_1500368087062.jpg", headers: headers).authenticate(user: user, password: password)
-            
             .responseImage { response in
-                
-                
                 if let image = response.result.value {
                     self.imageView.image = image
-                    
-                    
-                    
                 }
         }
-        
         let xcorOut : Double! = 231
-        
         let ycorOut : Double! = 90
-        
-        
         //red dot blink
         
         let helloWorldTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(IndoorRouting.marksMan), userInfo: [
             "X": xcorOut, "Y": ycorOut], repeats: true)
         
-        
-        //start current location
-        
-        var arraylist = [[Int]]()
-        
-        arraylist.append( CEntrance1 )
-        arraylist.append( CLadder1 )
-        arraylist.append( CToilet1Man )
-        arraylist.append( CToilet1Woman )
-        arraylist.append( CLibrary )
-        arraylist.append( CDSSRoom )
-        arraylist.append( CATRoom )
-        arraylist.append( CEntrance2 )
-        arraylist.append( CPublicRelation )
-        arraylist.append( CRoom102 )
-        arraylist.append( CLadder2 )
-        arraylist.append( CLift )
-        arraylist.append( CRoom104 )
-        arraylist.append( CRoom105 )
-        arraylist.append( CKKRoom )
-        arraylist.append( CRoom107 )
-        arraylist.append( CRoom108 )
-        arraylist.append( CRoom110 )
-        arraylist.append( CToilet2Man )
-        arraylist.append( CToilet2Woman )
-        arraylist.append( CLadder3 )
-        arraylist.append( CCopyStore )
-        arraylist.append( CRoom115 )
-        arraylist.append( CRoom116 )
-        arraylist.append( CRoom118 )
-        arraylist.append( CNode2 )
-        arraylist.append( CNode3 )
-        arraylist.append( CNode4 )
-        arraylist.append( CNode5 )
-        arraylist.append( CNode6 )
-        arraylist.append( CNode8 )
-        arraylist.append( CNode9 )
-        arraylist.append( CNode10 )
-        arraylist.append( CNode11 )
-        arraylist.append( CNode12 )
-        arraylist.append( CNode13 )
-        arraylist.append( CNode14 )
-        arraylist.append( CNode15 )
-        arraylist.append( CNode155 )
-        arraylist.append( CNode16 )
-        arraylist.append( CNode17 )
-        arraylist.append( CNode18 )
-        arraylist.append( CNode19 )
-        arraylist.append( CNode20 )
-        arraylist.append( CNode205 )
-        arraylist.append( CNode21 )
-        arraylist.append( CNode22 )
-        arraylist.append( CNode23 )
-        arraylist.append( CNode24 )
-        arraylist.append( CNode25 )
-        
-        var checkInEachXandY:Int = 0;
-        var checkLastPithagorus:Double = 10000;
-        var x:Double = 0
-        var y:Double = 0
-        var Pithagorus:Double = 0
-        
-        for var i in (0..<arraylist.count)
-        {
-            
-            x = Double(CCurrent[0] -  arraylist[i][0])
-            y = Double(CCurrent[1] - arraylist[i][1])
-            Pithagorus = sqrt(x*y+y*y)
-            if(Pithagorus<checkLastPithagorus){
-                checkLastPithagorus = Pithagorus
-                checkInEachXandY = i+1;
-            }
-            
-            
-        }
-        
-        print(checkInEachXandY)
-        
-        
-        
-        
-        var NumWithPlace = [Int: String]()
-        
-        
-        NumWithPlace[1] = "Entrance1 "
-        NumWithPlace[2] = "Ladder1 "
-        NumWithPlace[3] = "Toilet1Man "
-        NumWithPlace[4] = "Toilet1Woman "
-        NumWithPlace[5] = "Library "
-        NumWithPlace[6] = "DSSRoom "
-        NumWithPlace[7] = "ATRoom "
-        NumWithPlace[8] = "Entrance2 "
-        NumWithPlace[9] = "PublicRelation "
-        NumWithPlace[10] = "Room102 "
-        NumWithPlace[11] = "Ladder2 "
-        NumWithPlace[12] = "Lift "
-        NumWithPlace[13] = "Room104 "
-        NumWithPlace[14] = "Room105 "
-        NumWithPlace[15] = "KKRoom "
-        NumWithPlace[16] = "Room107 "
-        NumWithPlace[17] = "Room108 "
-        NumWithPlace[18] = "Room110 "
-        NumWithPlace[19] = "Toilet2Man "
-        NumWithPlace[20] = "Toilet2Woman "
-        NumWithPlace[21] = "Ladder3 "
-        NumWithPlace[22] = "CopyStore "
-        NumWithPlace[23] = "Room115 "
-        NumWithPlace[24] = "Room116 "
-        NumWithPlace[25] = "Room118 "
-        NumWithPlace[26] = "Node2 "
-        NumWithPlace[27] = "Node3 "
-        NumWithPlace[28] = "Node4 "
-        NumWithPlace[29] = "Node5 "
-        NumWithPlace[30] = "Node6 "
-        NumWithPlace[31] = "Node8 "
-        NumWithPlace[32] = "Node9 "
-        NumWithPlace[33] = "Node10 "
-        NumWithPlace[34] = "Node11 "
-        NumWithPlace[35] = "Node12 "
-        NumWithPlace[36] = "Node13 "
-        NumWithPlace[37] = "Node14 "
-        NumWithPlace[38] = "Node15 "
-        NumWithPlace[39] = "Node155 "
-        NumWithPlace[40] = "Node16 "
-        NumWithPlace[41] = "Node17 "
-        NumWithPlace[42] = "Node18 "
-        NumWithPlace[43] = "Node19 "
-        NumWithPlace[44] = "Node20 "
-        NumWithPlace[45] = "Node205 "
-        NumWithPlace[46] = "Node21 "
-        NumWithPlace[47] = "Node22 "
-        NumWithPlace[48] = "Node23 "
-        NumWithPlace[49] = "Node24 "
-        NumWithPlace[50] = "Node25 "
-        
-        print("Your Current Location is : \(NumWithPlace[checkInEachXandY]!)")
-        
-      
-//end current location
-        
-        
-        
-        
-        
-        
-        
-      
-       //end Viewdidload
     }
     
     
-    
+    //ทำให้มันบลิ้งแว้บๆ
     @objc func marksMan (val :Timer){
+        
         
         //รับค่าจาก userinfo
         let userInfo = val.userInfo as! Dictionary<String, AnyObject>
@@ -377,7 +145,7 @@ class IndoorRouting: UIViewController {
     
 
     
-    
+    //กดปุ่มเริ่มทำงาน
     @IBAction func triggerShortest(_ sender: Any) {
         
         //For Shortest path
@@ -536,7 +304,7 @@ class IndoorRouting: UIViewController {
         Ladder3.connections.append(Connection(to: Node24, weight: 1.7))
         CopyStore.connections.append(Connection(to: Node24, weight: 0.5))
         
-        let sourceNode = Library
+        let sourceNode = DSSRoom
         let destinationNode = finaldestination!
         
         var path = shortestPath(source: sourceNode, destination: destinationNode)
@@ -546,198 +314,16 @@ class IndoorRouting: UIViewController {
             print("🏁 Quickest path: \(succession)")
             print("🏁 Quickest Weight: \(sumWeight)")
             
-            let alert = UIAlertController(title: "\(sourceNode.name) to \(destinationNode.name)", message: "🏁 Quickest path: \(succession) = \(sumWeight!) meter", preferredStyle: UIAlertControllerStyle.alert)
+
             
-            //set allPath เพื่อเอาไปใช้ หาคำพูดในการบอกทาง
-            allPath = succession
+            generateRoutingmessageFromShortestPath(allPath: succession)
+            generateRoutingmessageFromShortestPath2()
             
-            for index in 0...allPath.count-1{
-                
-                
-                switch allPath[index] {
-                case "Entrance1":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 53 ,xMin: 229 ,yMin: 52, xMax : 238 ,yMax:66)
-                    allPathRealTime.append(temp)
-                case "Ladder1":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 239, y: 70,xMin: 234 ,yMin: 67 ,xMax: 238  ,yMax: 70 )
-                    allPathRealTime.append(temp)
-                case "Toilet1Man":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 278, y: 77,xMin: 268 ,yMin: 75 ,xMax: 273 ,yMax: 78 )
-                    allPathRealTime.append(temp)
-                case "Toilet1Woman":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 273, y: 71,xMin: 260 ,yMin: 70 ,xMax: 263 ,yMax: 74)
-                    allPathRealTime.append(temp)
-                case "Library":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 230, y: 83, xMin: 229 ,yMin: 80 ,xMax: 234 ,yMax: 85)
-                    allPathRealTime.append(temp)
-                case "DSSRoom":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 240, y: 103,xMin: 234 ,yMin: 100 ,xMax: 239 ,yMax: 105)
-                    allPathRealTime.append(temp)
-                case "ATRoom":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 262, y: 158,xMin: 259 ,yMin: 158,xMax: 264 ,yMax: 165)
-                    allPathRealTime.append(temp)
-                case "Entrance2":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 281, y: 171,xMin: 275 ,yMin: 165 ,xMax: 282 ,yMax: 176)
-                    allPathRealTime.append(temp)
-                case "PublicRelation":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 273, y: 183,xMin: 271,yMin: 176 ,xMax: 275 ,yMax: 183 )
-                    allPathRealTime.append(temp)
-                case "Room102":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 251, y: 184,xMin: 249 ,yMin: 176,xMax: 255 ,yMax: 183 )
-                    allPathRealTime.append(temp)
-                case "Ladder2":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 227, y: 184,xMin: 225 ,yMin: 180,xMax: 229 ,yMax: 183)
-                    allPathRealTime.append(temp)
-                case "Lift":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 220, y: 175,xMin: 219 ,yMin: 174 ,xMax: 223  ,yMax: 177 )
-                    allPathRealTime.append(temp)
-                case "Room104":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 203, y: 175,xMin: 202 ,yMin: 167 ,xMax: 205 ,yMax: 174 )
-                    allPathRealTime.append(temp)
-                case "Room105":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 188, y: 168,xMin: 184,yMin: 162,xMax: 190 ,yMax: 167 )
-                    allPathRealTime.append(temp)
-                case "KKRoom":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 180, y: 194,xMin: 177 ,yMin: 180 ,xMax: 182 ,yMax: 194)
-                    allPathRealTime.append(temp)
-                case "Room107":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 153, y: 168,xMin: 150 ,yMin: 162,xMax: 156 ,yMax: 167)
-                    allPathRealTime.append(temp)
-                case "Room108":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 127, y: 168,xMin: 124,yMin: 162,xMax: 129 ,yMax: 167)
-                    allPathRealTime.append(temp)
-                case "Room110":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 122, y: 168,xMin: 118,yMin: 162,xMax: 124 ,yMax: 167)
-                    allPathRealTime.append(temp)
-                case "Toilet2Man":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 95, y: 202,xMin: 89 ,yMin: 197,xMax: 97 ,yMax: 201)
-                    allPathRealTime.append(temp)
-                case "Toilet2Woman":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 89, y: 200,xMin: 89,yMin: 189 ,xMax: 93 ,yMax: 192 )
-                    allPathRealTime.append(temp)
-                case "Ladder3":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 88, y: 168,xMin: 82,yMin: 162,xMax: 89 ,yMax: 167)
-                    allPathRealTime.append(temp)
-                case "CopyStore":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 78, y: 163,xMin: 71 ,yMin: 157,xMax: 86 ,yMax: 167)
-                    allPathRealTime.append(temp)
-                case "Room115":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 114, y: 134,xMin: 114,yMin: 132,xMax: 119 ,yMax: 137)
-                    allPathRealTime.append(temp)
-                case "Room116":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 114, y: 129,xMin: 114 ,yMin: 126 ,xMax: 119 ,yMax: 131)
-                    allPathRealTime.append(temp)
-                case "Room118":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 120, y: 106,xMin: 114 ,yMin: 106 ,xMax: 124 ,yMax: 111)
-                    allPathRealTime.append(temp)
-                    
-                case "Node2":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 70,xMin: 229 ,yMin: 67 ,xMax: 238 ,yMax: 70 )
-                    allPathRealTime.append(temp)
-                case "Node3":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 75,xMin: 229 ,yMin: 70,xMax: 260 ,yMax: 78)
-                    allPathRealTime.append(temp)
-                case "Node4":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 262, y: 75,xMin: 260,yMin: 70 ,xMax: 273 ,yMax: 78)
-                    allPathRealTime.append(temp)
-                case "Node5":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 82,xMin: 229,yMin: 80,xMax: 238 ,yMax: 85)
-                    allPathRealTime.append(temp)
-                case "Node6":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 103,xMin: 229 ,yMin: 85 ,xMax: 238 ,yMax: 158)
-                    allPathRealTime.append(temp)
-                case "Node8":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 163,xMin: 229,yMin: 158 ,xMax: 238 ,yMax: 165 )
-                    allPathRealTime.append(temp)
-                case "Node9":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 170,xMin: 229,yMin: 165,xMax: 249 ,yMax: 176)
-                    allPathRealTime.append(temp)
-                case "Node10":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 176,xMin: 226 ,yMin: 176 ,xMax: 238 ,yMax: 183)
-                    allPathRealTime.append(temp)
-                case "Node11":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 252, y: 170,xMin: 249,yMin: 165,xMax: 259 ,yMax: 176)
-                    allPathRealTime.append(temp)
-                case "Node12":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 262, y: 170,xMin: 259,yMin: 165,xMax: 271 ,yMax: 176)
-                    allPathRealTime.append(temp)
-                case "Node13":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 273, y: 170,xMin: 271 ,yMin: 165,xMax: 275 ,yMax: 176)
-                    allPathRealTime.append(temp)
-                case "Node14":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 219, y: 176,xMin: 219,yMin: 176,xMax: 229 ,yMax: 183)
-                    allPathRealTime.append(temp)
-                case "Node15":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 188, y: 163,xMin: 184,yMin: 157 ,xMax: 202 ,yMax: 167)
-                    allPathRealTime.append(temp)
-                case "Node155":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 205, y: 163,xMin: 202 ,yMin: 157,xMax: 229 ,yMax: 165)
-                    allPathRealTime.append(temp)
-                case "Node16":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 180, y: 163,xMin: 177 ,yMin: 157 ,xMax: 182 ,yMax: 180)
-                    allPathRealTime.append(temp)
-//                case "Node17":
-//                    let temp = pathStruct(nodeName: allPath[index] , x: 180, y: 181,xMin: ,yMin: ,xMax:  ,yMax: )
-//                    allPathRealTime.append(temp)
-                case "Node18":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 153, y: 163,xMin: 150,yMin: 157,xMax: 177 ,yMax: 167)
-                    allPathRealTime.append(temp)
-                case "Node19":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 127, y: 163,xMin: 124,yMin: 157,xMax: 150 ,yMax: 167)
-                    allPathRealTime.append(temp)
-                case "Node20":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 121, y: 163,xMin: 118 ,yMin: 157 ,xMax: 123 ,yMax: 167)
-                    allPathRealTime.append(temp)
-                case "Node205":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 118, y: 163,xMin: 114,yMin: 137,xMax: 123 ,yMax: 167)
-                    allPathRealTime.append(temp)
-                case "Node21":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 118, y: 134,xMin: 114 ,yMin: 132 ,xMax: 124 ,yMax: 137)
-                    allPathRealTime.append(temp)
-                case "Node22":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 118, y: 128,xMin: 114 ,yMin: 111,xMax: 124 ,yMax: 132 )
-                    allPathRealTime.append(temp)
-                case "Node23":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 93, y: 163,xMin: 89,yMin: 157,xMax: 114 ,yMax: 167)
-                    allPathRealTime.append(temp)
-                case "Node24":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 88, y: 163,xMin: 86,yMin: 157 ,xMax: 89 ,yMax: 167)
-                    allPathRealTime.append(temp)
-                case "Node25":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 93, y: 190,xMin: 89 ,yMin: 167 ,xMax: 98 ,yMax: 198)
-                    allPathRealTime.append(temp)
-                
-                default:
-                    print("default of switch")
-                }
-                
-                
-                
-                
-                
-                
-                
-                
-            }
-            
-            
-            
-            print("all path (realtime) : \(allPath)")
-            
-            
-            
-            genroutingMessage()
             print(routingmessage)
             
-            
 
             
-            
-
-            
-
-            
-            let durationBetweenToasts: Double =  3
+            let durationBetweenToasts: Double =  5
             for i in 0...1000 {
                 let deadline: DispatchTime = .now() + (Double(i) * durationBetweenToasts)
                 DispatchQueue.main.asyncAfter(deadline: deadline) {
@@ -745,21 +331,184 @@ class IndoorRouting: UIViewController {
                     
                     print("ตัวนับรอบ \(i+1)")
                     self.getUserLocation(i : i)
-                    
-
-        
 
                 }
             }
-           
-            
-
-
             
         } else {
             print("💥 No path between \(sourceNode.name) & \(destinationNode.name)")
         }
 
+        
+    }
+    
+    func generateRoutingmessageFromShortestPath(allPath: [String]) {
+        
+        for index in 0...allPath.count-1{
+            
+            
+            switch allPath[index] {
+            case "Entrance1":
+                let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 53 ,xMin: 229 ,yMin: 52, xMax : 238 ,yMax:66)
+                routingMessage1.append(temp)
+            case "Ladder1":
+                let temp = pathStruct(nodeName: allPath[index] , x: 239, y: 70,xMin: 234 ,yMin: 67 ,xMax: 238  ,yMax: 70 )
+                routingMessage1.append(temp)
+            case "Toilet1Man":
+                let temp = pathStruct(nodeName: allPath[index] , x: 278, y: 77,xMin: 268 ,yMin: 75 ,xMax: 273 ,yMax: 78 )
+                routingMessage1.append(temp)
+            case "Toilet1Woman":
+                let temp = pathStruct(nodeName: allPath[index] , x: 273, y: 71,xMin: 260 ,yMin: 70 ,xMax: 263 ,yMax: 74)
+                routingMessage1.append(temp)
+            case "Library":
+                let temp = pathStruct(nodeName: allPath[index] , x: 230, y: 83, xMin: 229 ,yMin: 80 ,xMax: 234 ,yMax: 85)
+                routingMessage1.append(temp)
+            case "DSSRoom":
+                let temp = pathStruct(nodeName: allPath[index] , x: 240, y: 103,xMin: 234 ,yMin: 100 ,xMax: 239 ,yMax: 105)
+                routingMessage1.append(temp)
+            case "ATRoom":
+                let temp = pathStruct(nodeName: allPath[index] , x: 262, y: 158,xMin: 259 ,yMin: 158,xMax: 264 ,yMax: 165)
+                routingMessage1.append(temp)
+            case "Entrance2":
+                let temp = pathStruct(nodeName: allPath[index] , x: 281, y: 171,xMin: 275 ,yMin: 165 ,xMax: 282 ,yMax: 176)
+                routingMessage1.append(temp)
+            case "PublicRelation":
+                let temp = pathStruct(nodeName: allPath[index] , x: 273, y: 183,xMin: 271,yMin: 176 ,xMax: 275 ,yMax: 183 )
+                routingMessage1.append(temp)
+            case "Room102":
+                let temp = pathStruct(nodeName: allPath[index] , x: 251, y: 184,xMin: 249 ,yMin: 176,xMax: 255 ,yMax: 183 )
+                routingMessage1.append(temp)
+            case "Ladder2":
+                let temp = pathStruct(nodeName: allPath[index] , x: 227, y: 184,xMin: 225 ,yMin: 180,xMax: 229 ,yMax: 183)
+                routingMessage1.append(temp)
+            case "Lift":
+                let temp = pathStruct(nodeName: allPath[index] , x: 220, y: 175,xMin: 219 ,yMin: 174 ,xMax: 223  ,yMax: 177 )
+                routingMessage1.append(temp)
+            case "Room104":
+                let temp = pathStruct(nodeName: allPath[index] , x: 203, y: 175,xMin: 202 ,yMin: 167 ,xMax: 205 ,yMax: 174 )
+                routingMessage1.append(temp)
+            case "Room105":
+                let temp = pathStruct(nodeName: allPath[index] , x: 188, y: 168,xMin: 184,yMin: 162,xMax: 190 ,yMax: 167 )
+                routingMessage1.append(temp)
+            case "KKRoom":
+                let temp = pathStruct(nodeName: allPath[index] , x: 180, y: 194,xMin: 177 ,yMin: 180 ,xMax: 182 ,yMax: 194)
+                routingMessage1.append(temp)
+            case "Room107":
+                let temp = pathStruct(nodeName: allPath[index] , x: 153, y: 168,xMin: 150 ,yMin: 162,xMax: 156 ,yMax: 167)
+                routingMessage1.append(temp)
+            case "Room108":
+                let temp = pathStruct(nodeName: allPath[index] , x: 127, y: 168,xMin: 124,yMin: 162,xMax: 129 ,yMax: 167)
+                routingMessage1.append(temp)
+            case "Room110":
+                let temp = pathStruct(nodeName: allPath[index] , x: 122, y: 168,xMin: 118,yMin: 162,xMax: 124 ,yMax: 167)
+                routingMessage1.append(temp)
+            case "Toilet2Man":
+                let temp = pathStruct(nodeName: allPath[index] , x: 95, y: 202,xMin: 89 ,yMin: 197,xMax: 97 ,yMax: 201)
+                routingMessage1.append(temp)
+            case "Toilet2Woman":
+                let temp = pathStruct(nodeName: allPath[index] , x: 89, y: 200,xMin: 89,yMin: 189 ,xMax: 93 ,yMax: 192 )
+                routingMessage1.append(temp)
+            case "Ladder3":
+                let temp = pathStruct(nodeName: allPath[index] , x: 88, y: 168,xMin: 82,yMin: 162,xMax: 89 ,yMax: 167)
+                routingMessage1.append(temp)
+            case "CopyStore":
+                let temp = pathStruct(nodeName: allPath[index] , x: 78, y: 163,xMin: 71 ,yMin: 157,xMax: 86 ,yMax: 167)
+                routingMessage1.append(temp)
+            case "Room115":
+                let temp = pathStruct(nodeName: allPath[index] , x: 114, y: 134,xMin: 114,yMin: 132,xMax: 119 ,yMax: 137)
+                routingMessage1.append(temp)
+            case "Room116":
+                let temp = pathStruct(nodeName: allPath[index] , x: 114, y: 129,xMin: 114 ,yMin: 126 ,xMax: 119 ,yMax: 131)
+                routingMessage1.append(temp)
+            case "Room118":
+                let temp = pathStruct(nodeName: allPath[index] , x: 120, y: 106,xMin: 114 ,yMin: 106 ,xMax: 124 ,yMax: 111)
+                routingMessage1.append(temp)
+                
+            case "Node2":
+                let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 70,xMin: 229 ,yMin: 67 ,xMax: 238 ,yMax: 70 )
+                routingMessage1.append(temp)
+            case "Node3":
+                let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 75,xMin: 229 ,yMin: 70,xMax: 260 ,yMax: 78)
+                routingMessage1.append(temp)
+            case "Node4":
+                let temp = pathStruct(nodeName: allPath[index] , x: 262, y: 75,xMin: 260,yMin: 70 ,xMax: 273 ,yMax: 78)
+                routingMessage1.append(temp)
+            case "Node5":
+                let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 82,xMin: 229,yMin: 80,xMax: 238 ,yMax: 85)
+                routingMessage1.append(temp)
+            case "Node6":
+                let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 103,xMin: 229 ,yMin: 85 ,xMax: 238 ,yMax: 158)
+                routingMessage1.append(temp)
+            case "Node8":
+                let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 163,xMin: 229,yMin: 158 ,xMax: 238 ,yMax: 165 )
+                routingMessage1.append(temp)
+            case "Node9":
+                let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 170,xMin: 229,yMin: 165,xMax: 249 ,yMax: 176)
+                routingMessage1.append(temp)
+            case "Node10":
+                let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 176,xMin: 226 ,yMin: 176 ,xMax: 238 ,yMax: 183)
+                routingMessage1.append(temp)
+            case "Node11":
+                let temp = pathStruct(nodeName: allPath[index] , x: 252, y: 170,xMin: 249,yMin: 165,xMax: 259 ,yMax: 176)
+                routingMessage1.append(temp)
+            case "Node12":
+                let temp = pathStruct(nodeName: allPath[index] , x: 262, y: 170,xMin: 259,yMin: 165,xMax: 271 ,yMax: 176)
+                routingMessage1.append(temp)
+            case "Node13":
+                let temp = pathStruct(nodeName: allPath[index] , x: 273, y: 170,xMin: 271 ,yMin: 165,xMax: 275 ,yMax: 176)
+                routingMessage1.append(temp)
+            case "Node14":
+                let temp = pathStruct(nodeName: allPath[index] , x: 219, y: 176,xMin: 219,yMin: 176,xMax: 229 ,yMax: 183)
+                routingMessage1.append(temp)
+            case "Node15":
+                let temp = pathStruct(nodeName: allPath[index] , x: 188, y: 163,xMin: 184,yMin: 157 ,xMax: 202 ,yMax: 167)
+                routingMessage1.append(temp)
+            case "Node155":
+                let temp = pathStruct(nodeName: allPath[index] , x: 205, y: 163,xMin: 202 ,yMin: 157,xMax: 229 ,yMax: 165)
+                routingMessage1.append(temp)
+            case "Node16":
+                let temp = pathStruct(nodeName: allPath[index] , x: 180, y: 163,xMin: 177 ,yMin: 157 ,xMax: 182 ,yMax: 180)
+                routingMessage1.append(temp)
+                //                case "Node17":
+                //                    let temp = pathStruct(nodeName: allPath[index] , x: 180, y: 181,xMin: ,yMin: ,xMax:  ,yMax: )
+            //                    routingMessage1.append(temp)
+            case "Node18":
+                let temp = pathStruct(nodeName: allPath[index] , x: 153, y: 163,xMin: 150,yMin: 157,xMax: 177 ,yMax: 167)
+                routingMessage1.append(temp)
+            case "Node19":
+                let temp = pathStruct(nodeName: allPath[index] , x: 127, y: 163,xMin: 124,yMin: 157,xMax: 150 ,yMax: 167)
+                routingMessage1.append(temp)
+            case "Node20":
+                let temp = pathStruct(nodeName: allPath[index] , x: 121, y: 163,xMin: 118 ,yMin: 157 ,xMax: 123 ,yMax: 167)
+                routingMessage1.append(temp)
+            case "Node205":
+                let temp = pathStruct(nodeName: allPath[index] , x: 118, y: 163,xMin: 114,yMin: 137,xMax: 123 ,yMax: 167)
+                routingMessage1.append(temp)
+            case "Node21":
+                let temp = pathStruct(nodeName: allPath[index] , x: 118, y: 134,xMin: 114 ,yMin: 132 ,xMax: 124 ,yMax: 137)
+                routingMessage1.append(temp)
+            case "Node22":
+                let temp = pathStruct(nodeName: allPath[index] , x: 118, y: 128,xMin: 114 ,yMin: 111,xMax: 124 ,yMax: 132 )
+                routingMessage1.append(temp)
+            case "Node23":
+                let temp = pathStruct(nodeName: allPath[index] , x: 93, y: 163,xMin: 89,yMin: 157,xMax: 114 ,yMax: 167)
+                routingMessage1.append(temp)
+            case "Node24":
+                let temp = pathStruct(nodeName: allPath[index] , x: 88, y: 163,xMin: 86,yMin: 157 ,xMax: 89 ,yMax: 167)
+                routingMessage1.append(temp)
+            case "Node25":
+                let temp = pathStruct(nodeName: allPath[index] , x: 93, y: 190,xMin: 89 ,yMin: 167 ,xMax: 98 ,yMax: 198)
+                routingMessage1.append(temp)
+                
+            default:
+                print("default of switch")
+            }
+            
+        }
+        
+        print("all path (realtime) : \(routingMessage1)")
+        
+        
         
     }
     
@@ -774,11 +523,11 @@ class IndoorRouting: UIViewController {
 //            var currentRecall = [VirtualCurrentLocationOnX[i],VirtualCurrentLocationOnY[i]]
          var currentRecall = [realCurrentLocationOnX[i],realCurrentLocationOnY[i]]
             
-//            if (currentRecall[0] == allPathRealTime[checkArriveThisNodeYet].x
-//                && currentRecall[1] == allPathRealTime[checkArriveThisNodeYet].y){
+//            if (currentRecall[0] == routingMessage1[checkArriveThisNodeYet].x
+//                && currentRecall[1] == routingMessage1[checkArriveThisNodeYet].y){
         
-        if (currentRecall[0] > allPathRealTime[checkArriveThisNodeYet].xMin && currentRecall[0] < allPathRealTime[checkArriveThisNodeYet].xMax
-            && currentRecall[1] > allPathRealTime[checkArriveThisNodeYet].yMin && currentRecall[1] > allPathRealTime[checkArriveThisNodeYet].yMax){
+        if (currentRecall[0] > routingMessage1[checkArriveThisNodeYet].xMin && currentRecall[0] < routingMessage1[checkArriveThisNodeYet].xMax
+            && currentRecall[1] > routingMessage1[checkArriveThisNodeYet].yMin && currentRecall[1] > routingMessage1[checkArriveThisNodeYet].yMax){
 
         
                 
@@ -798,21 +547,30 @@ class IndoorRouting: UIViewController {
                 
                 if (checkArriveThisNodeYet < routingmessage.count-1){
                     checkArriveThisNodeYet+=1;
-                    
+                    //129
                     
                 }else{
                     
+                    var  wordDistance = "ถึงจุดหมายเรียบร้อยแล้ว";
+                    print(wordDistance)
                     
+                    self.view.makeToast(wordDistance, duration: 5.0, position: .top)
+                    //                    add more style for toast
+                    var style = ToastStyle()
+                    ToastManager.shared.style = style
+                    ToastManager.shared.isTapToDismissEnabled = false
+                    
+                    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, wordDistance)
                     
                 }
                 
                 
             }else {
-                var x = currentRecall[0] - allPathRealTime[checkArriveThisNodeYet].x
-                var y = currentRecall[1] - allPathRealTime[checkArriveThisNodeYet].y
-            distanceToThisNode = (sqrt(Double(x*x+y*y)))*0.18;
+                var x = currentRecall[0] - routingMessage1[checkArriveThisNodeYet].x
+                var y = currentRecall[1] - routingMessage1[checkArriveThisNodeYet].y
+                distanceToThisNode = (sqrt(Double(x*x+y*y)))*0.18;
                 distance = distanceToThisNode
-                //                print(distance)
+            
                 
                 var distanceInt = 0
                 if (distance! <= 1){
@@ -827,9 +585,9 @@ class IndoorRouting: UIViewController {
                 
                 
                 var wordDistance = "เดินตรงไปอีก  \(distanceInt) เมตร ก่อนจะถึงจุดต่อไป";
-                if( i == VirtualCurrentLocationOnX.count-1){
-                    wordDistance = "ถึงจุดหมายเรียบร้อยแล้ว";
-                }
+       
+            
+          
                 print(wordDistance)
 
                 
@@ -849,7 +607,7 @@ class IndoorRouting: UIViewController {
     
 
     //ทำ routing message
-    func genroutingMessage()
+    func generateRoutingmessageFromShortestPath2()
     {
         for var i in (0..<allPath.count){
             if(i == 0){
@@ -1514,7 +1272,7 @@ class IndoorRouting: UIViewController {
     
 //    4C:57:CA:44:9E:4C
 
-        self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?macAddress=12:00:0f:85:61:ad", headers: headers).authenticate(user: user, password: password)
+        self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?macAddress=4C:57:CA:44:9E:4C", headers: headers).authenticate(user: user, password: password)
     
     .responseJSON { response in
     switch response.result {
@@ -1528,6 +1286,11 @@ class IndoorRouting: UIViewController {
         
     realCurrentLocationOnX.append(number1)
     realCurrentLocationOnY.append(number2)
+    
+//    self.label1.text = "\(number1),\(number2)"
+   
+    
+    self.checkUserCurrentLocation(number1 : number1 , number2 : number2)
         
         print(realCurrentLocationOnX)
         print(realCurrentLocationOnY)
@@ -1545,10 +1308,209 @@ class IndoorRouting: UIViewController {
     
     }
 
-    
+    func checkUserCurrentLocation(number1 : Int , number2: Int) {
+        
+        //start current location
+        
+        
+        var CCurrent = [number1,number2];
+        var CEntrance1 = [234,53];
+        var CLadder1 = [239,70];
+        var CToilet1Man = [278,77];
+        var CToilet1Woman = [272,71];
+        var CLibrary = [230,83];
+        var CDSSRoom = [240,103];
+        var CATRoom = [262,158];
+        var CEntrance2 = [281,171];
+        var CPublicRelation = [273,183];
+        var CRoom102 = [251,184];
+        var CLadder2 = [227,184];
+        var CLift = [220,175];
+        var CRoom104 = [203,175];
+        var CRoom105 = [188,168];
+        var CKKRoom = [180,194];
+        var CRoom107 = [153,168];
+        var CRoom108 = [127,168];
+        var CRoom110 = [122,168];
+        var CToilet2Man = [95,202];
+        var CToilet2Woman = [89,200];
+        var CLadder3 = [88,168];
+        var CCopyStore = [78,163];
+        var CRoom115 = [114,134];
+        var CRoom116 = [114,129];
+        var CRoom118 = [120,106];
+        var CNode2 = [234,70];
+        var CNode3 = [234,75];
+        var CNode4 = [262,75];
+        var CNode5 = [234,82];
+        var CNode6 = [234,103];
+        var CNode8 = [234,163];
+        var CNode9 = [234,170];
+        var CNode10 = [234,176];
+        var CNode11 = [252,170];
+        var CNode12 = [262,170];
+        var CNode13 = [273,170];
+        var CNode14 = [219,176];
+        var CNode15 = [188,163];
+        var CNode155 = [205,163];
+        var CNode16 = [180,163];
+        var CNode17 = [180,181];
+        var CNode18 = [153,163];
+        var CNode19 = [127,163];
+        var CNode20 = [121,163];
+        var CNode205 = [118,163];
+        var CNode21 = [118,134];
+        var CNode22 = [118,128];
+        var CNode23 = [93,163];
+        var CNode24 = [88,163];
+        var CNode25 = [93,190];
+        
+        var arraylist = [[Int]]()
+        
+        arraylist.append( CEntrance1 )
+        arraylist.append( CLadder1 )
+        arraylist.append( CToilet1Man )
+        arraylist.append( CToilet1Woman )
+        arraylist.append( CLibrary )
+        arraylist.append( CDSSRoom )
+        arraylist.append( CATRoom )
+        arraylist.append( CEntrance2 )
+        arraylist.append( CPublicRelation )
+        arraylist.append( CRoom102 )
+        arraylist.append( CLadder2 )
+        arraylist.append( CLift )
+        arraylist.append( CRoom104 )
+        arraylist.append( CRoom105 )
+        arraylist.append( CKKRoom )
+        arraylist.append( CRoom107 )
+        arraylist.append( CRoom108 )
+        arraylist.append( CRoom110 )
+        arraylist.append( CToilet2Man )
+        arraylist.append( CToilet2Woman )
+        arraylist.append( CLadder3 )
+        arraylist.append( CCopyStore )
+        arraylist.append( CRoom115 )
+        arraylist.append( CRoom116 )
+        arraylist.append( CRoom118 )
+        arraylist.append( CNode2 )
+        arraylist.append( CNode3 )
+        arraylist.append( CNode4 )
+        arraylist.append( CNode5 )
+        arraylist.append( CNode6 )
+        arraylist.append( CNode8 )
+        arraylist.append( CNode9 )
+        arraylist.append( CNode10 )
+        arraylist.append( CNode11 )
+        arraylist.append( CNode12 )
+        arraylist.append( CNode13 )
+        arraylist.append( CNode14 )
+        arraylist.append( CNode15 )
+        arraylist.append( CNode155 )
+        arraylist.append( CNode16 )
+        arraylist.append( CNode17 )
+        arraylist.append( CNode18 )
+        arraylist.append( CNode19 )
+        arraylist.append( CNode20 )
+        arraylist.append( CNode205 )
+        arraylist.append( CNode21 )
+        arraylist.append( CNode22 )
+        arraylist.append( CNode23 )
+        arraylist.append( CNode24 )
+        arraylist.append( CNode25 )
+        
+        var checkInEachXandY:Int = 0;
+        var checkLastPithagorus:Double = 10000;
+        var x:Double = 0
+        var y:Double = 0
+        var Pithagorus:Double = 0
+        
+        for var i in (0..<arraylist.count)
+        {
+            
+            x = Double(CCurrent[0] -  arraylist[i][0])
+            y = Double(CCurrent[1] - arraylist[i][1])
+            Pithagorus = sqrt(x*y+y*y)
+            if(Pithagorus<checkLastPithagorus){
+                checkLastPithagorus = Pithagorus
+                checkInEachXandY = i+1;
+            }
+            
+            
+        }
+        
+        print(checkInEachXandY)
+        
+        
+        
+        
+        var NumWithPlace = [Int: String]()
+        
+        
+        NumWithPlace[1] = "Entrance1 "
+        NumWithPlace[2] = "Ladder1 "
+        NumWithPlace[3] = "Toilet1Man "
+        NumWithPlace[4] = "Toilet1Woman "
+        NumWithPlace[5] = "Library "
+        NumWithPlace[6] = "DSSRoom "
+        NumWithPlace[7] = "ATRoom "
+        NumWithPlace[8] = "Entrance2 "
+        NumWithPlace[9] = "PublicRelation "
+        NumWithPlace[10] = "Room102 "
+        NumWithPlace[11] = "Ladder2 "
+        NumWithPlace[12] = "Lift "
+        NumWithPlace[13] = "Room104 "
+        NumWithPlace[14] = "Room105 "
+        NumWithPlace[15] = "KKRoom "
+        NumWithPlace[16] = "Room107 "
+        NumWithPlace[17] = "Room108 "
+        NumWithPlace[18] = "Room110 "
+        NumWithPlace[19] = "Toilet2Man "
+        NumWithPlace[20] = "Toilet2Woman "
+        NumWithPlace[21] = "Ladder3 "
+        NumWithPlace[22] = "CopyStore "
+        NumWithPlace[23] = "Room115 "
+        NumWithPlace[24] = "Room116 "
+        NumWithPlace[25] = "Room118 "
+        NumWithPlace[26] = "Node2 "
+        NumWithPlace[27] = "Node3 "
+        NumWithPlace[28] = "Node4 "
+        NumWithPlace[29] = "Node5 "
+        NumWithPlace[30] = "Node6 "
+        NumWithPlace[31] = "Node8 "
+        NumWithPlace[32] = "Node9 "
+        NumWithPlace[33] = "Node10 "
+        NumWithPlace[34] = "Node11 "
+        NumWithPlace[35] = "Node12 "
+        NumWithPlace[36] = "Node13 "
+        NumWithPlace[37] = "Node14 "
+        NumWithPlace[38] = "Node15 "
+        NumWithPlace[39] = "Node155 "
+        NumWithPlace[40] = "Node16 "
+        NumWithPlace[41] = "Node17 "
+        NumWithPlace[42] = "Node18 "
+        NumWithPlace[43] = "Node19 "
+        NumWithPlace[44] = "Node20 "
+        NumWithPlace[45] = "Node205 "
+        NumWithPlace[46] = "Node21 "
+        NumWithPlace[47] = "Node22 "
+        NumWithPlace[48] = "Node23 "
+        NumWithPlace[49] = "Node24 "
+        NumWithPlace[50] = "Node25 "
+        
+        print("Your Current Location is : \(NumWithPlace[checkInEachXandY]!)")
+        
+        label2.text = "Current Location : \(NumWithPlace[checkInEachXandY]!)"
+        
+        
+        //end current location
+        
+        
+    }
 
 //end of main class
 }
+
+
 class Node {
     var visited = false
     var connections: [Connection] = []
