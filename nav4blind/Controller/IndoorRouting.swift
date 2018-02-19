@@ -27,10 +27,23 @@ struct pathStruct {
 }
 
 
+//lib to toilent1man  ver2
+var VirtualCurrentLocationOnX =  [230,234,234,244,257,265,268]
+var VirtualCurrentLocationOnY = [82,82,77,77,77,77,77]
+
+//room102 to ATRoom
+//var VirtualCurrentLocationOnX =  [250,250,250,257,260,260,260]
+//var VirtualCurrentLocationOnY = [180,177,170,170,170,167,160]
+
+
 
 //library to toilet1man
-//var VirtualCurrentLocationOnX    = [230,232,234,234,234,250,262,270,278]
+//var VirtualCurrentLocationOnX  = [230,232,234,234,234,250,262,270,278]
 //var VirtualCurrentLocationOnY  = [83,82,82,78,75,75,75,75,77]
+
+//node8 to ATRoom
+//var VirtualCurrentLocationOnX    = [230,235,230,237,240,245,250,254,257,260,261,260,262]
+//var VirtualCurrentLocationOnY  = [159,160,163,167,170,175,167,174,168,170,170,167,164]
 
 
 var realCurrentLocationOnX : [Int]  = []
@@ -78,11 +91,11 @@ class IndoorRouting: UIViewController {
         )
     }()
     
-       //Viewdidload ทำแค่ดึงรูปมาแล้วทำ Reddot blink
+    //Viewdidload ทำแค่ดึงรูปมาแล้วทำ Reddot blink
     override func viewDidLoad() {
         super.viewDidLoad()
         
-     
+        
         
         label1.text = "from \(startLocation!) to \(destination!)"
         print(selectedRow)
@@ -201,10 +214,14 @@ class IndoorRouting: UIViewController {
         
         allMynode = [Entrance1,Ladder1,Toilet1Man,Toilet1Woman,Library,DSSRoom,ATRoom,Entrance2,PublicRelation,Room102,Ladder2,Lift,Room104,Room105,KKRoom,Room107,Room108,Room110,Toilet2Man,Toilet2Woman,Ladder3,CopyStore,Room115,Room116,Room118]
         
+        var arrayforfindINDEXoffirstdestination = ["Entrance1","Ladder1","Toilet1Man","Toilet1Woman","Library","DSSRoom","ATRoom","Entrance2","PublicRelation","Room102","Ladder2","Lift","Room104","Room105","KKRoom","Room107","Room108","Room110","Toilet2Man","Toilet2Woman","Ladder3","CopyStore","Room115","Room116","Room118"]
         
-        
+        print("startlocation:\(startLocation)")
+        var indexOffirstdestination = arrayforfindINDEXoffirstdestination.index(of: startLocation)
+        print("indexoffirstdestination:\(indexOffirstdestination)")
+        var firstdestination = allMynode[indexOffirstdestination!]
         finaldestination = allMynode[selectedRow]
-
+        
         Entrance1.connections.append(Connection(to: Node2, weight: 5))
         Node2.connections.append(Connection(to: Ladder1, weight: 1.4))
         Node2.connections.append(Connection(to: Node3, weight: 1.625))
@@ -302,7 +319,7 @@ class IndoorRouting: UIViewController {
         Ladder3.connections.append(Connection(to: Node24, weight: 1.7))
         CopyStore.connections.append(Connection(to: Node24, weight: 0.5))
         
-        let sourceNode = Node8
+        let sourceNode = firstdestination
         let destinationNode = finaldestination!
         
         var path = shortestPath(source: sourceNode, destination: destinationNode)
@@ -312,7 +329,7 @@ class IndoorRouting: UIViewController {
             print("🏁 Quickest path: \(succession)")
             print("🏁 Quickest Weight: \(sumWeight)")
             
-//            let alert = UIAlertController(title: "\(sourceNode.name) to \(destinationNode.name)", message: "🏁 Quickest path: \(succession) = \(sumWeight!) meter", preferredStyle: UIAlertControllerStyle.alert)
+            //            let alert = UIAlertController(title: "\(sourceNode.name) to \(destinationNode.name)", message: "🏁 Quickest path: \(succession) = \(sumWeight!) meter", preferredStyle: UIAlertControllerStyle.alert)
             
             //set allPath เพื่อเอาไปใช้ หาคำพูดในการบอกทาง
             allPath = succession
@@ -442,9 +459,9 @@ class IndoorRouting: UIViewController {
                 case "Node16":
                     let temp = pathStruct(nodeName: allPath[index] , x: 180, y: 163,xMin: 177 ,yMin: 157 ,xMax: 182 ,yMax: 180)
                     allPathRealTime.append(temp)
-//                case "Node17":
-//                    let temp = pathStruct(nodeName: allPath[index] , x: 180, y: 181,xMin: ,yMin: ,xMax:  ,yMax: )
-//                    allPathRealTime.append(temp)
+                    //                case "Node17":
+                    //                    let temp = pathStruct(nodeName: allPath[index] , x: 180, y: 181,xMin: ,yMin: ,xMax:  ,yMax: )
+                //                    allPathRealTime.append(temp)
                 case "Node18":
                     let temp = pathStruct(nodeName: allPath[index] , x: 153, y: 163,xMin: 150,yMin: 157,xMax: 177 ,yMax: 167)
                     allPathRealTime.append(temp)
@@ -472,41 +489,41 @@ class IndoorRouting: UIViewController {
                 case "Node25":
                     let temp = pathStruct(nodeName: allPath[index] , x: 93, y: 190,xMin: 89 ,yMin: 167 ,xMax: 98 ,yMax: 198)
                     allPathRealTime.append(temp)
-                
+                    
                 default:
                     print("default of switch")
                 }
-     
+                
             }
             print("all path  : \(succession)")
             print("all path (realtime) : \(allPathRealTime)")
-  
+            
             genroutingMessage()
             print("all routing message : \(routingmessage)")
             
-
-
+            
+            
             
             let executeTime: Double =  5
-            for i in 0...1000 {
-//            for i in 0...VirtualCurrentLocationOnX.count-1 {
+            //            for i in 0...1000 {
+            for i in 0...VirtualCurrentLocationOnX.count-1 {
                 let deadline: DispatchTime = .now() + (Double(i) * executeTime)
                 DispatchQueue.main.asyncAfter(deadline: deadline) {
                     
                     
-                    print("ตัวนับรอบ \(i+1)")
+                    //                    print("ตัวนับรอบ \(i+1)")
                     self.getUserLocation(i : i)
-
+                    
                 }
             }
             
         } else {
             print("💥 No path between \(sourceNode.name) & \(destinationNode.name)")
         }
-
+        
         
     }
-
+    
     //ทำ routing message
     func genroutingMessage()
     {
@@ -1158,60 +1175,60 @@ class IndoorRouting: UIViewController {
         
         
         
-    
-    let user = "dev"
-    let password = "dev12345"
-
-
-
-    var headers: HTTPHeaders = [:]
-
-    if let authorizationHeader = Request.authorizationHeader(user: user, password: password) {
-    headers[authorizationHeader.key] = authorizationHeader.value
-    }
-
-//    4C:57:CA:44:9E:4C
-
-        self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?macAddress=4C:57:CA:44:9E:4C", headers: headers).authenticate(user: user, password: password)
-
-    .responseJSON { response in
-    switch response.result {
-    case .success(let value):
-    let json = JSON(value)
-
-    
-    
-    var number1 : Int = json[0]["mapCoordinate"]["x"].int!
-        var number2 : Int = json[0]["mapCoordinate"]["y"].int!
-    
-
-    print("เก็บเวลารอบ \(i)")
-    realCurrentLocationOnX.append(number1)
-    realCurrentLocationOnY.append(number2)
-    print(realCurrentLocationOnX)
-    print(realCurrentLocationOnY)
-    
-    
-    self.label1.text = "\(number1),\(number2)"
-   
-    
-    self.checkUserCurrentLocation(number1 : number1 , number2 : number2)
-    
-
-    
+        //
+        //    let user = "dev"
+        //    let password = "dev12345"
+        //
+        //
+        //
+        //    var headers: HTTPHeaders = [:]
+        //
+        //    if let authorizationHeader = Request.authorizationHeader(user: user, password: password) {
+        //    headers[authorizationHeader.key] = authorizationHeader.value
+        //    }
+        //
+        ////    4C:57:CA:44:9E:4C
+        //
+        //        self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?macAddress=4C:57:CA:44:9E:4C", headers: headers).authenticate(user: user, password: password)
+        //
+        //    .responseJSON { response in
+        //    switch response.result {
+        //    case .success(let value):
+        //    let json = JSON(value)
+        //
+        //
+        //
+        //    var number1 : Int = json[0]["mapCoordinate"]["x"].int!
+        //        var number2 : Int = json[0]["mapCoordinate"]["y"].int!
+        //
+        //
+        //    print("เก็บเวลารอบ \(i)")
+        //    realCurrentLocationOnX.append(number1)
+        //    realCurrentLocationOnY.append(number2)
+        //    print(realCurrentLocationOnX)
+        //    print(realCurrentLocationOnY)
+        //
+        //
+        //    self.label1.text = "\(number1),\(number2)"
+        //
+        //
+        //    self.checkUserCurrentLocation(number1 : number1 , number2 : number2)
+        
+        
+        
         self.realtimeRouting(i:i)
         
-
-
-    case .failure(let error):
-    print(error)
-
-
+        
+        
+        //    case .failure(let error):
+        //    print(error)
+        //
+        //
+        //    }
+        //    }
+        
     }
-    }
-
-    }
-
+    
     func checkUserCurrentLocation(number1 : Int , number2: Int) {
         
         //start current location
@@ -1417,14 +1434,14 @@ class IndoorRouting: UIViewController {
         
         
         
-        //            var currentRecall = [VirtualCurrentLocationOnX[i],VirtualCurrentLocationOnY[i]]
-        var currentRecall = [realCurrentLocationOnX[i],realCurrentLocationOnY[i]]
+        var currentRecall = [VirtualCurrentLocationOnX[i],VirtualCurrentLocationOnY[i]]
+        //        var currentRecall = [realCurrentLocationOnX[i],realCurrentLocationOnY[i]]
         
-        //            if (currentRecall[0] == allPathRealTime[checkArriveThisNodeYet].x
-        //                && currentRecall[1] == allPathRealTime[checkArriveThisNodeYet].y){
+        //                    if (currentRecall[0] == allPathRealTime[checkArriveThisNodeYet].x
+        //                        && currentRecall[1] == allPathRealTime[checkArriveThisNodeYet].y){
         
         if (currentRecall[0] > allPathRealTime[checkArriveThisNodeYet].xMin && currentRecall[0] < allPathRealTime[checkArriveThisNodeYet].xMax
-            && currentRecall[1] > allPathRealTime[checkArriveThisNodeYet].yMin && currentRecall[1] > allPathRealTime[checkArriveThisNodeYet].yMax){
+            && currentRecall[1] > allPathRealTime[checkArriveThisNodeYet].yMin && currentRecall[1] < allPathRealTime[checkArriveThisNodeYet].yMax){
             
             
             
@@ -1484,11 +1501,15 @@ class IndoorRouting: UIViewController {
             
             
             var wordDistance = "เดินตรงไปอีก  \(distanceInt) เมตร ก่อนจะถึงจุดต่อไป";
-            
-            
-            
-            
+            //                        if( i == VirtualCurrentLocationOnX.count-1){
+            //                            wordDistance = "ถึงจุดหมายเรียบร้อยแล้ว";
+            //                        }
             print(wordDistance)
+            
+            
+            
+            
+            
             
             
             self.view.makeToast(wordDistance, duration: 3.0, position: .top)
@@ -1505,10 +1526,10 @@ class IndoorRouting: UIViewController {
         
     }
     
-
-
-
-//end of main class
+    
+    
+    
+    //end of main class
 }
 
 
@@ -1590,10 +1611,11 @@ func shortestPath(source: Node, destination: Node) -> Path? {
 // **** EXAMPLE BELOW ****
 class MyNode: Node {
     let name: String
-
+    
     init(name: String  ) {
         self.name = name
-
+        
         super.init()
     }
 }
+

@@ -109,7 +109,7 @@ class IndoorNavVC: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource
         labelLocation.text = ("you're at : )")
         
         
-        self.getUserLocation()
+//        self.getUserLocation()
       
        
         
@@ -140,10 +140,15 @@ class IndoorNavVC: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource
                 case .success(let value):
                     let json = JSON(value)
                     
+                    var number1 : Int = 0
+                    var number2 : Int = 0
                     
                     
-                    var number1 : Int = json[0]["mapCoordinate"]["x"].int!
-                    var number2 : Int = json[0]["mapCoordinate"]["y"].int!
+                 
+                     number1  = json[0]["mapCoordinate"]["x"].int!
+                     number2  = json[0]["mapCoordinate"]["y"].int!
+                        
+                
                     
                     realCurrentLocationOnXIndoor.append(number1)
                     realCurrentLocationOnYIndoor.append(number2)
@@ -363,7 +368,7 @@ class IndoorNavVC: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource
         labelLocation.text = "Current Location : \(NumWithPlace[checkInEachXandY]!)"
         
         startLocation =  NumWithPlace[checkInEachXandY]!
-        
+ 
         
         //end current location
         
@@ -376,7 +381,7 @@ class IndoorNavVC: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource
        
         let playerViewController = segue.destination as? IndoorRouting
         playerViewController?.destination = destination
-        playerViewController?.startLocation = startLocation
+        playerViewController?.startLocation = "Library"
 
         
   
