@@ -160,7 +160,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="SL1-Ma-z8o" kind="show" id="LpU-S5-5ea"/>
+                                    <segue destination="Srh-SE-x8u" kind="show" id="DdV-0N-6Lm"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jmb-1c-jHG">
@@ -290,7 +290,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pg5-5u-Cb1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="k3f-Ny-d5s" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1786.875" y="529.22535211267609"/>
+            <point key="canvasLocation" x="2597" y="528"/>
         </scene>
         <!--Indoor Routing-->
         <scene sceneID="JCx-e0-MGk">
@@ -402,7 +402,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PoK-R2-z3t" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="DUr-RP-bgP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2662.5" y="537.67605633802816"/>
+            <point key="canvasLocation" x="3737" y="529"/>
         </scene>
         <!--Indoor MapVC-->
         <scene sceneID="hY7-YP-yoA">
@@ -806,6 +806,78 @@
                 <exit id="gbL-gq-SNS" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1786.875" y="-233.45070422535213"/>
+        </scene>
+        <!--Get User Location-->
+        <scene sceneID="uMX-RE-vvU">
+            <objects>
+                <viewController id="Srh-SE-x8u" customClass="getUserLocation" customModule="nav4blind" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TFF-6d-qFK"/>
+                        <viewControllerLayoutGuide type="bottom" id="8xm-aI-eev"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gjH-TP-NNt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stock-photo-83927719" translatesAutoresizingMaskIntoConstraints="NO" id="JuA-CK-0zm">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Indoor Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPJ-14-5qF">
+                                <rect key="frame" x="89" y="40" width="142" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="142" id="4hM-nG-nKs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Zk-Pn-zFn">
+                                <rect key="frame" x="26" y="24" width="29" height="24"/>
+                                <state key="normal" image="backButton"/>
+                                <connections>
+                                    <segue destination="ceH-z4-ljK" kind="unwind" unwindAction="unwindFromIndoorSelectModeVCWithUnwindSegue:" id="WXx-jL-bso"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="โปรดรอ 30 วินาที" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWn-ch-hnN">
+                                <rect key="frame" x="0.0" y="108" width="320" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tbr-ib-G7G">
+                                <rect key="frame" x="66" y="518" width="188" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.23883142609999999" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Accept">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="SL1-Ma-z8o" kind="show" id="ETf-Y9-XFY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JuA-CK-0zm" firstAttribute="top" secondItem="gjH-TP-NNt" secondAttribute="top" id="7YK-va-AR7"/>
+                            <constraint firstItem="6Zk-Pn-zFn" firstAttribute="top" secondItem="TFF-6d-qFK" secondAttribute="bottom" constant="4" id="DEf-53-wT0"/>
+                            <constraint firstItem="dWn-ch-hnN" firstAttribute="top" secondItem="dPJ-14-5qF" secondAttribute="bottom" constant="36.5" id="Eli-nJ-MmT"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="JuA-CK-0zm" secondAttribute="bottom" constant="-99" id="GNR-hI-C73"/>
+                            <constraint firstItem="6Zk-Pn-zFn" firstAttribute="leading" secondItem="gjH-TP-NNt" secondAttribute="leadingMargin" constant="10" id="HZV-Mk-a2l"/>
+                            <constraint firstItem="dPJ-14-5qF" firstAttribute="top" secondItem="TFF-6d-qFK" secondAttribute="bottom" constant="20" id="IEU-Ol-NnQ"/>
+                            <constraint firstItem="JuA-CK-0zm" firstAttribute="leading" secondItem="dWn-ch-hnN" secondAttribute="leading" id="KtO-bo-ugc"/>
+                            <constraint firstAttribute="trailing" secondItem="dWn-ch-hnN" secondAttribute="trailing" id="Oip-7c-YkI"/>
+                            <constraint firstItem="Tbr-ib-G7G" firstAttribute="leading" secondItem="gjH-TP-NNt" secondAttribute="leadingMargin" constant="50" id="UBl-vy-hGf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JuA-CK-0zm" secondAttribute="trailing" constant="-71" id="aLD-a3-Jk2"/>
+                            <constraint firstItem="dPJ-14-5qF" firstAttribute="centerX" secondItem="gjH-TP-NNt" secondAttribute="centerX" id="gIU-Mj-DW9"/>
+                            <constraint firstAttribute="bottom" secondItem="Tbr-ib-G7G" secondAttribute="bottom" constant="20" symbolic="YES" id="ks2-vQ-Yv9"/>
+                            <constraint firstItem="dWn-ch-hnN" firstAttribute="leading" secondItem="gjH-TP-NNt" secondAttribute="leading" id="p72-9L-PEY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Tbr-ib-G7G" secondAttribute="trailing" constant="50" id="zzl-L2-2kJ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r5K-Wx-Ot4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ceH-z4-ljK" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1787" y="527"/>
         </scene>
     </scenes>
     <resources>
