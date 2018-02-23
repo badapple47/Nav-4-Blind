@@ -381,7 +381,7 @@ class IndoorNavVC: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource
        
         let playerViewController = segue.destination as? IndoorRouting
         playerViewController?.destination = destination
-        playerViewController?.startLocation = "Library"
+        playerViewController?.startLocation = "Room102"
 
         
   

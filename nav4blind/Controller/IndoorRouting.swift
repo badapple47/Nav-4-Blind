@@ -28,12 +28,12 @@ struct pathStruct {
 
 
 //lib to toilent1man  ver2
-var VirtualCurrentLocationOnX =  [230,234,234,244,257,265,268]
-var VirtualCurrentLocationOnY = [82,82,77,77,77,77,77]
+//var VirtualCurrentLocationOnX =  [230,234,234,244,257,265,268]
+//var VirtualCurrentLocationOnY = [82,82,77,77,77,77,77]
 
 //room102 to ATRoom
-//var VirtualCurrentLocationOnX =  [250,250,250,257,260,260,260]
-//var VirtualCurrentLocationOnY = [180,177,170,170,170,167,160]
+var VirtualCurrentLocationOnX =  [250,250,250,257,260,260,260]
+var VirtualCurrentLocationOnY = [180,177,170,170,170,167,160]
 
 
 
@@ -345,7 +345,7 @@ class IndoorRouting: UIViewController {
                     let temp = pathStruct(nodeName: allPath[index] , x: 239, y: 70,xMin: 234 ,yMin: 67 ,xMax: 238  ,yMax: 70 )
                     allPathRealTime.append(temp)
                 case "Toilet1Man":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 278, y: 77,xMin: 268 ,yMin: 75 ,xMax: 273 ,yMax: 78 )
+                    let temp = pathStruct(nodeName: allPath[index] , x: 278, y: 77,xMin: 238 ,yMin: 75 ,xMax: 273 ,yMax: 78 )
                     allPathRealTime.append(temp)
                 case "Toilet1Woman":
                     let temp = pathStruct(nodeName: allPath[index] , x: 273, y: 71,xMin: 260 ,yMin: 70 ,xMax: 263 ,yMax: 74)
@@ -427,7 +427,7 @@ class IndoorRouting: UIViewController {
                     let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 82,xMin: 229,yMin: 80,xMax: 238 ,yMax: 85)
                     allPathRealTime.append(temp)
                 case "Node6":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 103,xMin: 229 ,yMin: 85 ,xMax: 238 ,yMax: 158)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 103,xMin: 229 ,yMin: 100 ,xMax: 238 ,yMax: 105)
                     allPathRealTime.append(temp)
                 case "Node8":
                     let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 163,xMin: 229,yMin: 158 ,xMax: 238 ,yMax: 165 )
@@ -504,14 +504,14 @@ class IndoorRouting: UIViewController {
             
             
             
-            let executeTime: Double =  5
+            let executeTime: Double =  1
             //            for i in 0...1000 {
             for i in 0...VirtualCurrentLocationOnX.count-1 {
                 let deadline: DispatchTime = .now() + (Double(i) * executeTime)
                 DispatchQueue.main.asyncAfter(deadline: deadline) {
                     
                     
-                    //                    print("ตัวนับรอบ \(i+1)")
+//                                        print("ตัวนับรอบ \(i+1)")
                     self.getUserLocation(i : i)
                     
                 }
@@ -542,6 +542,8 @@ class IndoorRouting: UIViewController {
                 else if(allPath[i] == "DSSRoom"){
                     routingmessage.append("เดินตรงไป 1 เมตร")}
                 else if(allPath[i] == "ATRoom"){
+                    routingmessage.append("เดินตรงไป 4 เมตร")}
+                else if(allPath[i] == "Room102"){
                     routingmessage.append("เดินตรงไป 4 เมตร")}
                 else if(allPath[i] == "Entrance2"){
                     routingmessage.append("เดินตรงไป 3 เมตร")}
@@ -576,7 +578,7 @@ class IndoorRouting: UIViewController {
                 else if(allPath[i] == "Room116"){
                     routingmessage.append("เดินตรงไป 1 เมตร")}
                 else if(allPath[i] == "Room118"){
-                    routingmessage.append("เดินตรงไป 7 เมตร")}
+                    routingmessage.append("เดินตรงไป 3 เมตร")}
             }else{
                 
                 if( i != allPath.count-1){
@@ -1430,7 +1432,7 @@ class IndoorRouting: UIViewController {
     
     func realtimeRouting (i : Int) {
         
-        
+//        print("testing i \(i)")
         
         
         
@@ -1443,26 +1445,32 @@ class IndoorRouting: UIViewController {
         if (currentRecall[0] > allPathRealTime[checkArriveThisNodeYet].xMin && currentRecall[0] < allPathRealTime[checkArriveThisNodeYet].xMax
             && currentRecall[1] > allPathRealTime[checkArriveThisNodeYet].yMin && currentRecall[1] < allPathRealTime[checkArriveThisNodeYet].yMax){
             
+//            print("checkArriveThisNodeYet \(checkArriveThisNodeYet)")
+//            print("routingmessage.count \(routingmessage.count-1)")
+//            print(routingmessage[checkArriveThisNodeYet])
             
             
+//            self.view.makeToast(routingmessage[checkArriveThisNodeYet], duration: 5.0, position: .top)
+//            //                    add more style for toast
+//            var style = ToastStyle()
+//            ToastManager.shared.style = style
+//            ToastManager.shared.isTapToDismissEnabled = false
+//
+//            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, routingmessage[checkArriveThisNodeYet])
             
             
-            print(routingmessage[checkArriveThisNodeYet])
-            
-            
-            self.view.makeToast(routingmessage[checkArriveThisNodeYet], duration: 5.0, position: .top)
-            //                    add more style for toast
-            var style = ToastStyle()
-            ToastManager.shared.style = style
-            ToastManager.shared.isTapToDismissEnabled = false
-            
-            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, routingmessage[checkArriveThisNodeYet])
-            
-            
-            if (checkArriveThisNodeYet < routingmessage.count-1){
-                checkArriveThisNodeYet+=1;
-                //129
+            if (checkArriveThisNodeYet < routingmessage.count){
                 
+                self.view.makeToast(routingmessage[checkArriveThisNodeYet], duration: 5.0, position: .top)
+                //                    add more style for toast
+                var style = ToastStyle()
+                ToastManager.shared.style = style
+                ToastManager.shared.isTapToDismissEnabled = false
+                
+                UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, routingmessage[checkArriveThisNodeYet])
+                //129
+                print(routingmessage[checkArriveThisNodeYet])
+                checkArriveThisNodeYet+=1;
             }else{
                 
                 var  wordDistance = "ถึงจุดหมายเรียบร้อยแล้ว";
