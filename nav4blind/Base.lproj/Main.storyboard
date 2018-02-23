@@ -841,6 +841,9 @@
                                 <state key="normal" title="Accept">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="accept:" destination="Srh-SE-x8u" eventType="touchUpInside" id="ezY-dq-jN0"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a84-cl-eC6">
                                 <rect key="frame" x="64" y="316" width="193" height="62"/>
@@ -887,7 +890,7 @@
                         <outlet property="Next" destination="Tbr-ib-G7G" id="F6B-bv-LGd"/>
                         <outlet property="counterLabel" destination="a84-cl-eC6" id="O82-ya-4Zc"/>
                         <outlet property="locationLabel" destination="a84-cl-eC6" id="JcJ-vp-yCe"/>
-                        <segue destination="SL1-Ma-z8o" kind="show" id="XPQ-Z5-ewG"/>
+                        <segue destination="SL1-Ma-z8o" kind="show" identifier="getUserDestination" id="XPQ-Z5-ewG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r5K-Wx-Ot4" userLabel="First Responder" sceneMemberID="firstResponder"/>

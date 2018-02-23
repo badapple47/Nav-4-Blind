@@ -20,6 +20,8 @@ class getUserLocation: UIViewController {
     @IBOutlet weak var Next: UIButton!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var counterLabel: UILabel!
+    
+    var startLocation : String?
     let defaultManager: Alamofire.SessionManager = {
         let serverTrustPolicies: [String: ServerTrustPolicy] = [
             "10.34.250.12": .disableEvaluation
@@ -70,7 +72,7 @@ class getUserLocation: UIViewController {
         
         //    4C:57:CA:44:9E:4C
         
-        self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?macAddress=c8:b5:ad:01:1b:a1", headers: headers).authenticate(user: user, password: password)
+        self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?macAddress=ce:07:07:55:b8:89", headers: headers).authenticate(user: user, password: password)
             
             .responseJSON { response in
                 switch response.result {
@@ -318,10 +320,23 @@ class getUserLocation: UIViewController {
             
         }
         
-
+        startLocation = tempStr
         Next.isHidden = false
-        locationLabel.text = "คุณอยู่ที่ : \(tempStr)"
+        locationLabel.text = "คุณอยู่ที่ : \(startLocation!)"
             
+        
+        
+    }
+    @IBAction func accept(_ sender: Any) {
+         performSegue(withIdentifier: "getUserDestination", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
+        let playerViewController = segue.destination as? IndoorNavVC
+        playerViewController?.startLocation = startLocation
+        
         
         
     }
