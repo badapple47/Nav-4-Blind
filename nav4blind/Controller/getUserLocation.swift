@@ -17,6 +17,9 @@ var startLocation : String = ""
 
 class getUserLocation: UIViewController {
     
+    @IBOutlet weak var Next: UIButton!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var counterLabel: UILabel!
     let defaultManager: Alamofire.SessionManager = {
         let serverTrustPolicies: [String: ServerTrustPolicy] = [
             "10.34.250.12": .disableEvaluation
@@ -38,10 +41,13 @@ class getUserLocation: UIViewController {
                 
                 print("ตัวนับรอบ \(i+1)")
                 self.getUserLocation()
+                self.counterLabel.text = "1-6 : \(i+1)"
                 
                 
             }
         }
+        
+        
      
 
     }
@@ -64,7 +70,7 @@ class getUserLocation: UIViewController {
         
         //    4C:57:CA:44:9E:4C
         
-        self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?macAddress=24:92:0e:03:ac:ae", headers: headers).authenticate(user: user, password: password)
+        self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?macAddress=c8:b5:ad:01:1b:a1", headers: headers).authenticate(user: user, password: password)
             
             .responseJSON { response in
                 switch response.result {
@@ -238,41 +244,41 @@ class getUserLocation: UIViewController {
         NumWithPlace[13] = "Room104"
         NumWithPlace[14] = "Room105"
         NumWithPlace[15] = "KKRoom"
-        NumWithPlace[16] = "Room107 "
-        NumWithPlace[17] = "Room108 "
-        NumWithPlace[18] = "Room110 "
-        NumWithPlace[19] = "Toilet2Man "
-        NumWithPlace[20] = "Toilet2Woman "
-        NumWithPlace[21] = "Ladder3 "
-        NumWithPlace[22] = "CopyStore "
-        NumWithPlace[23] = "Room115 "
-        NumWithPlace[24] = "Room116 "
-        NumWithPlace[25] = "Room118 "
-        NumWithPlace[26] = "Node2 "
-        NumWithPlace[27] = "Node3 "
-        NumWithPlace[28] = "Node4 "
-        NumWithPlace[29] = "Node5 "
-        NumWithPlace[30] = "Node6 "
-        NumWithPlace[31] = "Node8 "
-        NumWithPlace[32] = "Node9 "
-        NumWithPlace[33] = "Node10 "
-        NumWithPlace[34] = "Node11 "
-        NumWithPlace[35] = "Node12 "
-        NumWithPlace[36] = "Node13 "
-        NumWithPlace[37] = "Node14 "
-        NumWithPlace[38] = "Node15 "
-        NumWithPlace[39] = "Node155 "
-        NumWithPlace[40] = "Node16 "
-        NumWithPlace[41] = "Node17 "
-        NumWithPlace[42] = "Node18 "
-        NumWithPlace[43] = "Node19 "
-        NumWithPlace[44] = "Node20 "
-        NumWithPlace[45] = "Node205 "
-        NumWithPlace[46] = "Node21 "
-        NumWithPlace[47] = "Node22 "
-        NumWithPlace[48] = "Node23 "
-        NumWithPlace[49] = "Node24 "
-        NumWithPlace[50] = "Node25 "
+        NumWithPlace[16] = "Room107"
+        NumWithPlace[17] = "Room108"
+        NumWithPlace[18] = "Room110"
+        NumWithPlace[19] = "Toilet2Man"
+        NumWithPlace[20] = "Toilet2Woman"
+        NumWithPlace[21] = "Ladder3"
+        NumWithPlace[22] = "CopyStore"
+        NumWithPlace[23] = "Room115"
+        NumWithPlace[24] = "Room116"
+        NumWithPlace[25] = "Room118"
+        NumWithPlace[26] = "Node2"
+        NumWithPlace[27] = "Node3"
+        NumWithPlace[28] = "Node4"
+        NumWithPlace[29] = "Node5"
+        NumWithPlace[30] = "Node6"
+        NumWithPlace[31] = "Node8"
+        NumWithPlace[32] = "Node9"
+        NumWithPlace[33] = "Node10"
+        NumWithPlace[34] = "Node11"
+        NumWithPlace[35] = "Node12"
+        NumWithPlace[36] = "Node13"
+        NumWithPlace[37] = "Node14"
+        NumWithPlace[38] = "Node15"
+        NumWithPlace[39] = "Node155"
+        NumWithPlace[40] = "Node16"
+        NumWithPlace[41] = "Node17"
+        NumWithPlace[42] = "Node18"
+        NumWithPlace[43] = "Node19"
+        NumWithPlace[44] = "Node20"
+        NumWithPlace[45] = "Node205"
+        NumWithPlace[46] = "Node21"
+        NumWithPlace[47] = "Node22"
+        NumWithPlace[48] = "Node23"
+        NumWithPlace[49] = "Node24"
+        NumWithPlace[50] = "Node25"
         
         print("Your Current Location is : \(NumWithPlace[checkInEachXandY]!)")
         
@@ -280,7 +286,43 @@ class getUserLocation: UIViewController {
         locationStack.append(NumWithPlace[checkInEachXandY]!)
         print(locationStack)
         
+        if locationStack.count == 6 {
+        summaryAndPassValue()
+        }
 
+        
+    }
+    
+    
+    func summaryAndPassValue() {
+        
+       var counts: [String: Int] = [:]
+        
+        for item in locationStack {
+            counts[item] = (counts[item] ?? 0) + 1
+        }
+        
+        print(counts)
+        
+        var tempNumber = 0
+        var tempStr = ""
+        
+        for (key, value) in counts {
+            
+            if value > tempNumber{
+                tempNumber = value
+                tempStr = key
+                
+            }
+            
+            
+        }
+        
+
+        Next.isHidden = false
+        locationLabel.text = "คุณอยู่ที่ : \(tempStr)"
+            
+        
         
     }
 
