@@ -28,12 +28,12 @@ struct pathStruct {
 
 
 //lib to toilent1man  ver2
-//var VirtualCurrentLocationOnX =  [230,234,234,244,257,265,268]
-//var VirtualCurrentLocationOnY = [82,82,77,77,77,77,77]
+var VirtualCurrentLocationOnX =  [230,234,234,244,257,265,268]
+var VirtualCurrentLocationOnY = [82,82,77,77,77,77,77]
 
 //room102 to ATRoom
-var VirtualCurrentLocationOnX =  [250,250,250,257,260,260,260]
-var VirtualCurrentLocationOnY = [180,177,170,170,170,167,160]
+//var VirtualCurrentLocationOnX =  [250,250,250,257,260,260,260]
+//var VirtualCurrentLocationOnY = [180,177,170,170,170,167,160]
 
 
 
@@ -94,6 +94,7 @@ class IndoorRouting: UIViewController {
     //Viewdidload ทำแค่ดึงรูปมาแล้วทำ Reddot blink
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         
         
@@ -158,7 +159,7 @@ class IndoorRouting: UIViewController {
     
     //กดปุ่มเริ่มทำงาน
     @IBAction func triggerShortest(_ sender: Any) {
-        
+
         //For Shortest path
         let Entrance1 = MyNode(name: "Entrance1")
         let Node2 = MyNode(name: "Node2")

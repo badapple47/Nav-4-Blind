@@ -15,6 +15,7 @@ var destination:String!
 
 
 
+
 var selectedRow = 0
 
 
@@ -23,6 +24,7 @@ var selectedRow = 0
 
 class IndoorNavVC: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource  {
     
+
 
     
     let defaultManager: Alamofire.SessionManager = {
@@ -46,6 +48,9 @@ class IndoorNavVC: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource
     @IBOutlet weak var pickerView: UIPickerView!
     
     @IBOutlet weak var labelLocation: UILabel!
+    
+    var startLocation : String?
+
     
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -94,7 +99,7 @@ class IndoorNavVC: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource
         super.viewDidLoad()
         
 
-       
+        
         
     
         
@@ -104,8 +109,9 @@ class IndoorNavVC: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource
         
         pickerView.selectRow(2, inComponent: 0, animated: true)
         
+        print("start location 2 : \(startLocation!)")
 
-        labelLocation.text = ("you're at : ")
+
         
         
 
@@ -124,8 +130,8 @@ class IndoorNavVC: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource
        
         let playerViewController = segue.destination as? IndoorRouting
         playerViewController?.destination = destination
-        playerViewController?.startLocation = "Room102"
-
+        playerViewController?.startLocation = startLocation
+        
         
   
     }
