@@ -28,8 +28,8 @@ struct pathStruct {
 
 
 //lib to toilent1man  ver2
-var VirtualCurrentLocationOnX =  [230,234,234,244,257,265,268]
-var VirtualCurrentLocationOnY = [82,82,77,77,77,77,77]
+//var VirtualCurrentLocationOnX =  [230,234,234,244,257,265,268]
+//var VirtualCurrentLocationOnY = [82,82,77,77,77,77,77]
 
 //room102 to ATRoom
 //var VirtualCurrentLocationOnX =  [250,250,250,257,260,260,260]
@@ -505,9 +505,9 @@ class IndoorRouting: UIViewController {
             
             
             
-            let executeTime: Double =  1
-            //            for i in 0...1000 {
-            for i in 0...VirtualCurrentLocationOnX.count-1 {
+            let executeTime: Double =  5
+                        for i in 0...1000 {
+//            for i in 0...VirtualCurrentLocationOnX.count-1 {
                 let deadline: DispatchTime = .now() + (Double(i) * executeTime)
                 DispatchQueue.main.asyncAfter(deadline: deadline) {
                     
@@ -1178,44 +1178,44 @@ class IndoorRouting: UIViewController {
         
         
         
-        //
-        //    let user = "dev"
-        //    let password = "dev12345"
-        //
-        //
-        //
-        //    var headers: HTTPHeaders = [:]
-        //
-        //    if let authorizationHeader = Request.authorizationHeader(user: user, password: password) {
-        //    headers[authorizationHeader.key] = authorizationHeader.value
-        //    }
-        //
-        ////    4C:57:CA:44:9E:4C
-        //
-        //        self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?macAddress=4C:57:CA:44:9E:4C", headers: headers).authenticate(user: user, password: password)
-        //
-        //    .responseJSON { response in
-        //    switch response.result {
-        //    case .success(let value):
-        //    let json = JSON(value)
-        //
-        //
-        //
-        //    var number1 : Int = json[0]["mapCoordinate"]["x"].int!
-        //        var number2 : Int = json[0]["mapCoordinate"]["y"].int!
-        //
-        //
-        //    print("เก็บเวลารอบ \(i)")
-        //    realCurrentLocationOnX.append(number1)
-        //    realCurrentLocationOnY.append(number2)
-        //    print(realCurrentLocationOnX)
-        //    print(realCurrentLocationOnY)
-        //
-        //
-        //    self.label1.text = "\(number1),\(number2)"
-        //
-        //
-        //    self.checkUserCurrentLocation(number1 : number1 , number2 : number2)
+        
+            let user = "dev"
+            let password = "dev12345"
+        
+        
+        
+            var headers: HTTPHeaders = [:]
+        
+            if let authorizationHeader = Request.authorizationHeader(user: user, password: password) {
+            headers[authorizationHeader.key] = authorizationHeader.value
+            }
+        
+        //    4C:57:CA:44:9E:4C
+        
+                self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?macAddress=4C:57:CA:44:9E:4C", headers: headers).authenticate(user: user, password: password)
+        
+            .responseJSON { response in
+            switch response.result {
+            case .success(let value):
+            let json = JSON(value)
+        
+        
+        
+            var number1 : Int = json[0]["mapCoordinate"]["x"].int!
+                var number2 : Int = json[0]["mapCoordinate"]["y"].int!
+        
+        
+            print("เก็บเวลารอบ \(i)")
+            realCurrentLocationOnX.append(number1)
+            realCurrentLocationOnY.append(number2)
+            print(realCurrentLocationOnX)
+            print(realCurrentLocationOnY)
+        
+        
+            self.label1.text = "\(number1),\(number2)"
+        
+        
+            self.checkUserCurrentLocation(number1 : number1 , number2 : number2)
         
         
         
@@ -1223,12 +1223,12 @@ class IndoorRouting: UIViewController {
         
         
         
-        //    case .failure(let error):
-        //    print(error)
-        //
-        //
-        //    }
-        //    }
+            case .failure(let error):
+            print(error)
+        
+        
+            }
+            }
         
     }
     
@@ -1437,8 +1437,8 @@ class IndoorRouting: UIViewController {
         
         
         
-        var currentRecall = [VirtualCurrentLocationOnX[i],VirtualCurrentLocationOnY[i]]
-        //        var currentRecall = [realCurrentLocationOnX[i],realCurrentLocationOnY[i]]
+//        var currentRecall = [VirtualCurrentLocationOnX[i],VirtualCurrentLocationOnY[i]]
+                var currentRecall = [realCurrentLocationOnX[i],realCurrentLocationOnY[i]]
         
         //                    if (currentRecall[0] == allPathRealTime[checkArriveThisNodeYet].x
         //                        && currentRecall[1] == allPathRealTime[checkArriveThisNodeYet].y){
@@ -1462,7 +1462,7 @@ class IndoorRouting: UIViewController {
             
             if (checkArriveThisNodeYet < routingmessage.count){
                 
-                self.view.makeToast(routingmessage[checkArriveThisNodeYet], duration: 5.0, position: .top)
+                self.view.makeToast(routingmessage[checkArriveThisNodeYet], duration: 3.0, position: .top)
                 //                    add more style for toast
                 var style = ToastStyle()
                 ToastManager.shared.style = style
