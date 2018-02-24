@@ -21,7 +21,9 @@ class getUserLocation: UIViewController {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var counterLabel: UILabel!
     
+    
     var startLocation : String?
+    var checkfirstLoop = true
     let defaultManager: Alamofire.SessionManager = {
         let serverTrustPolicies: [String: ServerTrustPolicy] = [
             "10.34.250.12": .disableEvaluation
@@ -36,14 +38,14 @@ class getUserLocation: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let executeTime: Double =  5
-                    for i in 0...5 {
+        let executeTime: Double =  15
+                    for i in 0...6 {
             let deadline: DispatchTime = .now() + (Double(i) * executeTime)
             DispatchQueue.main.asyncAfter(deadline: deadline) {
                 
                 print("ตัวนับรอบ \(i+1)")
                 self.getUserLocation()
-                self.counterLabel.text = "1-6 : \(i+1)"
+                self.counterLabel.text = "1-7 : \(i+1)"
                 
                 
             }
@@ -86,7 +88,9 @@ class getUserLocation: UIViewController {
                     number1  = json[0]["mapCoordinate"]["x"].int!
                     number2  = json[0]["mapCoordinate"]["y"].int!
 
+                    print("XY : \(number1) \(number2)")
                     self.checkUserCurrentLocation(number1 : number1 , number2 : number2)
+                    
 
                 case .failure(let error):
                     print(error)
@@ -284,19 +288,31 @@ class getUserLocation: UIViewController {
         
         print("Your Current Location is : \(NumWithPlace[checkInEachXandY]!)")
         
-
-        locationStack.append(NumWithPlace[checkInEachXandY]!)
-        print(locationStack)
         
-        if locationStack.count == 6 {
-        summaryAndPassValue()
+        if checkfirstLoop == true{
+            
+            checkfirstLoop = false
+            
+        }else {
+            
+            locationStack.append(NumWithPlace[checkInEachXandY]!)
+            print(locationStack)
+            
+            if locationStack.count == 6 {
+                summaryAndPassValue()
+            }
         }
+        
+        
+       
 
         
     }
     
     
     func summaryAndPassValue() {
+        
+//        let arr = ["FOO", "FOO", "BAR", "FOOBAR"]
         
        var counts: [String: Int] = [:]
         

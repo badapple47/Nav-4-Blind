@@ -1191,8 +1191,9 @@ class IndoorRouting: UIViewController {
         }
         
         //    4C:57:CA:44:9E:4C
+        // 48:4B:AA:58:18:8A
         
-        self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?macAddress=4C:57:CA:44:9E:4C", headers: headers).authenticate(user: user, password: password)
+        self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?macAddress=48:4B:AA:58:18:8A", headers: headers).authenticate(user: user, password: password)
             
             .responseJSON { response in
                 switch response.result {
