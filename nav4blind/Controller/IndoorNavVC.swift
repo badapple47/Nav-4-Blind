@@ -45,8 +45,9 @@ class IndoorNavVC: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource
 
     
     @IBOutlet weak var pickerView: UIPickerView!
-    
     @IBOutlet weak var labelLocation: UILabel!
+    
+
     
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -106,7 +107,7 @@ class IndoorNavVC: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource
         pickerView.selectRow(2, inComponent: 0, animated: true)
         
 
-        labelLocation.text = ("you're at : )")
+        labelLocation.text = ("คุณอยู่ที่ Room102")
         
         
 //        self.getUserLocation()

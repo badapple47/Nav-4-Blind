@@ -77,7 +77,6 @@ class IndoorRouting: UIViewController {
     
     var destination: String! = ""
     var startLocation: String! = ""
-    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var label1: UILabel!
     @IBOutlet weak var label2: UILabel!
     let defaultManager: Alamofire.SessionManager = {
@@ -97,67 +96,28 @@ class IndoorRouting: UIViewController {
         
         
         
-        label1.text = "from \(startLocation!) to \(destination!)"
+        label1.text = "จาก \(startLocation!) ไป \(destination!) กดเริ่มนำทางเพื่อนำทาง"
         print(selectedRow)
         let user = "dev"
         let password = "dev12345"
         var headers: HTTPHeaders = [:]
         
-        if let authorizationHeader = Request.authorizationHeader(user: user, password: password) {
-            headers[authorizationHeader.key] = authorizationHeader.value
-        }
-        self.defaultManager.request("https://10.34.250.12/api/config/v1/maps/imagesource/domain_0_1500368087062.jpg", headers: headers).authenticate(user: user, password: password)
-            .responseImage { response in
-                if let image = response.result.value {
-                    self.imageView.image = image
-                }
-        }
-        let xcorOut : Double! = 231
-        let ycorOut : Double! = 90
-        //red dot blink
+ 
+     
         
-        let helloWorldTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(IndoorRouting.marksMan), userInfo: [
-            "X": xcorOut, "Y": ycorOut], repeats: true)
+ 
         
     }
     
     
-    //ทำให้มันบลิ้งแว้บๆ
-    @objc func marksMan (val :Timer){
-        
-        
-        //รับค่าจาก userinfo
-        let userInfo = val.userInfo as! Dictionary<String, AnyObject>
-        
-        var loopcounter : Int! = 0
-        
-        
-        //แปลงให้เป็น double
-        let xcorIn : Double! =  (userInfo["X"] as? NSNumber)?.doubleValue
-        let ycorIn : Double! =  (userInfo["Y"] as? NSNumber)?.doubleValue
-        
-        
-        
-        let overlay: UIView = UIView(frame: CGRect(x: xcorIn * 0.822, y:  ycorIn * 1.03, width: 5, height: 5))
-        
-        
-        overlay.backgroundColor = UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 1)
-        
-        
-        
-        imageView.addSubview(overlay)
-        
-        
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-            overlay.removeFromSuperview()
-            
-        })
-        loopcounter = loopcounter + 1
-    }
+
     
     //กดปุ่มเริ่มทำงาน
     @IBAction func triggerShortest(_ sender: Any) {
+        
+         allPathRealTime = [pathStruct]()
+         allPath = [String]()
+         routingmessage = [String]()
         
         //For Shortest path
         let Entrance1 = MyNode(name: "Entrance1")
@@ -504,7 +464,7 @@ class IndoorRouting: UIViewController {
             
             
             
-            let executeTime: Double =  1
+            let executeTime: Double =  5
             //            for i in 0...1000 {
             for i in 0...VirtualCurrentLocationOnX.count-1 {
                 let deadline: DispatchTime = .now() + (Double(i) * executeTime)
