@@ -35,6 +35,10 @@ struct pathStruct {
 //var VirtualCurrentLocationOnX =  [250,250,250,257,260,260,260]
 //var VirtualCurrentLocationOnY = [180,177,170,170,170,167,160]
 
+//room102 to ATRoom Ver 2
+//var VirtualCurrentLocationOnX =  [250,250,0,250,257,0,260,260,0,260]
+//var VirtualCurrentLocationOnY = [180,177,0,170,170,0,170,167,0,160]
+
 
 
 //library to toilet1man
@@ -56,6 +60,7 @@ var distanceToThisNode :Double = 0.0
 var distance : Double?
 
 var allPathRealTime = [pathStruct]()
+var inLoopFirstTime = true
 
 //end declare for realtime routing
 
@@ -1439,7 +1444,16 @@ class IndoorRouting: UIViewController {
         
         
 //        var currentRecall = [VirtualCurrentLocationOnX[i],VirtualCurrentLocationOnY[i]]
-                var currentRecall = [realCurrentLocationOnX[i],realCurrentLocationOnY[i]]
+        var currentRecall = [0,0]
+        if(inLoopFirstTime){
+            currentRecall = [250,180]
+            inLoopFirstTime = false
+        }else{
+            print(i)
+            currentRecall = [realCurrentLocationOnX[i],realCurrentLocationOnY[i]]
+        }
+//
+        
         
         //                    if (currentRecall[0] == allPathRealTime[checkArriveThisNodeYet].x
         //                        && currentRecall[1] == allPathRealTime[checkArriveThisNodeYet].y){
@@ -1490,7 +1504,8 @@ class IndoorRouting: UIViewController {
                 
             }
             
-            
+
+              
         }else {
             var x = currentRecall[0] - allPathRealTime[checkArriveThisNodeYet].x
             var y = currentRecall[1] - allPathRealTime[checkArriveThisNodeYet].y
@@ -1510,11 +1525,49 @@ class IndoorRouting: UIViewController {
             
             
             
-            var wordDistance = "เดินตรงไปอีก  \(distanceInt) เมตร ก่อนจะถึงจุดต่อไป";
+            var wordDistance = "WAITING"
             //                        if( i == VirtualCurrentLocationOnX.count-1){
             //                            wordDistance = "ถึงจุดหมายเรียบร้อยแล้ว";
             //                        }
-            print(wordDistance)
+
+            
+            
+            if (checkArriveThisNodeYet<allPathRealTime.count-1){
+                print("Xcurrent : \(currentRecall[0])")
+                print("Ycurrent : \(currentRecall[1] )")
+                if ((currentRecall[0] < allPathRealTime[checkArriveThisNodeYet-1].xMin &&
+                    currentRecall[0] > allPathRealTime[checkArriveThisNodeYet-1].xMax
+                    &&
+                    currentRecall[1] < allPathRealTime[checkArriveThisNodeYet-1].yMin &&
+                    currentRecall[1] > allPathRealTime[checkArriveThisNodeYet-1].yMax)
+                    &&
+                    (currentRecall[0] < allPathRealTime[checkArriveThisNodeYet].xMin &&
+                    currentRecall[0] > allPathRealTime[checkArriveThisNodeYet].xMax
+                    &&
+                    currentRecall[1] < allPathRealTime[checkArriveThisNodeYet].yMin &&
+                    currentRecall[1] > allPathRealTime[checkArriveThisNodeYet].yMax)){
+                    
+                    wordDistance = "เดินตรงไปอีก  \(distanceInt) เมตร ก่อนจะถึงจุดต่อไปหนึ่ง"
+                    
+                    
+                }else{
+                    print("Xmin \(allPathRealTime[checkArriveThisNodeYet-1].xMin)")
+                    print("Ymin \(allPathRealTime[checkArriveThisNodeYet-1].yMin)")
+                    print("Xmax \(allPathRealTime[checkArriveThisNodeYet-1].xMax)")
+                    print("Ymax \(allPathRealTime[checkArriveThisNodeYet-1].yMax)")
+                    wordDistance = "กรุณาหยุดรอเพื่อคำนวณเส้นทางใหม่"
+                }
+            }else{
+                if (currentRecall[0] < allPathRealTime[checkArriveThisNodeYet-1].xMin && currentRecall[0] > allPathRealTime[checkArriveThisNodeYet-1].xMax
+                    && currentRecall[1] < allPathRealTime[checkArriveThisNodeYet-1].yMin && currentRecall[1] > allPathRealTime[checkArriveThisNodeYet-1].yMax){
+                    wordDistance = "กรุณาหยุดรอเพื่อคำนวณเส้นทางใหม่"
+                }
+                else{
+                   wordDistance = "เดินตรงไปอีก  \(distanceInt) เมตร ก่อนจะถึงจุดต่อไปสอง"
+                }
+                
+            }
+           
             
             
             
