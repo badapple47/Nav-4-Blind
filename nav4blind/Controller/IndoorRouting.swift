@@ -36,8 +36,8 @@ struct pathStruct {
 //var VirtualCurrentLocationOnY = [180,177,170,170,170,167,160]
 
 //room102 to ATRoom Ver 2
-//var VirtualCurrentLocationOnX =  [250,250,0,250,257,0,260,260,0,260]
-//var VirtualCurrentLocationOnY = [180,177,0,170,170,0,170,167,0,160]
+var VirtualCurrentLocationOnX =  [250,250,0,250,257,0,260,260,0,260]
+var VirtualCurrentLocationOnY = [180,177,0,170,170,0,170,167,0,160]
 
 
 
@@ -50,8 +50,8 @@ struct pathStruct {
 //var VirtualCurrentLocationOnY  = [159,160,163,167,170,175,167,174,168,170,170,167,164]
 
 
-var realCurrentLocationOnX : [Int]  = []
-var realCurrentLocationOnY : [Int] = []
+//var realCurrentLocationOnX : [Int]  = []
+//var realCurrentLocationOnY : [Int] = []
 
 var decoy = 0
 
@@ -511,8 +511,8 @@ class IndoorRouting: UIViewController {
             
             
             let executeTime: Double =  5
-                        for i in 0...1000 {
-//            for i in 0...VirtualCurrentLocationOnX.count-1 {
+//                        for i in 0...1000 {
+            for i in 0...VirtualCurrentLocationOnX.count-1 {
                 let deadline: DispatchTime = .now() + (Double(i) * executeTime)
                 DispatchQueue.main.asyncAfter(deadline: deadline) {
                     
@@ -1184,44 +1184,44 @@ class IndoorRouting: UIViewController {
         
         
         
-            let user = "dev"
-            let password = "dev12345"
-        
-        
-        
-            var headers: HTTPHeaders = [:]
-        
-            if let authorizationHeader = Request.authorizationHeader(user: user, password: password) {
-            headers[authorizationHeader.key] = authorizationHeader.value
-            }
-        
+//            let user = "dev"
+//            let password = "dev12345"
+//
+//
+//
+//            var headers: HTTPHeaders = [:]
+//
+//            if let authorizationHeader = Request.authorizationHeader(user: user, password: password) {
+//            headers[authorizationHeader.key] = authorizationHeader.value
+//            }
+//
         //    4C:57:CA:44:9E:4C
         // 48:4B:AA:58:18:8A
         
-                self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?macAddress=48:4B:AA:58:18:8A", headers: headers).authenticate(user: user, password: password)
-        
-            .responseJSON { response in
-            switch response.result {
-            case .success(let value):
-            let json = JSON(value)
-        
-        
-        
-            var number1 : Int = json[0]["mapCoordinate"]["x"].int!
-                var number2 : Int = json[0]["mapCoordinate"]["y"].int!
-        
-        
-            print("เก็บเวลารอบ \(i)")
-            realCurrentLocationOnX.append(number1)
-            realCurrentLocationOnY.append(number2)
-            print(realCurrentLocationOnX)
-            print(realCurrentLocationOnY)
-        
-        
-            self.label1.text = "\(number1),\(number2)"
-        
-        
-            self.checkUserCurrentLocation(number1 : number1 , number2 : number2)
+//                self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?macAddress=48:4B:AA:58:18:8A", headers: headers).authenticate(user: user, password: password)
+//
+//            .responseJSON { response in
+//            switch response.result {
+//            case .success(let value):
+//            let json = JSON(value)
+//
+//
+//
+//            var number1 : Int = json[0]["mapCoordinate"]["x"].int!
+//                var number2 : Int = json[0]["mapCoordinate"]["y"].int!
+//
+//
+//            print("เก็บเวลารอบ \(i)")
+//            realCurrentLocationOnX.append(number1)
+//            realCurrentLocationOnY.append(number2)
+//            print(realCurrentLocationOnX)
+//            print(realCurrentLocationOnY)
+//
+//
+//            self.label1.text = "\(number1),\(number2)"
+//
+//
+//            self.checkUserCurrentLocation(number1 : number1 , number2 : number2)
         
         
         
@@ -1229,12 +1229,12 @@ class IndoorRouting: UIViewController {
         
         
         
-            case .failure(let error):
-            print(error)
-        
-        
-            }
-            }
+//            case .failure(let error):
+//            print(error)
+//
+//
+//            }
+//            }
         
     }
     
@@ -1443,37 +1443,28 @@ class IndoorRouting: UIViewController {
         
         
         
-//        var currentRecall = [VirtualCurrentLocationOnX[i],VirtualCurrentLocationOnY[i]]
+
         var currentRecall = [0,0]
         if(inLoopFirstTime){
             currentRecall = [250,180]
             inLoopFirstTime = false
         }else{
             print(i)
-            currentRecall = [realCurrentLocationOnX[i],realCurrentLocationOnY[i]]
+//            currentRecall = [realCurrentLocationOnX[i],realCurrentLocationOnY[i]]
+                     currentRecall = [VirtualCurrentLocationOnX[i],VirtualCurrentLocationOnY[i]]
         }
+        
+       
 //
         
         
-        //                    if (currentRecall[0] == allPathRealTime[checkArriveThisNodeYet].x
-        //                        && currentRecall[1] == allPathRealTime[checkArriveThisNodeYet].y){
         
-        if (currentRecall[0] > allPathRealTime[checkArriveThisNodeYet].xMin && currentRecall[0] < allPathRealTime[checkArriveThisNodeYet].xMax
-            && currentRecall[1] > allPathRealTime[checkArriveThisNodeYet].yMin && currentRecall[1] < allPathRealTime[checkArriveThisNodeYet].yMax){
+        
+        if (iLiveInThisAreaRight(x: currentRecall[0] , y: currentRecall[1] )){
             
-//            print("checkArriveThisNodeYet \(checkArriveThisNodeYet)")
-//            print("routingmessage.count \(routingmessage.count-1)")
-//            print(routingmessage[checkArriveThisNodeYet])
-            
-            
-//            self.view.makeToast(routingmessage[checkArriveThisNodeYet], duration: 5.0, position: .top)
-//            //                    add more style for toast
-//            var style = ToastStyle()
-//            ToastManager.shared.style = style
-//            ToastManager.shared.isTapToDismissEnabled = false
-//
-//            UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, routingmessage[checkArriveThisNodeYet])
-            
+
+            print("Xcurrent1 : \(currentRecall[0])")
+            print("Ycurrent1 : \(currentRecall[1] )")
             
             if (checkArriveThisNodeYet < routingmessage.count){
                 
@@ -1533,21 +1524,13 @@ class IndoorRouting: UIViewController {
             
             
             if (checkArriveThisNodeYet<allPathRealTime.count-1){
-                print("Xcurrent : \(currentRecall[0])")
-                print("Ycurrent : \(currentRecall[1] )")
-                if ((currentRecall[0] < allPathRealTime[checkArriveThisNodeYet-1].xMin &&
-                    currentRecall[0] > allPathRealTime[checkArriveThisNodeYet-1].xMax
-                    &&
-                    currentRecall[1] < allPathRealTime[checkArriveThisNodeYet-1].yMin &&
-                    currentRecall[1] > allPathRealTime[checkArriveThisNodeYet-1].yMax)
-                    &&
-                    (currentRecall[0] < allPathRealTime[checkArriveThisNodeYet].xMin &&
-                    currentRecall[0] > allPathRealTime[checkArriveThisNodeYet].xMax
-                    &&
-                    currentRecall[1] < allPathRealTime[checkArriveThisNodeYet].yMin &&
-                    currentRecall[1] > allPathRealTime[checkArriveThisNodeYet].yMax)){
+                print("Xcurrent2 : \(currentRecall[0])")
+                print("Ycurrent2 : \(currentRecall[1] )")
+                if (!iLiveInThisAreaRightMinusOne(x: currentRecall[0], y: currentRecall[1])
+                    && !iLiveInThisAreaRight(x: currentRecall[0], y: currentRecall[1])){
                     
-                    wordDistance = "เดินตรงไปอีก  \(distanceInt) เมตร ก่อนจะถึงจุดต่อไปหนึ่ง"
+                    wordDistance = "กรุณาหยุดรอเพื่อคำนวณเส้นทางใหม่1"
+
                     
                     
                 }else{
@@ -1555,12 +1538,12 @@ class IndoorRouting: UIViewController {
                     print("Ymin \(allPathRealTime[checkArriveThisNodeYet-1].yMin)")
                     print("Xmax \(allPathRealTime[checkArriveThisNodeYet-1].xMax)")
                     print("Ymax \(allPathRealTime[checkArriveThisNodeYet-1].yMax)")
-                    wordDistance = "กรุณาหยุดรอเพื่อคำนวณเส้นทางใหม่"
+                    wordDistance = "เดินตรงไปอีก  \(distanceInt) เมตร ก่อนจะถึงจุดต่อไปหนึ่ง"
                 }
             }else{
-                if (currentRecall[0] < allPathRealTime[checkArriveThisNodeYet-1].xMin && currentRecall[0] > allPathRealTime[checkArriveThisNodeYet-1].xMax
-                    && currentRecall[1] < allPathRealTime[checkArriveThisNodeYet-1].yMin && currentRecall[1] > allPathRealTime[checkArriveThisNodeYet-1].yMax){
-                    wordDistance = "กรุณาหยุดรอเพื่อคำนวณเส้นทางใหม่"
+                if (!iLiveInThisAreaRightMinusOne(x: currentRecall[0], y: currentRecall[1]))
+                    {
+                    wordDistance = "กรุณาหยุดรอเพื่อคำนวณเส้นทางใหม่2"
                 }
                 else{
                    wordDistance = "เดินตรงไปอีก  \(distanceInt) เมตร ก่อนจะถึงจุดต่อไปสอง"
@@ -1586,6 +1569,31 @@ class IndoorRouting: UIViewController {
             
         }
         
+        
+    }
+    
+    func iLiveInThisAreaRight(x: Int , y: Int) -> Bool{
+        
+       if( x > allPathRealTime[checkArriveThisNodeYet].xMin && x < allPathRealTime[checkArriveThisNodeYet].xMax
+        && y > allPathRealTime[checkArriveThisNodeYet].yMin && y < allPathRealTime[checkArriveThisNodeYet].yMax){
+        return  true
+       }else{
+        return  false
+        }
+        
+    }
+    
+    func iLiveInThisAreaRightMinusOne(x: Int , y: Int) -> Bool{
+        
+        print("checkarrive this node yet :\(checkArriveThisNodeYet)")
+        print("checkarrive this node yet -1 :\(checkArriveThisNodeYet-1)")
+        
+        if( x > allPathRealTime[checkArriveThisNodeYet-1].xMin && x < allPathRealTime[checkArriveThisNodeYet-1].xMax
+            && y > allPathRealTime[checkArriveThisNodeYet-1].yMin && y < allPathRealTime[checkArriveThisNodeYet-1].yMax){
+            return  true
+        }else{
+            return  false
+        }
         
     }
     
