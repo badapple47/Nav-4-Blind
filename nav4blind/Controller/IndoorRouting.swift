@@ -36,8 +36,13 @@ struct pathStruct {
 //var VirtualCurrentLocationOnY = [180,177,170,170,170,167,160]
 
 //room102 to ATRoom Ver 2
-var VirtualCurrentLocationOnX =  [250,250,0,250,257,0,260,260,0,260]
-var VirtualCurrentLocationOnY = [180,177,0,170,170,0,170,167,0,160]
+//var VirtualCurrentLocationOnX =  [250,250,0,250,257,0,260,260,0,260]
+//var VirtualCurrentLocationOnY = [180,177,0,170,170,0,170,167,0,160]
+
+//room102 to ATRoom Ver 3
+//var VirtualCurrentLocationOnX =  [250,250,0,0,0,0,250,257,0,260,260,0,260]
+//var VirtualCurrentLocationOnY = [180,177,0,0,0,0,170,170,0,170,167,0,160]
+
 
 
 
@@ -50,8 +55,8 @@ var VirtualCurrentLocationOnY = [180,177,0,170,170,0,170,167,0,160]
 //var VirtualCurrentLocationOnY  = [159,160,163,167,170,175,167,174,168,170,170,167,164]
 
 
-//var realCurrentLocationOnX : [Int]  = []
-//var realCurrentLocationOnY : [Int] = []
+var realCurrentLocationOnX : [Int]  = []
+var realCurrentLocationOnY : [Int] = []
 
 var decoy = 0
 
@@ -71,6 +76,8 @@ var routingmessage = [String]()
 
 
 var finaldestination:MyNode!
+var clockcounter = 0
+var waitforcalculatenewpath = 0
 
 
 
@@ -103,64 +110,64 @@ class IndoorRouting: UIViewController {
         
         
         
-        label1.text = "from \(startLocation!) to \(destination!)"
+        label1.text = "ตอนนี้คุณอยู่ที่ \(startLocation!) กำลังไปที่ \(destination!)"
         print(selectedRow)
         let user = "dev"
         let password = "dev12345"
         var headers: HTTPHeaders = [:]
         
-        if let authorizationHeader = Request.authorizationHeader(user: user, password: password) {
-            headers[authorizationHeader.key] = authorizationHeader.value
-        }
-        self.defaultManager.request("https://10.34.250.12/api/config/v1/maps/imagesource/domain_0_1500368087062.jpg", headers: headers).authenticate(user: user, password: password)
-            .responseImage { response in
-                if let image = response.result.value {
-                    self.imageView.image = image
-                }
-        }
-        let xcorOut : Double! = 231
-        let ycorOut : Double! = 90
+//        if let authorizationHeader = Request.authorizationHeader(user: user, password: password) {
+//            headers[authorizationHeader.key] = authorizationHeader.value
+//        }
+//        self.defaultManager.request("https://10.34.250.12/api/config/v1/maps/imagesource/domain_0_1500368087062.jpg", headers: headers).authenticate(user: user, password: password)
+//            .responseImage { response in
+//                if let image = response.result.value {
+//                    self.imageView.image = image
+//                }
+//        }
+//        let xcorOut : Double! = 231
+//        let ycorOut : Double! = 90
         //red dot blink
         
-        let helloWorldTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(IndoorRouting.marksMan), userInfo: [
-            "X": xcorOut, "Y": ycorOut], repeats: true)
+//        let helloWorldTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(IndoorRouting.marksMan), userInfo: [
+//            "X": xcorOut, "Y": ycorOut], repeats: true)
         
     }
     
     
     //ทำให้มันบลิ้งแว้บๆ
-    @objc func marksMan (val :Timer){
-        
-        
-        //รับค่าจาก userinfo
-        let userInfo = val.userInfo as! Dictionary<String, AnyObject>
-        
-        var loopcounter : Int! = 0
-        
-        
-        //แปลงให้เป็น double
-        let xcorIn : Double! =  (userInfo["X"] as? NSNumber)?.doubleValue
-        let ycorIn : Double! =  (userInfo["Y"] as? NSNumber)?.doubleValue
-        
-        
-        
-        let overlay: UIView = UIView(frame: CGRect(x: xcorIn * 0.822, y:  ycorIn * 1.03, width: 5, height: 5))
-        
-        
-        overlay.backgroundColor = UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 1)
-        
-        
-        
-        imageView.addSubview(overlay)
-        
-        
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-            overlay.removeFromSuperview()
-            
-        })
-        loopcounter = loopcounter + 1
-    }
+//    @objc func marksMan (val :Timer){
+//
+//
+//        //รับค่าจาก userinfo
+//        let userInfo = val.userInfo as! Dictionary<String, AnyObject>
+//
+//        var loopcounter : Int! = 0
+//
+//
+//        //แปลงให้เป็น double
+//        let xcorIn : Double! =  (userInfo["X"] as? NSNumber)?.doubleValue
+//        let ycorIn : Double! =  (userInfo["Y"] as? NSNumber)?.doubleValue
+//
+//
+//
+//        let overlay: UIView = UIView(frame: CGRect(x: xcorIn * 0.822, y:  ycorIn * 1.03, width: 5, height: 5))
+//
+//
+//        overlay.backgroundColor = UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 1)
+//
+//
+//
+//        imageView.addSubview(overlay)
+//
+//
+//
+//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+//            overlay.removeFromSuperview()
+//
+//        })
+//        loopcounter = loopcounter + 1
+//    }
     
     //กดปุ่มเริ่มทำงาน
     @IBAction func triggerShortest(_ sender: Any) {
@@ -335,6 +342,10 @@ class IndoorRouting: UIViewController {
             print("🏁 Quickest path: \(succession)")
             print("🏁 Quickest Weight: \(sumWeight)")
             
+            
+                    label2.text = "ระยะทางทั้งหมด : \(sumWeight!) เมตร"
+
+            
             //            let alert = UIAlertController(title: "\(sourceNode.name) to \(destinationNode.name)", message: "🏁 Quickest path: \(succession) = \(sumWeight!) meter", preferredStyle: UIAlertControllerStyle.alert)
             
             //set allPath เพื่อเอาไปใช้ หาคำพูดในการบอกทาง
@@ -372,7 +383,7 @@ class IndoorRouting: UIViewController {
                     let temp = pathStruct(nodeName: allPath[index] , x: 273, y: 183,xMin: 271,yMin: 176 ,xMax: 275 ,yMax: 183 )
                     allPathRealTime.append(temp)
                 case "Room102":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 251, y: 184,xMin: 249 ,yMin: 176,xMax: 255 ,yMax: 183 )
+                    let temp = pathStruct(nodeName: allPath[index] , x: 250, y: 180,xMin: 249 ,yMin: 176,xMax: 255 ,yMax: 183 )
                     allPathRealTime.append(temp)
                 case "Ladder2":
                     let temp = pathStruct(nodeName: allPath[index] , x: 227, y: 184,xMin: 225 ,yMin: 180,xMax: 229 ,yMax: 183)
@@ -511,13 +522,13 @@ class IndoorRouting: UIViewController {
             
             
             let executeTime: Double =  5
-//                        for i in 0...1000 {
-            for i in 0...VirtualCurrentLocationOnX.count-1 {
+                        for i in 0...1000 {
+//            for i in 0...VirtualCurrentLocationOnX.count-1 {
                 let deadline: DispatchTime = .now() + (Double(i) * executeTime)
                 DispatchQueue.main.asyncAfter(deadline: deadline) {
                     
                     
-//                                        print("ตัวนับรอบ \(i+1)")
+                                        print("ตัวนับรอบ \(i+1)")
                     self.getUserLocation(i : i)
                     
                 }
@@ -1181,61 +1192,61 @@ class IndoorRouting: UIViewController {
     func getUserLocation(i : Int){
         
         
-        
-        
-        
-//            let user = "dev"
-//            let password = "dev12345"
-//
-//
-//
-//            var headers: HTTPHeaders = [:]
-//
-//            if let authorizationHeader = Request.authorizationHeader(user: user, password: password) {
-//            headers[authorizationHeader.key] = authorizationHeader.value
-//            }
-//
+
+
+
+            let user = "dev"
+            let password = "dev12345"
+
+
+
+            var headers: HTTPHeaders = [:]
+
+            if let authorizationHeader = Request.authorizationHeader(user: user, password: password) {
+            headers[authorizationHeader.key] = authorizationHeader.value
+            }
+
         //    4C:57:CA:44:9E:4C
         // 48:4B:AA:58:18:8A
-        
-//                self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?macAddress=48:4B:AA:58:18:8A", headers: headers).authenticate(user: user, password: password)
-//
-//            .responseJSON { response in
-//            switch response.result {
-//            case .success(let value):
-//            let json = JSON(value)
-//
-//
-//
-//            var number1 : Int = json[0]["mapCoordinate"]["x"].int!
-//                var number2 : Int = json[0]["mapCoordinate"]["y"].int!
-//
-//
-//            print("เก็บเวลารอบ \(i)")
-//            realCurrentLocationOnX.append(number1)
-//            realCurrentLocationOnY.append(number2)
-//            print(realCurrentLocationOnX)
-//            print(realCurrentLocationOnY)
-//
-//
-//            self.label1.text = "\(number1),\(number2)"
-//
-//
-//            self.checkUserCurrentLocation(number1 : number1 , number2 : number2)
-        
-        
-        
+
+                self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?macAddress=48:4B:AA:58:18:8A", headers: headers).authenticate(user: user, password: password)
+
+            .responseJSON { response in
+            switch response.result {
+            case .success(let value):
+            let json = JSON(value)
+
+
+
+            var number1 : Int = json[0]["mapCoordinate"]["x"].int!
+                var number2 : Int = json[0]["mapCoordinate"]["y"].int!
+
+
+            print("เก็บเวลารอบ \(i)")
+            realCurrentLocationOnX.append(number1)
+            realCurrentLocationOnY.append(number2)
+            print(realCurrentLocationOnX)
+            print(realCurrentLocationOnY)
+
+
+            self.label1.text = "\(number1),\(number2)"
+
+
+            self.checkUserCurrentLocation(number1 : number1 , number2 : number2)
+
+
+
         self.realtimeRouting(i:i)
         
         
-        
-//            case .failure(let error):
-//            print(error)
-//
-//
-//            }
-//            }
-        
+
+            case .failure(let error):
+            print(error)
+
+
+            }
+            }
+
     }
     
     func checkUserCurrentLocation(number1 : Int , number2: Int) {
@@ -1429,7 +1440,7 @@ class IndoorRouting: UIViewController {
         
         print("Your Current Location is : \(NumWithPlace[checkInEachXandY]!)")
         
-        label2.text = "Current Location : \(NumWithPlace[checkInEachXandY]!)"
+//        label2.text = "Current Location : \(NumWithPlace[checkInEachXandY]!)"
         
         
         //end current location
@@ -1446,25 +1457,28 @@ class IndoorRouting: UIViewController {
 
         var currentRecall = [0,0]
         if(inLoopFirstTime){
-            currentRecall = [250,180]
+//            currentRecall = [250,180]
+            currentRecall = [allPathRealTime[0].x,allPathRealTime[0].y]
+            print(currentRecall)
             inLoopFirstTime = false
         }else{
-            print(i)
-//            currentRecall = [realCurrentLocationOnX[i],realCurrentLocationOnY[i]]
-                     currentRecall = [VirtualCurrentLocationOnX[i],VirtualCurrentLocationOnY[i]]
+//            print(i)
+            currentRecall = [realCurrentLocationOnX[i],realCurrentLocationOnY[i]]
+//                     currentRecall = [VirtualCurrentLocationOnX[i],VirtualCurrentLocationOnY[i]]
+            print(currentRecall)
         }
         
        
 //
         
-        
+       
         
         
         if (iLiveInThisAreaRight(x: currentRecall[0] , y: currentRecall[1] )){
             
 
-            print("Xcurrent1 : \(currentRecall[0])")
-            print("Ycurrent1 : \(currentRecall[1] )")
+//            print("Xcurrent1 : \(currentRecall[0])")
+//            print("Ycurrent1 : \(currentRecall[1] )")
             
             if (checkArriveThisNodeYet < routingmessage.count){
                 
@@ -1517,36 +1531,62 @@ class IndoorRouting: UIViewController {
             
             
             var wordDistance = "WAITING"
-            //                        if( i == VirtualCurrentLocationOnX.count-1){
-            //                            wordDistance = "ถึงจุดหมายเรียบร้อยแล้ว";
-            //                        }
+
 
             
             
             if (checkArriveThisNodeYet<allPathRealTime.count-1){
-                print("Xcurrent2 : \(currentRecall[0])")
-                print("Ycurrent2 : \(currentRecall[1] )")
+//                print("Xcurrent2 : \(currentRecall[0])")
+//                print("Ycurrent2 : \(currentRecall[1] )")
                 if (!iLiveInThisAreaRightMinusOne(x: currentRecall[0], y: currentRecall[1])
                     && !iLiveInThisAreaRight(x: currentRecall[0], y: currentRecall[1])){
                     
-                    wordDistance = "กรุณาหยุดรอเพื่อคำนวณเส้นทางใหม่1"
+                    
+                    if (waitforcalculatenewpath < 3){
+                    wordDistance = "กรุณาหยุดรอสักครู่"
+                    print(wordDistance)
+                         waitforcalculatenewpath = waitforcalculatenewpath + 1
+                    }else{
+                         wordDistance = "กรุณาหยุดรอเพื่อคำนวณเส้นทางใหม่"
+                        print(wordDistance)
+                        
+                    }
 
                     
                     
                 }else{
-                    print("Xmin \(allPathRealTime[checkArriveThisNodeYet-1].xMin)")
-                    print("Ymin \(allPathRealTime[checkArriveThisNodeYet-1].yMin)")
-                    print("Xmax \(allPathRealTime[checkArriveThisNodeYet-1].xMax)")
-                    print("Ymax \(allPathRealTime[checkArriveThisNodeYet-1].yMax)")
-                    wordDistance = "เดินตรงไปอีก  \(distanceInt) เมตร ก่อนจะถึงจุดต่อไปหนึ่ง"
+//                    print("Xmin \(allPathRealTime[checkArriveThisNodeYet-1].xMin)")
+//                    print("Ymin \(allPathRealTime[checkArriveThisNodeYet-1].yMin)")
+//                    print("Xmax \(allPathRealTime[checkArriveThisNodeYet-1].xMax)")
+//                    print("Ymax \(allPathRealTime[checkArriveThisNodeYet-1].yMax)")
+
+                     wordDistance = "เดินตรงไป"
+                    print(wordDistance)
+                    waitforcalculatenewpath = 0
                 }
             }else{
                 if (!iLiveInThisAreaRightMinusOne(x: currentRecall[0], y: currentRecall[1]))
                     {
-                    wordDistance = "กรุณาหยุดรอเพื่อคำนวณเส้นทางใหม่2"
+                        
+                        
+                        if (waitforcalculatenewpath < 3){
+                            wordDistance = "กรุณาหยุดรอสักครู่"
+                            print(wordDistance)
+                            waitforcalculatenewpath = waitforcalculatenewpath + 1
+                        }else{
+                            wordDistance = "กรุณาหยุดรอเพื่อคำนวณเส้นทางใหม่"
+                            print(wordDistance)
+                           
+                        }
+                        
+                        
                 }
                 else{
-                   wordDistance = "เดินตรงไปอีก  \(distanceInt) เมตร ก่อนจะถึงจุดต่อไปสอง"
+
+                    wordDistance = "เดินตรงไป"
+                    print(wordDistance)
+                    waitforcalculatenewpath = 0
+                    
                 }
                 
             }
@@ -1585,8 +1625,8 @@ class IndoorRouting: UIViewController {
     
     func iLiveInThisAreaRightMinusOne(x: Int , y: Int) -> Bool{
         
-        print("checkarrive this node yet :\(checkArriveThisNodeYet)")
-        print("checkarrive this node yet -1 :\(checkArriveThisNodeYet-1)")
+//        print("checkarrive this node yet :\(checkArriveThisNodeYet)")
+//        print("checkarrive this node yet -1 :\(checkArriveThisNodeYet-1)")
         
         if( x > allPathRealTime[checkArriveThisNodeYet-1].xMin && x < allPathRealTime[checkArriveThisNodeYet-1].xMax
             && y > allPathRealTime[checkArriveThisNodeYet-1].yMin && y < allPathRealTime[checkArriveThisNodeYet-1].yMax){

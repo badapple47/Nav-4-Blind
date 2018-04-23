@@ -28,6 +28,10 @@ class SelectModeVC: UIViewController {
     @IBAction func unwindFromIndoorNavVC(unwindSegue: UIStoryboardSegue){
         
     }
+    
+    @IBAction func unwindFromGetUserLocationVC(unwindSegue: UIStoryboardSegue){
+        
+    }
 
     /*
     // MARK: - Navigation

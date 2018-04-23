@@ -72,7 +72,7 @@ class getUserLocation: UIViewController,UIPickerViewDelegate, UIPickerViewDataSo
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        print("bef prepare : \(startLocation!)")
+//        print("bef prepare : \(startLocation!)")
         let playerViewController = segue.destination as? IndoorNavVC
         playerViewController?.startLocation = startLocation
         
