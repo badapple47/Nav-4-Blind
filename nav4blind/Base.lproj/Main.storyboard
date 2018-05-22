@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="i3y-yi-oD8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="i3y-yi-oD8">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -31,7 +31,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="GDa-lB-mrf"/>
                                 </constraints>
-                                <state key="normal" title="โหมดแผนที่">
+                                <state key="normal" title="รูปแบบแผนที่">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -44,14 +44,14 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="eMf-pu-jSe"/>
                                 </constraints>
-                                <state key="normal" title="โหมดนำทาง">
+                                <state key="normal" title="รูปแบบนำทาง">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="Srh-SE-x8u" kind="show" id="DdV-0N-6Lm"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="โปรดเลือกโหมดจากปุ่มด้านล่างนี้" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Tx-se-api">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="โปรดเลือกรูปแบบจากปุ่มด้านล่างนี้" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Tx-se-api">
                                 <rect key="frame" x="0.0" y="129.5" width="375" height="26.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -650,13 +650,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="766"/>
                             </imageView>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sfP-wa-cnW">
-                                <rect key="frame" x="27" y="130" width="320" height="354"/>
+                                <rect key="frame" x="27" y="129.5" width="320" height="354"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="354" id="yFi-lT-FnB"/>
                                 </constraints>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="เลือกสถานที่ที่คุณอยู่ปัจจุบัน" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWn-ch-hnN">
-                                <rect key="frame" x="27" y="90" width="320" height="32"/>
+                                <rect key="frame" x="27" y="90" width="320" height="31.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -664,7 +664,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tbr-ib-G7G">
                                 <rect key="frame" x="93" y="617" width="188" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.23883142609999999" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="Select">
+                                <state key="normal" title="เลือก">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -706,7 +706,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r5K-Wx-Ot4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ceH-z4-ljK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1786.875" y="526.05633802816897"/>
+            <point key="canvasLocation" x="1786.4000000000001" y="525.78710644677665"/>
         </scene>
     </scenes>
     <resources>
