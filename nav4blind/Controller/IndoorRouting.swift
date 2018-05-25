@@ -80,11 +80,6 @@ var clockcounter = 0
 var waitforcalculatenewpath = 0
 
 
-
-
-
-
-
 class IndoorRouting: UIViewController {
     
     var destination: String! = ""
@@ -103,7 +98,7 @@ class IndoorRouting: UIViewController {
         )
     }()
     
-    //Viewdidload ทำแค่ดึงรูปมาแล้วทำ Reddot blink
+  //กำหนด id pass ที่เอาไปใช้ authen ตอนเรียกใช้ API
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -116,63 +111,13 @@ class IndoorRouting: UIViewController {
         let password = "dev12345"
         var headers: HTTPHeaders = [:]
         
-//        if let authorizationHeader = Request.authorizationHeader(user: user, password: password) {
-//            headers[authorizationHeader.key] = authorizationHeader.value
-//        }
-//        self.defaultManager.request("https://10.34.250.12/api/config/v1/maps/imagesource/domain_0_1500368087062.jpg", headers: headers).authenticate(user: user, password: password)
-//            .responseImage { response in
-//                if let image = response.result.value {
-//                    self.imageView.image = image
-//                }
-//        }
-//        let xcorOut : Double! = 231
-//        let ycorOut : Double! = 90
-        //red dot blink
-        
-//        let helloWorldTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(IndoorRouting.marksMan), userInfo: [
-//            "X": xcorOut, "Y": ycorOut], repeats: true)
         
     }
     
-    
-    //ทำให้มันบลิ้งแว้บๆ
-//    @objc func marksMan (val :Timer){
-//
-//
-//        //รับค่าจาก userinfo
-//        let userInfo = val.userInfo as! Dictionary<String, AnyObject>
-//
-//        var loopcounter : Int! = 0
-//
-//
-//        //แปลงให้เป็น double
-//        let xcorIn : Double! =  (userInfo["X"] as? NSNumber)?.doubleValue
-//        let ycorIn : Double! =  (userInfo["Y"] as? NSNumber)?.doubleValue
-//
-//
-//
-//        let overlay: UIView = UIView(frame: CGRect(x: xcorIn * 0.822, y:  ycorIn * 1.03, width: 5, height: 5))
-//
-//
-//        overlay.backgroundColor = UIColor(red: 255/255, green: 0/255, blue: 0/255, alpha: 1)
-//
-//
-//
-//        imageView.addSubview(overlay)
-//
-//
-//
-//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-//            overlay.removeFromSuperview()
-//
-//        })
-//        loopcounter = loopcounter + 1
-//    }
-    
-    //กดปุ่มเริ่มทำงาน
+    //กดปุ่มเริ่มทำงาน จะได้ shortest path ออกมาว่าต้องผ่านที่ไหนบ้าง
     @IBAction func triggerShortest(_ sender: Any) {
 
-        //For Shortest path
+        // สร้าง Node
         let Entrance1 = MyNode(name: "Entrance1")
         let Node2 = MyNode(name: "Node2")
         let Ladder1 = MyNode(name: "Ladder1")
@@ -528,7 +473,7 @@ class IndoorRouting: UIViewController {
                 DispatchQueue.main.asyncAfter(deadline: deadline) {
                     
                     
-                                        print("ตัวนับรอบ \(i+1)")
+                    print("ตัวนับรอบ \(i+1)")
                     self.getUserLocation(i : i)
                     
                 }
@@ -541,7 +486,7 @@ class IndoorRouting: UIViewController {
         
     }
     
-    //ทำ routing message
+    //ทำ routing message  จะได้คำที่ใช้นำทางจริงๆ
     func genroutingMessage()
     {
         for var i in (0..<allPath.count){
@@ -1189,6 +1134,7 @@ class IndoorRouting: UIViewController {
         
     }
     
+    //รับที่อยู่ของผู้ใช้จริงๆ
     func getUserLocation(i : Int){
         
         
@@ -1249,6 +1195,8 @@ class IndoorRouting: UIViewController {
 
     }
     
+    
+    //เช็คว่าตอนนี้ user อยู่ที่ไหน เอาไปใช้ใน realtime routing
     func checkUserCurrentLocation(number1 : Int , number2: Int) {
         
         //start current location
@@ -1448,6 +1396,8 @@ class IndoorRouting: UIViewController {
         
     }
     
+    
+    //เอาข้อมูลทุกอย่างที่ได้จาก ทุก function มาใช้นำทางจริงๆ
     func realtimeRouting (i : Int) {
         
 //        print("testing i \(i)")
@@ -1612,6 +1562,8 @@ class IndoorRouting: UIViewController {
         
     }
     
+    // func ใช้เช็คว่าอยู่ในแอเรียที่กำหนดจริงหรือเปล่า เรียกใช้ตอน realtimerouting
+    
     func iLiveInThisAreaRight(x: Int , y: Int) -> Bool{
         
        if( x > allPathRealTime[checkArriveThisNodeYet].xMin && x < allPathRealTime[checkArriveThisNodeYet].xMax
@@ -1625,8 +1577,7 @@ class IndoorRouting: UIViewController {
     
     func iLiveInThisAreaRightMinusOne(x: Int , y: Int) -> Bool{
         
-//        print("checkarrive this node yet :\(checkArriveThisNodeYet)")
-//        print("checkarrive this node yet -1 :\(checkArriveThisNodeYet-1)")
+
         
         if( x > allPathRealTime[checkArriveThisNodeYet-1].xMin && x < allPathRealTime[checkArriveThisNodeYet-1].xMax
             && y > allPathRealTime[checkArriveThisNodeYet-1].yMin && y < allPathRealTime[checkArriveThisNodeYet-1].yMax){
@@ -1640,7 +1591,6 @@ class IndoorRouting: UIViewController {
     
     
     
-    //end of main class
 }
 
 
