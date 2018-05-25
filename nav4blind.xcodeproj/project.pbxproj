@@ -18,7 +18,6 @@
 		8A36B6F41F5F0AA1003FF43B /* IndoorNavVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A36B6F31F5F0AA1003FF43B /* IndoorNavVC.swift */; };
 		8A3EDFD920401C1700E92263 /* getUserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3EDFD820401C1700E92263 /* getUserLocation.swift */; };
 		8A47D1FB1FC03E4A00E0DB44 /* IndoorRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A47D1FA1FC03E4A00E0DB44 /* IndoorRouting.swift */; };
-		8A60728F1FE1301900050B46 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A60728E1FE1301900050B46 /* test.swift */; };
 		8A716A4E1FC6B2020047AC17 /* getlocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A716A4D1FC6B2020047AC17 /* getlocationViewController.swift */; };
 		ABA213D4B1FB0830EC80CAD6 /* Pods_nav4blind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371FA05C80A8C6CDAB659D03 /* Pods_nav4blind.framework */; };
 /* End PBXBuildFile section */
@@ -40,7 +39,6 @@
 		8A36B6F31F5F0AA1003FF43B /* IndoorNavVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndoorNavVC.swift; sourceTree = "<group>"; };
 		8A3EDFD820401C1700E92263 /* getUserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getUserLocation.swift; sourceTree = "<group>"; };
 		8A47D1FA1FC03E4A00E0DB44 /* IndoorRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndoorRouting.swift; sourceTree = "<group>"; };
-		8A60728E1FE1301900050B46 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		8A716A4D1FC6B2020047AC17 /* getlocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getlocationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,7 +112,6 @@
 				8A3EDFD820401C1700E92263 /* getUserLocation.swift */,
 				8A36B6F31F5F0AA1003FF43B /* IndoorNavVC.swift */,
 				8A47D1FA1FC03E4A00E0DB44 /* IndoorRouting.swift */,
-				8A60728E1FE1301900050B46 /* test.swift */,
 				8A716A4D1FC6B2020047AC17 /* getlocationViewController.swift */,
 			);
 			path = Controller;
@@ -259,7 +256,6 @@
 				8A36B6F21F5F0A86003FF43B /* IndoorMapVC.swift in Sources */,
 				8A716A4E1FC6B2020047AC17 /* getlocationViewController.swift in Sources */,
 				8A36B6EE1F5F0923003FF43B /* SelectModeVC.swift in Sources */,
-				8A60728F1FE1301900050B46 /* test.swift in Sources */,
 				8A36B6F41F5F0AA1003FF43B /* IndoorNavVC.swift in Sources */,
 				8A3EDFD920401C1700E92263 /* getUserLocation.swift in Sources */,
 				8A36B6D81F5EE702003FF43B /* AppDelegate.swift in Sources */,
