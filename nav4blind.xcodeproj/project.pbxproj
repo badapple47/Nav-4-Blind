@@ -38,6 +38,7 @@
 		8A36B6F31F5F0AA1003FF43B /* IndoorNavVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndoorNavVC.swift; sourceTree = "<group>"; };
 		8A3EDFD820401C1700E92263 /* getUserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getUserLocation.swift; sourceTree = "<group>"; };
 		8A47D1FA1FC03E4A00E0DB44 /* IndoorRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndoorRouting.swift; sourceTree = "<group>"; };
+		B157065B20B9AE2C00D1A0E0 /* Nav4Blind-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Nav4Blind-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +98,7 @@
 				8A36B6DE1F5EE702003FF43B /* Assets.xcassets */,
 				8A36B6E01F5EE702003FF43B /* LaunchScreen.storyboard */,
 				8A36B6E31F5EE702003FF43B /* Info.plist */,
+				B157065B20B9AE2C00D1A0E0 /* Nav4Blind-Bridging-Header.h */,
 			);
 			path = nav4blind;
 			sourceTree = "<group>";
@@ -402,6 +404,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.developers.nav4blind;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "nav4blind/Nav4Blind-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -418,6 +421,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.developers.nav4blind;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "nav4blind/Nav4Blind-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

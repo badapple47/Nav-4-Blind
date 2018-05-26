@@ -14,6 +14,7 @@ import SwiftyJSON
 import Foundation
 import Toast_Swift
 
+
 //for realtimeRouting
 struct pathStruct {
     var nodeName : String
@@ -27,32 +28,7 @@ struct pathStruct {
 }
 
 
-//lib to toilent1man  ver2
-//var VirtualCurrentLocationOnX =  [230,234,234,244,257,265,268]
-//var VirtualCurrentLocationOnY = [82,82,77,77,77,77,77]
 
-//room102 to ATRoom
-//var VirtualCurrentLocationOnX =  [250,250,250,257,260,260,260]
-//var VirtualCurrentLocationOnY = [180,177,170,170,170,167,160]
-
-//room102 to ATRoom Ver 2
-//var VirtualCurrentLocationOnX =  [250,250,0,250,257,0,260,260,0,260]
-//var VirtualCurrentLocationOnY = [180,177,0,170,170,0,170,167,0,160]
-
-//room102 to ATRoom Ver 3
-//var VirtualCurrentLocationOnX =  [250,250,0,0,0,0,250,257,0,260,260,0,260]
-//var VirtualCurrentLocationOnY = [180,177,0,0,0,0,170,170,0,170,167,0,160]
-
-
-
-
-//library to toilet1man
-//var VirtualCurrentLocationOnX  = [230,232,234,234,234,250,262,270,278]
-//var VirtualCurrentLocationOnY  = [83,82,82,78,75,75,75,75,77]
-
-//node8 to ATRoom
-//var VirtualCurrentLocationOnX    = [230,235,230,237,240,245,250,254,257,260,261,260,262]
-//var VirtualCurrentLocationOnY  = [159,160,163,167,170,175,167,174,168,170,170,167,164]
 
 
 var realCurrentLocationOnX : [Int]  = []
@@ -277,6 +253,7 @@ class IndoorRouting: UIViewController {
         Ladder3.connections.append(Connection(to: Node24, weight: 1.7))
         CopyStore.connections.append(Connection(to: Node24, weight: 0.5))
         
+        //
         let sourceNode = firstdestination
         let destinationNode = finaldestination!
         
@@ -290,8 +267,7 @@ class IndoorRouting: UIViewController {
             
                     label2.text = "ระยะทางทั้งหมด : \(sumWeight!) เมตร"
 
-            
-            //            let alert = UIAlertController(title: "\(sourceNode.name) to \(destinationNode.name)", message: "🏁 Quickest path: \(succession) = \(sumWeight!) meter", preferredStyle: UIAlertControllerStyle.alert)
+        
             
             //set allPath เพื่อเอาไปใช้ หาคำพูดในการบอกทาง
             allPath = succession
@@ -421,9 +397,6 @@ class IndoorRouting: UIViewController {
                 case "Node16":
                     let temp = pathStruct(nodeName: allPath[index] , x: 180, y: 163,xMin: 177 ,yMin: 157 ,xMax: 182 ,yMax: 180)
                     allPathRealTime.append(temp)
-                    //                case "Node17":
-                    //                    let temp = pathStruct(nodeName: allPath[index] , x: 180, y: 181,xMin: ,yMin: ,xMax:  ,yMax: )
-                //                    allPathRealTime.append(temp)
                 case "Node18":
                     let temp = pathStruct(nodeName: allPath[index] , x: 153, y: 163,xMin: 150,yMin: 157,xMax: 177 ,yMax: 167)
                     allPathRealTime.append(temp)
@@ -1143,19 +1116,30 @@ class IndoorRouting: UIViewController {
 
             let user = "dev"
             let password = "dev12345"
+        
+       
+        var addr: String?
+        
+         addr = getWiFiAddress()
+            print(addr!)
+        
+        
+        
 
 
 
             var headers: HTTPHeaders = [:]
+        
 
             if let authorizationHeader = Request.authorizationHeader(user: user, password: password) {
             headers[authorizationHeader.key] = authorizationHeader.value
             }
 
-        //    4C:57:CA:44:9E:4C
-        // 48:4B:AA:58:18:8A
+     
 
-                self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?macAddress=48:4B:AA:58:18:8A", headers: headers).authenticate(user: user, password: password)
+//                self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?macAddress=48:4B:AA:58:18:8A", headers: headers).authenticate(user: user, password: password)
+        
+        self.defaultManager.request("https://10.34.250.12/api/location/v2/clients?ipAddress=" + addr! , headers: headers).authenticate(user: user, password: password)
 
             .responseJSON { response in
             switch response.result {
@@ -1587,6 +1571,44 @@ class IndoorRouting: UIViewController {
         }
         
     }
+    
+    func getWiFiAddress() -> String? {
+        var address : String?
+        
+        // Get list of all interfaces on the local machine:
+        var ifaddr : UnsafeMutablePointer<ifaddrs>?
+        guard getifaddrs(&ifaddr) == 0 else { return nil }
+        guard let firstAddr = ifaddr else { return nil }
+        
+        // For each interface ...
+        for ifptr in sequence(first: firstAddr, next: { $0.pointee.ifa_next }) {
+            let interface = ifptr.pointee
+            
+            // Check for IPv4 or IPv6 interface:
+            let addrFamily = interface.ifa_addr.pointee.sa_family
+            if addrFamily == UInt8(AF_INET) || addrFamily == UInt8(AF_INET6) {
+                
+                // Check interface name:
+                let name = String(cString: interface.ifa_name)
+                if  name == "en0" {
+                    
+                    // Convert interface address to a human readable string:
+                    var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+                    getnameinfo(interface.ifa_addr, socklen_t(interface.ifa_addr.pointee.sa_len),
+                                &hostname, socklen_t(hostname.count),
+                                nil, socklen_t(0), NI_NUMERICHOST)
+                    address = String(cString: hostname)
+                }
+            }
+        }
+        freeifaddrs(ifaddr)
+        
+        return address
+    }
+    
+
+    
+ 
     
     
     
