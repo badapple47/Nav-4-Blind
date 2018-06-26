@@ -29,7 +29,7 @@ struct pathStruct {
 
 
 
-
+var conductor : Bool = true
 
 var realCurrentLocationOnX : [Int]  = []
 var realCurrentLocationOnY : [Int] = []
@@ -283,7 +283,7 @@ class IndoorRouting: UIViewController {
                     let temp = pathStruct(nodeName: allPath[index] , x: 239, y: 70,xMin: 234 ,yMin: 67 ,xMax: 238  ,yMax: 70 )
                     allPathRealTime.append(temp)
                 case "Toilet1Man":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 278, y: 77,xMin: 238 ,yMin: 75 ,xMax: 273 ,yMax: 78 )
+                    let temp = pathStruct(nodeName: allPath[index] , x: 278, y: 77,xMin: 268 ,yMin: 78 ,xMax: 273 ,yMax: 78 )
                     allPathRealTime.append(temp)
                 case "Toilet1Woman":
                     let temp = pathStruct(nodeName: allPath[index] , x: 273, y: 71,xMin: 260 ,yMin: 70 ,xMax: 263 ,yMax: 74)
@@ -292,7 +292,7 @@ class IndoorRouting: UIViewController {
                     let temp = pathStruct(nodeName: allPath[index] , x: 230, y: 83, xMin: 229 ,yMin: 80 ,xMax: 234 ,yMax: 85)
                     allPathRealTime.append(temp)
                 case "DSSRoom":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 240, y: 103,xMin: 234 ,yMin: 100 ,xMax: 239 ,yMax: 105)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 240, y: 103,xMin: 234 ,yMin: 101 ,xMax: 238 ,yMax: 105)
                     allPathRealTime.append(temp)
                 case "ATRoom":
                     let temp = pathStruct(nodeName: allPath[index] , x: 262, y: 158,xMin: 259 ,yMin: 158,xMax: 264 ,yMax: 165)
@@ -331,7 +331,7 @@ class IndoorRouting: UIViewController {
                     let temp = pathStruct(nodeName: allPath[index] , x: 122, y: 168,xMin: 118,yMin: 162,xMax: 124 ,yMax: 167)
                     allPathRealTime.append(temp)
                 case "Toilet2Man":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 95, y: 202,xMin: 89 ,yMin: 197,xMax: 97 ,yMax: 201)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 95, y: 202,xMin: 89 ,yMin: 197,xMax: 98 ,yMax: 201)
                     allPathRealTime.append(temp)
                 case "Toilet2Woman":
                     let temp = pathStruct(nodeName: allPath[index] , x: 89, y: 200,xMin: 89,yMin: 189 ,xMax: 93 ,yMax: 192 )
@@ -362,10 +362,10 @@ class IndoorRouting: UIViewController {
                     let temp = pathStruct(nodeName: allPath[index] , x: 262, y: 75,xMin: 260,yMin: 70 ,xMax: 273 ,yMax: 78)
                     allPathRealTime.append(temp)
                 case "Node5":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 82,xMin: 229,yMin: 80,xMax: 238 ,yMax: 85)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 82,xMin: 229,yMin: 78,xMax: 238 ,yMax: 105)
                     allPathRealTime.append(temp)
                 case "Node6":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 103,xMin: 229 ,yMin: 100 ,xMax: 238 ,yMax: 105)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 103,xMin: 229 ,yMin: 105 ,xMax: 238 ,yMax: 158)
                     allPathRealTime.append(temp)
                 case "Node8":
                     let temp = pathStruct(nodeName: allPath[index] , x: 234, y: 163,xMin: 229,yMin: 158 ,xMax: 238 ,yMax: 165 )
@@ -389,10 +389,10 @@ class IndoorRouting: UIViewController {
                     let temp = pathStruct(nodeName: allPath[index] , x: 219, y: 176,xMin: 219,yMin: 176,xMax: 229 ,yMax: 183)
                     allPathRealTime.append(temp)
                 case "Node15":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 188, y: 163,xMin: 184,yMin: 157 ,xMax: 202 ,yMax: 167)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 188, y: 163,xMin: 182,yMin: 157 ,xMax: 202 ,yMax: 167)
                     allPathRealTime.append(temp)
                 case "Node155":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 205, y: 163,xMin: 202 ,yMin: 157,xMax: 229 ,yMax: 165)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 205, y: 163,xMin: 202 ,yMin: 157,xMax: 229 ,yMax: 167)
                     allPathRealTime.append(temp)
                 case "Node16":
                     let temp = pathStruct(nodeName: allPath[index] , x: 180, y: 163,xMin: 177 ,yMin: 157 ,xMax: 182 ,yMax: 180)
@@ -407,7 +407,7 @@ class IndoorRouting: UIViewController {
                     let temp = pathStruct(nodeName: allPath[index] , x: 121, y: 163,xMin: 118 ,yMin: 157 ,xMax: 123 ,yMax: 167)
                     allPathRealTime.append(temp)
                 case "Node205":
-                    let temp = pathStruct(nodeName: allPath[index] , x: 118, y: 163,xMin: 114,yMin: 137,xMax: 123 ,yMax: 167)
+                    let temp = pathStruct(nodeName: allPath[index] , x: 118, y: 163,xMin: 114,yMin: 137,xMax: 124 ,yMax: 167)
                     allPathRealTime.append(temp)
                 case "Node21":
                     let temp = pathStruct(nodeName: allPath[index] , x: 118, y: 134,xMin: 114 ,yMin: 132 ,xMax: 124 ,yMax: 137)
@@ -445,9 +445,13 @@ class IndoorRouting: UIViewController {
                 let deadline: DispatchTime = .now() + (Double(i) * executeTime)
                 DispatchQueue.main.asyncAfter(deadline: deadline) {
                     
-                    
-                    print("ตัวนับรอบ \(i+1)")
-                    self.getUserLocation(i : i)
+                    if (conductor == true) {
+                        print("ตัวนับรอบ \(i+1)")
+                        self.getUserLocation(i : i)
+                    }else{
+                        print("สิ้นสุดการทำงานเนื่องจากถึงจุดหมายเรียบร้อยแล้ว")
+                    }
+                   
                     
                 }
             }
@@ -1430,6 +1434,9 @@ class IndoorRouting: UIViewController {
                 
                 var  wordDistance = "ถึงจุดหมายเรียบร้อยแล้ว";
                 
+                //สั่งให้ตัวนับมันหยุด
+                conductor = false
+                
                 print(wordDistance)
                 
                 
@@ -1469,7 +1476,7 @@ class IndoorRouting: UIViewController {
 
             
             
-            if (checkArriveThisNodeYet<allPathRealTime.count-1){
+            if (checkArriveThisNodeYet<allPathRealTime.count-1 ){
 //                print("Xcurrent2 : \(currentRecall[0])")
 //                print("Ycurrent2 : \(currentRecall[1] )")
                 if (!iLiveInThisAreaRightMinusOne(x: currentRecall[0], y: currentRecall[1])

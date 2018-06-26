@@ -10,13 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nav4blind/Controller/IndoorRouting.swift"
-            timestampString = "549041887.344155"
+            timestampString = "550911484.024412"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1397"
-            endingLineNumber = "1397"
-            landmarkName = "realtimeRouting(i:)"
-            landmarkType = "7">
+            startingLineNumber = "1401"
+            endingLineNumber = "1401"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -26,13 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "nav4blind/Controller/IndoorRouting.swift"
-            timestampString = "549041887.344622"
+            timestampString = "550911484.025282"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "23"
             endingLineNumber = "23"
-            landmarkName = "pathStruct"
-            landmarkType = "14">
+            landmarkName = "unknown"
+            landmarkType = "0">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
